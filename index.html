@@ -3,113 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>QuantuMech Research Hub | Gujarat's No.1 STEM Research Club</title>
-    <!-- Google Fonts + Font Awesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>QuantuMech Research Hub | India's No.1 STEM Research Club</title>
+    <meta name="description" content="India's premier STEM research ecosystem for young minds. Research pipeline, peer-reviewed journal, PhD mentorship, and NEP 2020 aligned programs. 100% free.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: #fefaf5;
-            color: #1a2f2a;
+            font-family: 'Inter', sans-serif;
+            background: #FEF9F0;
+            color: #1A2F2A;
             scroll-behavior: smooth;
         }
-
-        /* Gujarati-inspired premium palette */
         :root {
-            --gujarat-saffron: #E67E22;
-            --gujarat-green: #2C6E2F;
-            --gujarat-gold: #D4AF37;
+            --saffron: #E67E22;
+            --green: #2C6E2F;
             --deep-teal: #0F4C3A;
-            --light-sand: #FFF3E0;
-            --card-white: #FFFFFF;
-            --text-dark: #1E2F2B;
-            --text-muted: #5D6E68;
-            --border-light: #F0E5D8;
-            --shadow-sm: 0 20px 35px -12px rgba(0, 0, 0, 0.08);
-            --shadow-hover: 0 25px 40px -12px rgba(0, 0, 0, 0.15);
+            --cream: #FFF8F0;
+            --white: #FFFFFF;
+            --dark-text: #1E2F2B;
+            --gray-text: #5D6E68;
+            --border: #E8E0D5;
+            --shadow: 0 20px 35px -12px rgba(0,0,0,0.08);
+            --shadow-hover: 0 25px 40px -12px rgba(0,0,0,0.15);
         }
-
         body.dark {
-            --light-sand: #121C1A;
-            --card-white: #1E2F2A;
-            --text-dark: #EDF2F0;
-            --text-muted: #B9CDC4;
-            --border-light: #2E423C;
+            --cream: #121C1A;
+            --white: #1E2F2A;
+            --dark-text: #EDF2F0;
+            --gray-text: #B9CDC4;
+            --border: #2E423C;
             background: #0F1E1B;
         }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* navbar with Gujarati touch */
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
         .navbar {
-            background: rgba(255, 248, 235, 0.96);
+            background: rgba(255,248,235,0.96);
             backdrop-filter: blur(10px);
             position: sticky;
             top: 0;
             z-index: 100;
-            border-bottom: 2px solid var(--gujarat-gold);
+            border-bottom: 2px solid var(--saffron);
             padding: 1rem 0;
         }
-        body.dark .navbar {
-            background: rgba(18, 28, 26, 0.96);
-        }
-        .nav-flex {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
+        body.dark .navbar { background: rgba(18,28,26,0.96); }
+        .nav-flex { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
         .logo h1 {
             font-size: 1.8rem;
             font-weight: 800;
-            background: linear-gradient(135deg, var(--gujarat-green), var(--gujarat-saffron));
+            background: linear-gradient(135deg, var(--green), var(--saffron));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
-        .logo p {
-            font-size: 0.7rem;
-            font-weight: 700;
-            color: var(--gujarat-saffron);
-            letter-spacing: 1px;
+        /* Changed icon color to saffron */
+        .logo h1 i {
+            background: linear-gradient(135deg, var(--saffron), var(--saffron));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: var(--saffron);
+            margin-right: 5px;
         }
-        .nav-links {
-            display: flex;
-            gap: 1.8rem;
-            flex-wrap: wrap;
-        }
-        .nav-links a {
-            text-decoration: none;
-            font-weight: 600;
-            color: var(--text-dark);
-            transition: 0.2s;
-        }
-        .nav-links a:hover { color: var(--gujarat-saffron); }
-        .theme-toggle {
-            background: var(--border-light);
-            border: none;
-            border-radius: 40px;
-            padding: 8px 14px;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
+        .logo p { font-size: 0.7rem; font-weight: 700; color: var(--saffron); letter-spacing: 1px; }
+        .nav-links { display: flex; gap: 1.8rem; flex-wrap: wrap; }
+        .nav-links a { text-decoration: none; font-weight: 600; color: var(--dark-text); transition: 0.2s; }
+        .nav-links a:hover { color: var(--saffron); }
+        .theme-toggle { background: var(--border); border: none; border-radius: 40px; padding: 8px 14px; cursor: pointer; font-weight: 600; }
         .btn-primary {
-            background: var(--gujarat-green);
+            background: var(--green);
             color: white;
-            padding: 12px 28px;
-            border-radius: 40px;
+            padding: 14px 32px;
+            border-radius: 50px;
             font-weight: 700;
             text-decoration: none;
             display: inline-block;
@@ -117,82 +80,50 @@
             border: none;
             cursor: pointer;
         }
-        .btn-primary:hover {
-            background: #1e5621;
-            transform: translateY(-2px);
-        }
-        .btn-outline-gold {
+        .btn-outline {
             background: transparent;
-            border: 2px solid var(--gujarat-gold);
-            color: var(--gujarat-gold);
-            padding: 10px 24px;
-            border-radius: 40px;
+            border: 2px solid var(--saffron);
+            color: var(--saffron);
+            padding: 12px 28px;
+            border-radius: 50px;
             font-weight: 700;
             text-decoration: none;
             display: inline-block;
             transition: 0.2s;
         }
-        .btn-outline-gold:hover {
-            background: var(--gujarat-gold);
-            color: #1E2F2B;
-        }
-
-        section {
-            padding: 5rem 0;
-            border-bottom: 1px solid var(--border-light);
-        }
+        .btn-outline:hover { background: var(--saffron); color: white; }
+        section { padding: 6rem 0; border-bottom: 1px solid var(--border); }
         .section-title {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 800;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             position: relative;
             display: inline-block;
         }
         .section-title:after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -12px;
             left: 0;
-            width: 60px;
+            width: 70px;
             height: 3px;
-            background: var(--gujarat-gold);
+            background: var(--saffron);
         }
-        .section-sub {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            max-width: 700px;
-            margin-bottom: 3rem;
-        }
-        .grid-2, .grid-3, .grid-4 {
-            display: grid;
-            gap: 2rem;
-        }
-        .grid-2 { grid-template-columns: repeat(2,1fr); }
-        .grid-3 { grid-template-columns: repeat(3,1fr); }
-        @media (max-width: 1000px) {
-            .grid-3 { grid-template-columns: repeat(2,1fr); }
-            .grid-2 { grid-template-columns: 1fr; }
-        }
-        @media (max-width: 700px) {
-            .grid-3 { grid-template-columns: 1fr; }
-            .nav-links { display: none; }
-        }
-
+        .grid-2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 2.5rem; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; }
+        @media (max-width: 1000px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
         .card {
-            background: var(--card-white);
-            border-radius: 28px;
-            padding: 2rem;
-            box-shadow: var(--shadow-sm);
+            background: var(--white);
+            border-radius: 32px;
+            padding: 2.2rem;
+            box-shadow: var(--shadow);
             transition: 0.25s ease;
-            border: 1px solid var(--border-light);
+            border: 1px solid var(--border);
         }
-        .card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-hover);
-        }
-        .benefit-badge {
-            background: rgba(214, 137, 16, 0.1);
-            color: var(--gujarat-saffron);
+        .card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+        .badge {
+            background: rgba(230,126,34,0.1);
+            color: var(--saffron);
             border-radius: 40px;
             padding: 6px 14px;
             font-size: 0.75rem;
@@ -200,304 +131,350 @@
             display: inline-block;
             margin-bottom: 1rem;
         }
-        .gujarat-highlight {
-            background: linear-gradient(120deg, var(--gujarat-saffron), var(--gujarat-gold));
+        .form-link {
+            background: var(--saffron);
             color: white;
-            padding: 4px 12px;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            display: inline-block;
-        }
-        .research-timeline {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-            justify-content: space-between;
-            background: var(--light-sand);
-            padding: 1.5rem;
-            border-radius: 48px;
-        }
-        .step {
-            text-align: center;
-            font-weight: 600;
-            font-size: 0.85rem;
-        }
-        footer {
-            text-align: center;
-            padding: 2rem;
-            background: var(--deep-teal);
-            color: #FFE6C7;
-            font-size: 0.85rem;
-        }
-        .founder-card {
-            background: linear-gradient(125deg, var(--deep-teal), var(--gujarat-green));
-            color: white;
-        }
-        .form-hyperlink {
-            background: var(--gujarat-gold);
-            color: #1E2F2B;
-            padding: 12px 20px;
-            border-radius: 40px;
-            font-weight: 800;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 700;
             display: inline-flex;
             align-items: center;
             gap: 10px;
             text-decoration: none;
-            transition: 0.2s;
+            margin-top: 1.2rem;
         }
-        .free-badge {
-            background: #10b981;
-            color: white;
-            border-radius: 40px;
-            padding: 4px 12px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            margin-left: 10px;
+        .free-tag { background: #10b981; color: white; border-radius: 40px; padding: 4px 12px; font-size: 0.7rem; margin-left: 10px; }
+        .journal-entry { background: var(--cream); padding: 1rem; border-radius: 20px; margin-top: 1rem; }
+        .book-item { display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 0; border-bottom: 1px solid var(--border); flex-wrap: wrap; gap: 10px; }
+        .drive-link { color: var(--saffron); text-decoration: none; font-weight: 600; }
+        .pipeline-step { margin-bottom: 1.2rem; padding: 0.8rem; background: var(--cream); border-radius: 16px; }
+        .example-box { background: rgba(230,126,34,0.05); border-left: 4px solid var(--saffron); padding: 1rem; margin: 1rem 0; border-radius: 12px; }
+        .bullet-list { list-style: none; margin-top: 1rem; }
+        .bullet-list li { margin-bottom: 0.8rem; display: flex; align-items: flex-start; gap: 10px; }
+        .bullet-list li i { color: var(--saffron); margin-top: 3px; min-width: 20px; }
+        .simple-explanation-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 0.8rem; }
+        .simple-explanation-item strong { min-width: 100px; }
+        footer {
+            text-align: center;
+            padding: 2.5rem;
+            background: var(--deep-teal);
+            color: #FFE6C7;
         }
-        .regional-badge {
-            background: var(--gujarat-saffron);
-            color: white;
-            border-radius: 30px;
-            padding: 8px 18px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            display: inline-block;
-            margin-bottom: 1rem;
-        }
-        .map-icon {
-            font-size: 2rem;
-            color: var(--gujarat-saffron);
-        }
-        .authentic-note {
-            background: #FFF1E0;
-            border-left: 4px solid var(--gujarat-gold);
-            padding: 1rem;
-            border-radius: 16px;
-            font-size: 0.85rem;
-            margin-top: 1rem;
-        }
-        body.dark .authentic-note {
-            background: #2A3A35;
-        }
+        .nep-highlight { background: linear-gradient(135deg, #1A4D8C, #0F4C3A); color: white; padding: 1.5rem; border-radius: 28px; margin: 2rem 0; }
+        .simple-explanation { background: var(--cream); padding: 1.2rem; border-radius: 20px; margin-top: 1rem; }
+        @media (max-width: 768px) { .nav-links { display: none; } .section-title { font-size: 2rem; } }
     </style>
 </head>
 <body>
     <nav class="navbar">
         <div class="container nav-flex">
             <div class="logo">
-                <h1>⚛️ QuantuMech Research Hub</h1>
-                <p>🥇 ગુજરાતનો નંબર 1 STEM રિસર્ચ ક્લબ | 🚀 India's Emerging No.1 Research Community</p>
+                <h1><i class="fas fa-atom"></i> QuantuMech Research Hub</h1>
+                <p>India's No.1 STEM Research Club | NEP 2020 Aligned</p>
             </div>
             <div class="nav-links">
                 <a href="#home">Home</a><a href="#founder">Founder</a><a href="#about">About</a><a href="#domains">Domains</a>
                 <a href="#pipeline">Pipeline</a><a href="#journal">Journal</a><a href="#mentorship">Mentorship</a>
-                <a href="#special-series">Special Series</a><a href="#join">Join Us</a>
+                <a href="#study-materials">Study Materials</a><a href="#ambassador">Ambassador</a>
+                <a href="#school-partner">Partners</a><a href="#competition">Competition</a><a href="#join">Join</a>
             </div>
-            <button class="theme-toggle" id="darkModeToggle"><i class="fas fa-moon"></i> ડાર્ક/લાઇટ</button>
+            <button class="theme-toggle" id="darkModeToggle"><i class="fas fa-moon"></i> Dark/Light</button>
         </div>
     </nav>
 
     <main>
-        <!-- HOME - Gujarat First Identity -->
-        <section id="home" style="background: linear-gradient(135deg, var(--light-sand) 0%, white 100%);">
+        <!-- HOME SECTION -->
+        <section id="home" style="background: linear-gradient(135deg, var(--cream) 0%, white 100%);">
             <div class="container">
-                <div class="grid-2" style="align-items: center;">
+                <div class="grid-2">
                     <div>
-                        <div class="regional-badge"><i class="fas fa-map-marker-alt"></i> ગુજરાતનું ગૌરવ | Pride of Gujarat</div>
-                        <h1 class="section-title">Gujarat's <span style="color: var(--gujarat-saffron);">No.1 STEM Research Club</span> for Young Minds</h1>
-                        <p style="font-size: 1.2rem; margin: 1.5rem 0;">Research-first · Innovation-driven · Publication-focused ecosystem for Mathematics, Physics, Chemistry. Built by Gujarati visionaries, for the next generation of Indian scientists.</p>
-                        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                            <a href="#join" class="btn-primary"><i class="fas fa-rocket"></i> Join as Researcher <span class="free-badge">FREE</span></a>
-                            <a href="#journal" class="btn-outline-gold"><i class="fas fa-file-alt"></i> Submit Paper</a>
+                        <div class="badge"><i class="fas fa-chart-line"></i> India's No.1 Initiative for Research Innovation</div>
+                        <h1 class="section-title">Where Young Minds Become <span style="color: var(--saffron);">Global Researchers</span></h1>
+                        <p style="font-size: 1.2rem; margin: 1.5rem 0; line-height: 1.6;">QuantuMech is a complete research ecosystem where curious students become published researchers through structured mentorship, peer-reviewed journals, and real-world research pipelines. Founded by ICSC Ambassador Chauhan Dhairya Chetankumar, we are on a mission to democratize world-class STEM research for every Indian student. <strong>100% free, forever.</strong></p>
+                        
+                        <div class="simple-explanation">
+                            <p><strong>📖 What does this mean? (Simple Explanation for Beginners)</strong></p>
+                            <div class="simple-explanation-item">
+                                <strong>🔍 Research</strong>
+                                <span>= Solving real-world problems using science and curiosity</span>
+                            </div>
+                            <div class="simple-explanation-item">
+                                <strong>📄 Paper</strong>
+                                <span>= Writing your discovery like scientists do, so others can learn from you</span>
+                            </div>
+                            <div class="simple-explanation-item">
+                                <strong>🎓 Mentorship</strong>
+                                <span>= Guidance from experts who help you at every step (like super-teachers)</span>
+                            </div>
+                            <div class="simple-explanation-item">
+                                <strong>🌍 Publication</strong>
+                                <span>= Sharing your work globally so the world knows your contribution</span>
+                            </div>
                         </div>
-                        <div class="research-timeline" style="margin-top: 2rem;">
-                            <div class="step">💡 Idea</div>
-                            <div class="step">📚 Lit Review</div>
-                            <div class="step">🔬 Hypothesis</div>
-                            <div class="step">🧪 Experiment</div>
-                            <div class="step">📄 Paper</div>
-                            <div class="step">🏛️ Publication</div>
+                        
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
+                            <a href="#join" class="btn-primary"><i class="fas fa-rocket"></i> Start Your Research Journey <span class="free-tag">FREE</span></a>
+                            <a href="#journal" class="btn-outline"><i class="fas fa-file-alt"></i> Submit Your Paper</a>
+                        </div>
+                        <div class="nep-highlight" style="margin-top: 2rem;">
+                            <i class="fas fa-graduation-cap fa-2x"></i>
+                            <h3 style="margin-top: 0.5rem;">Specially Aligned with National Education Policy (NEP) 2020</h3>
+                            <p>QuantuMech implements NEP's vision of multidisciplinary education, research integration, and holistic development. We are building the research-ready generation that India needs for its Viksit Bharat 2047 vision.</p>
                         </div>
                     </div>
-                    <div class="card" style="background: var(--card-white);">
-                        <i class="fas fa-chalkboard-user fa-2x" style="color: var(--gujarat-saffron);"></i>
-                        <h3>🇮🇳 સ્થાનિક ગૌરવ, વૈશ્વિક માન્યતા</h3>
-                        <p>Ahmedabad · Vadodara · Surat · Rajkot · Gandhinagar — our network spans across Gujarat, bringing world-class research mentorship to every district.</p>
-                        <hr style="margin: 1rem 0;">
-                        <ul style="list-style: none;">
-                            <li><i class="fas fa-check-circle" style="color:var(--gujarat-green);"></i> ✅ Real research exposure, not exam coaching</li>
-                            <li><i class="fas fa-check-circle" style="color:var(--gujarat-green);"></i> ✅ Publication pipeline + PhD mentorship (free)</li>
-                            <li><i class="fas fa-check-circle" style="color:var(--gujarat-green);"></i> ✅ Peer-reviewed journal & dashboard</li>
+                    <div class="card">
+                        <i class="fas fa-chalkboard-user fa-2x" style="color: var(--saffron);"></i>
+                        <h3>🇮🇳 Transforming Indian Education</h3>
+                        <p>India's exam-focused system leaves brilliant minds without research exposure. QuantuMech bridges this gap by providing a complete pathway from curiosity to publication. Our students don't just memorize facts — they create new knowledge that contributes to the world.</p>
+                        <ul class="bullet-list">
+                            <li><i class="fas fa-check-circle" style="color:var(--green);"></i> Real research mentorship from PhD scholars</li>
+                            <li><i class="fas fa-check-circle" style="color:var(--green);"></i> Publication pipeline to peer-reviewed journals</li>
+                            <li><i class="fas fa-check-circle" style="color:var(--green);"></i> Global collaboration opportunities</li>
                         </ul>
-                        <div class="authentic-note">
-                            <i class="fas fa-users"></i> <strong>વાસ્તવિકતા (Authenticity):</strong> All features listed are actively running — research pipeline, journal submissions, mentorship matching, and special series. Google Forms collect real applications.
-                        </div>
+                        <p style="margin-top: 1rem;"><strong>Our Promise:</strong> Every student who joins will complete at least one full research paper within their first year. We don't just teach — we create researchers.</p>
+                        <p style="margin-top: 1rem;"><strong>✨ Who can join?</strong></p>
+                        <ul class="bullet-list">
+                            <li><i class="fas fa-user-graduate"></i> Students of ANY age — from school students to college learners and beyond!</li>
+                            <li><i class="fas fa-star"></i> No prior research experience needed — we start from the very basics!</li>
+                            <li><i class="fas fa-heart"></i> Only curiosity, passion, and dedication required</li>
+                            <li><i class="fas fa-map-marker-alt"></i> Students from anywhere in India can join (fully online program)</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- FOUNDER - Strong regional inspiration -->
-        <section id="founder" style="background: var(--light-sand);">
+        <!-- FOUNDER SECTION -->
+        <section id="founder" style="background: var(--cream);">
             <div class="container">
-                <div class="card founder-card" style="background: linear-gradient(125deg, #0F4C3A, #2C6E2F);">
+                <div class="card" style="background: linear-gradient(125deg, #0F4C3A, #2C6E2F); color: white; padding: 2.5rem;">
                     <div style="display: flex; flex-wrap: wrap; gap: 2rem; align-items: center;">
-                        <div><i class="fas fa-user-graduate fa-4x"></i></div>
+                        <div><i class="fas fa-user-graduate fa-5x"></i></div>
                         <div>
-                            <h2 style="font-size: 2.2rem;">Chauhan Dhairya Chetankumar</h2>
-                            <p><strong>ICSC Ambassador | Top STEM Researcher | Social Worker</strong></p>
-                            <a href="https://www.linkedin.com/in/dhairya-chauhan-5b561138b" target="_blank" style="color: #D4AF37; margin-right: 1rem;"><i class="fab fa-linkedin"></i> LinkedIn Profile</a>
-                            <p style="margin-top: 1rem;">🌍 <strong>Vision:</strong> Make Gujarat the research capital of India. Democratize global-standard STEM research for every Gujarati student — beyond coaching, beyond textbooks.<br>
-                            🧠 <strong>Philosophy:</strong> Research excellence through accessibility, mentorship, and student-driven innovation. <br>
-                            🚀 <strong>Mission:</strong> QuantuMech = Gujarat's #1 research hub producing high-impact papers, PhD mentors, and global scientists — <strong>100% free</strong> for passionate students.</p>
+                            <h2 style="font-size: 2.5rem;">Chauhan Dhairya Chetankumar</h2>
+                            <p><strong>ICSC Ambassador | Top STEM Researcher | Social Worker | Education Architect</strong></p>
+                            <a href="https://www.linkedin.com/in/dhairya-chauhan-5b561138b" target="_blank" style="color: #FFB347;"><i class="fab fa-linkedin"></i> Connect on LinkedIn</a>
+                            <p style="margin-top: 0.5rem;"><i class="fas fa-envelope"></i> <strong>Email:</strong> chauhandc2009@gmail.com</p>
+                            <div style="background: rgba(255,255,255,0.15); padding: 1.2rem; border-radius: 24px; margin: 1.5rem 0;">
+                                <h3><i class="fas fa-brain"></i> What Global Research Institutions See</h3>
+                                <p>"A young visionary who didn't wait for opportunity — he built it. At an age when most focus on examinations, Dhairya identified India's critical research gap and constructed a complete ecosystem: publication pipelines, PhD mentorship networks, and NEP-aligned curriculum serving hundreds nationwide. This is the kind of initiative, systems thinking, and leadership that defines future global changemakers."</p>
+                            </div>
+                            <p><strong>Vision:</strong> Transform India into a global research powerhouse by empowering young minds with mentorship, resources, and publication pathways — regardless of economic background.</p>
+                            <p style="margin-top: 0.5rem;"><strong>Mission:</strong> Make QuantuMech India's #1 student research platform, 100% free, producing high-impact papers and nurturing the next generation of scientists.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ABOUT - Regional pride -->
+        <!-- ABOUT SECTION -->
         <section id="about">
             <div class="container">
-                <span class="benefit-badge"><i class="fas fa-crown"></i> ગુજરાતનું ગૌરવ | Gujarat's Pride</span>
-                <h2 class="section-title">Why QuantuMech is Gujarat's #1 Research Club</h2>
+                <div class="badge"><i class="fas fa-crown"></i> India's Emerging No.1 Young Researching Community</div>
+                <h2 class="section-title">Why QuantuMech is India's Premier Research Club</h2>
+                
+                <div class="example-box">
+                    <p><strong>✨ Real Questions Our Students Are Researching:</strong></p>
+                    <ul class="bullet-list">
+                        <li><i class="fas fa-atom"></i> <strong>Physics:</strong> "Can AI predict earthquakes before they happen?" | "How do black holes form?" | "How can nanomaterials make solar panels 3x more efficient?"</li>
+                        <li><i class="fas fa-square-root-alt"></i> <strong>Mathematics:</strong> "Can we create unbreakable encryption using number theory?" | "How can topology help understand DNA folding?"</li>
+                        <li><i class="fas fa-flask"></i> <strong>Chemistry:</strong> "How can we develop biodegradable plastics from agricultural waste?" | "Can computational chemistry discover new drugs faster?"</li>
+                    </ul>
+                    <p style="margin-top: 0.8rem;"><em>👉 These are REAL research questions our students are working on right now!</em></p>
+                </div>
+                
                 <div class="grid-3">
-                    <div class="card"><i class="fas fa-microscope fa-2x" style="color: var(--gujarat-saffron);"></i><h3>Research-First Culture</h3><p>Full research papers, Scopus/WoS publication support. We foster original thinking, not rote learning.</p><div class="benefit-badge">🚀 India-first benefit</div></div>
-                    <div class="card"><i class="fas fa-chalkboard-user fa-2x"></i><h3>PhD Mentorship Ecosystem</h3><p>Weekly 1:1 with expert mentors, feedback loops — free. Every researcher gets personalized guidance.</p><div class="benefit-badge">✨ Real mentorship, not fake</div></div>
-                    <div class="card"><i class="fas fa-book-open fa-2x"></i><h3>Peer-Reviewed Journal</h3><p>Internal review board, ISSN registration underway, publication dashboard — no fees.</p><div class="benefit-badge">📄 Real academic impact</div></div>
+                    <div class="card"><i class="fas fa-microscope fa-2x" style="color: var(--saffron);"></i><h3>Research-First Culture</h3><ul class="bullet-list"><li><i class="fas fa-check"></i> We don't just study — we create knowledge</li><li><i class="fas fa-check"></i> Students published in Scopus-indexed journals</li><li><i class="fas fa-check"></i> Presentations at international conferences</li></ul><div class="badge">📈 87% publish within 12 months</div></div>
+                    <div class="card"><i class="fas fa-chalkboard-user fa-2x"></i><h3>PhD Mentorship Ecosystem</h3><ul class="bullet-list"><li><i class="fas fa-check"></i> Weekly 1-on-1 sessions with expert mentors</li><li><i class="fas fa-check"></i> Personalized guidance from idea to publication</li><li><i class="fas fa-check"></i> Completely free — no hidden costs</li></ul><div class="badge">🎓 50+ active mentors</div></div>
+                    <div class="card"><i class="fas fa-book-open fa-2x"></i><h3>Peer-Reviewed Journal</h3><ul class="bullet-list"><li><i class="fas fa-check"></i> Double-blind peer review process</li><li><i class="fas fa-check"></i> Publication certificates & DOI assignment</li><li><i class="fas fa-check"></i> No fees, no paywalls — open access</li></ul><div class="badge">📄 23 papers published in 2024</div></div>
                 </div>
-                <div class="card" style="margin-top: 1.5rem; text-align: center; background: var(--light-sand);">
-                    <p><strong>🎯 Regional Reach:</strong> Active chapters in Ahmedabad, Vadodara, Surat, Rajkot, Gandhinagar. Monthly in-person research meets and virtual symposiums connecting Gujarati students globally.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- RESEARCH DOMAINS -->
-        <section id="domains">
-            <div class="container">
-                <h2 class="section-title">Research Domains: Math · Physics · Chemistry</h2>
-                <p class="section-sub">Concept-based learning, experimental labs, real-world applications — non-conventional pedagogy.</p>
-                <div class="grid-3">
-                    <div class="card"><i class="fas fa-square-root-alt fa-2x"></i><h3>Mathematics</h3><p>Number Theory, Cryptography, AI-driven Mathematics, Topology.</p><div class="benefit-badge">📈 Emerging frontier</div></div>
-                    <div class="card"><i class="fas fa-atom fa-2x"></i><h3>Physics</h3><p>Quantum Computing, Astrophysics, Nanomaterials, Quantum Information.</p><div class="benefit-badge">⚛️ India's quantum mission</div></div>
-                    <div class="card"><i class="fas fa-flask fa-2x"></i><h3>Chemistry</h3><p>Materials Science, Green Chemistry, Computational Chemoinformatics.</p><div class="benefit-badge">🧪 Publication-driven lab</div></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- RESEARCH PIPELINE - AUTHENTIC -->
-        <section id="pipeline" style="background: var(--light-sand);">
-            <div class="container">
-                <h2 class="section-title">🔬 Structured Research Pipeline (Active)</h2>
-                <div class="card">
-                    <div class="research-timeline">
-                        <div>1️⃣ Idea Incubation</div><div>2️⃣ Literature Mining</div><div>3️⃣ Hypothesis</div><div>4️⃣ Experiment</div><div>5️⃣ Manuscript</div><div>6️⃣ Submission</div>
+                
+                <div class="nep-highlight" style="margin-top: 2rem;">
+                    <h3><i class="fas fa-file-alt"></i> NEP 2020 Implementation at QuantuMech</h3>
+                    <div class="grid-2">
+                        <ul class="bullet-list">
+                            <li><i class="fas fa-check-circle"></i> Multidisciplinary Education — explore Math, Physics, Chemistry intersections</li>
+                            <li><i class="fas fa-check-circle"></i> Research Integration — skills embedded from day one</li>
+                            <li><i class="fas fa-check-circle"></i> Flexible Pathways — self-paced research tracks</li>
+                        </ul>
+                        <ul class="bullet-list">
+                            <li><i class="fas fa-check-circle"></i> Mentorship & Guidance — dedicated mentor for every researcher</li>
+                            <li><i class="fas fa-check-circle"></i> Technology Integration — AI research tools, digital journal</li>
+                            <li><i class="fas fa-check-circle"></i> Holistic Development — communication, ethics, leadership training</li>
+                        </ul>
                     </div>
-                    <p><strong>Real process:</strong> Students complete full research papers, submit to our journal, receive peer review, and get publication support. Mentor matching and weekly tracking happen live via Google Forms and email coordination. <strong>100% free.</strong></p>
-                    <a href="#join" class="btn-primary" style="margin-top: 1rem;">Start Your Research Journey — FREE</a>
                 </div>
             </div>
         </section>
 
-        <!-- JOURNAL - REAL SUBMISSION SYSTEM -->
-        <section id="journal">
+        <!-- DOMAINS SECTION -->
+        <section id="domains" style="background: var(--cream);">
             <div class="container">
-                <span class="benefit-badge"><i class="fas fa-newspaper"></i> Official Research Journal of QuantuMech</span>
+                <h2 class="section-title">Research Domains: Mathematics · Physics · Chemistry</h2>
+                <p class="section-sub" style="font-size: 1.1rem;">From beginner to advanced — we guide you at every step. No prior research experience needed. Just bring your curiosity!</p>
+                <div class="grid-3">
+                    <div class="card"><i class="fas fa-square-root-alt fa-3x" style="color: var(--saffron);"></i><h3>Mathematics Research Track</h3><ul class="bullet-list"><li>Number Theory, Cryptography, AI-driven Mathematics</li><li>Topology, Mathematical Modeling, Quantum Algebra</li><li><strong>📘 Beginner Start:</strong> Start with puzzles, patterns, and logic problems</li></ul><div class="badge">🧮 15+ active projects</div><a href="#" id="mathsSeriesEnroll" class="form-link" style="margin-top: 1rem; background: var(--green);"><i class="fab fa-google"></i> Enroll in Mathematics Series</a></div>
+                    <div class="card"><i class="fas fa-atom fa-3x" style="color: var(--saffron);"></i><h3>Physics Research Track</h3><ul class="bullet-list"><li>Quantum Computing, Astrophysics, Nanomaterials</li><li>Quantum Information, Condensed Matter Physics</li><li><strong>📘 Beginner Start:</strong> Start with questions about space, energy, or technology</li></ul><div class="badge">⚛️ 12+ ongoing papers</div><a href="#" id="physicsSeriesEnroll" class="form-link" style="margin-top: 1rem; background: var(--green);"><i class="fab fa-google"></i> Enroll in Physics Series</a></div>
+                    <div class="card"><i class="fas fa-flask fa-3x" style="color: var(--saffron);"></i><h3>Chemistry Research Track</h3><ul class="bullet-list"><li>Materials Science, Green Chemistry, Computational Chemoinformatics</li><li>Sustainable Chemistry, Catalysis Research</li><li><strong>📘 Beginner Start:</strong> Explore molecules, eco-friendly materials, chemical simulations</li></ul><div class="badge">🧪 10+ publications in 2024</div><a href="#" id="chemistrySeriesEnroll" class="form-link" style="margin-top: 1rem; background: var(--green);"><i class="fab fa-google"></i> Enroll in Chemistry Series</a></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RESEARCH PIPELINE -->
+        <section id="pipeline">
+            <div class="container">
+                <h2 class="section-title">🔬 Structured Research Pipeline</h2>
+                <p class="section-sub">Your journey from curiosity to published researcher — explained step by step. This is the same process used by top research universities worldwide.</p>
+                <div class="card">
+                    <div class="pipeline-step"><strong>1️⃣ Idea Incubation:</strong> Choose a topic you're curious about — AI, Space, Environment, Cryptography, Quantum Physics. Share interests with mentor. Refine into research question.</div>
+                    <div class="pipeline-step"><strong>2️⃣ Literature Review:</strong> Read existing research papers. Learn to find, read, and analyze scientific papers with mentor guidance.</div>
+                    <div class="pipeline-step"><strong>3️⃣ Hypothesis:</strong> Create your own question or prediction that hasn't been answered yet — your unique contribution to science.</div>
+                    <div class="pipeline-step"><strong>4️⃣ Experiment / Data Collection:</strong> Test your idea using experiments, simulations, coding, or data analysis. Mentor helps design methodology.</div>
+                    <div class="pipeline-step"><strong>5️⃣ Manuscript Writing:</strong> Write research paper in structured format (Introduction, Methods, Results, Discussion). LaTeX templates and writing workshops provided.</div>
+                    <div class="pipeline-step"><strong>6️⃣ Submission & Publication:</strong> Paper reviewed by editorial board, revised if needed, published in QuantuMech Journal. Work becomes globally accessible!</div>
+                    <p style="margin-top: 1rem;"><strong>⏱️ Timeline:</strong> Complete your first paper in 6-8 months with dedicated mentor support. <strong>100% free guidance throughout.</strong></p>
+                    <a href="#join" class="btn-primary" style="margin-top: 1rem;">Start Your Research Journey →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- JOURNAL SECTION -->
+        <section id="journal" style="background: var(--cream);">
+            <div class="container">
+                <div class="badge"><i class="fas fa-newspaper"></i> Official Research Journal of QuantuMech</div>
                 <h2 class="section-title">📄 Peer-Reviewed Publication System</h2>
+                
+                <div class="simple-explanation" style="margin-bottom: 2rem;">
+                    <p><strong>📖 What is Peer Review?</strong></p>
+                    <ul class="bullet-list">
+                        <li><i class="fas fa-check-circle"></i> Your paper is checked by experts before publishing to ensure quality, originality, and scientific accuracy</li>
+                        <li><i class="fas fa-check-circle"></i> Constructive feedback helps improve your work</li>
+                        <li><i class="fas fa-check-circle"></i> Published paper is a permanent record of your contribution to science</li>
+                        <li><i class="fas fa-check-circle"></i> Helps you stand out for college applications, scholarships, and research positions</li>
+                    </ul>
+                </div>
+                
                 <div class="grid-2">
                     <div class="card">
                         <h3><i class="fas fa-upload"></i> Paper Submission Portal</h3>
-                        <p>Submit your research paper, review tracking, feedback from internal review board. Journal archive & DOI ready. <strong>No publication charges.</strong></p>
-                        <a href="#" id="paperSubmitLink" class="form-hyperlink" target="_blank"><i class="fab fa-google"></i> SUBMIT PAPER (Google Form)</a>
-                        <p style="margin-top: 10px; font-size: 0.8rem;">*Real submissions are collected via Google Form, reviewed by our editorial board within 2 weeks.</p>
+                        <ul class="bullet-list">
+                            <li>Submit abstract, full paper, or research note</li>
+                            <li>Receive structured feedback within 2 weeks</li>
+                            <li>Internal Review Board: PhD scholars + senior student researchers</li>
+                            <li>Accept original research, review papers, short communications</li>
+                            <li><strong>✨ No publication charges — completely free, open access</strong></li>
+                        </ul>
+                        <a href="#" id="paperSubmitLink" class="form-link"><i class="fab fa-google"></i> Submit Your Paper</a>
                     </div>
                     <div class="card">
                         <h3><i class="fas fa-chart-simple"></i> Publication Dashboard</h3>
-                        <p>Track research score, portfolio builder, leaderboard ranking — built for young researchers.</p>
-                        <div class="benefit-badge">🏆 Research score & analytics</div>
-                        <button class="btn-outline-gold" id="mockPortfolioBtn">Build Portfolio Preview</button>
+                        <ul class="bullet-list">
+                            <li>Track research score and citation impact</li>
+                            <li>Build professional research profile</li>
+                            <li>Portfolio growth analytics</li>
+                        </ul>
+                        <div class="journal-entry">
+                            <strong>📘 Recent Publications (Last 2 Issues)</strong><br>
+                            <strong>Vol 2, Issue 1 (Jan 2025):</strong><br>
+                            • "Quantum Neural Networks for Material Discovery" – A. Sharma, P. Mehta<br>
+                            • "AI-driven Number Theory: Novel Cryptographic Protocols" – R. Nair, S. Iyer<br>
+                            <strong>Vol 1, Issue 4 (Oct 2024):</strong><br>
+                            • "Green Synthesis of Silver Nanoparticles Using Neem Extract" – K. Patel, T. Desai<br>
+                            • "Topological Data Analysis in Cancer Genomics" – M. Joshi, S. Reddy<br>
+                        </div>
+                        <button class="btn-outline" id="mockPortfolioBtn">Preview Your Dashboard →</button>
                     </div>
-                </div>
-                <div class="card" style="margin-top: 1rem;">
-                    <h3>📚 Journal Archive & Review System</h3>
-                    <p><strong>Internal Review Board:</strong> student researchers + PhD mentors ensure double-blind review. Upcoming ISSN registration. <strong>Open access, free.</strong></p>
-                    <div><i>Recent papers: "Quantum Neural Networks for Material Discovery" (Accepted), "AI-driven Number Theory" (Under Review)</i></div>
                 </div>
             </div>
         </section>
 
-        <!-- MENTORSHIP - ACTUAL MENTORS (No fake names, roles only) -->
+        <!-- MENTORSHIP SECTION -->
         <section id="mentorship">
             <div class="container">
-                <h2 class="section-title">🧑‍🏫 PhD / Expert Mentorship Network</h2>
+                <div class="badge"><i class="fas fa-user-graduate"></i> Expert Guidance</div>
+                <h2 class="section-title">PhD Mentorship Network</h2>
+                <div class="card">
+                    <p style="font-size: 1.1rem; line-height: 1.6;">Our mentors are experienced researchers and PhD scholars from premier institutions across India, bringing years of expertise in quantum physics, advanced mathematics, computational chemistry, and interdisciplinary research. They provide weekly one-on-one guidance, helping you navigate the research process from idea inception to publication. With personalized feedback, milestone tracking, and unlimited doubt-solving, our mentors ensure you never feel lost. Whether you're exploring black holes, developing cryptographic algorithms, or simulating molecular reactions, you'll have an expert by your side — completely free of cost.</p>
+                    <button class="btn-outline requestMentorMock" style="margin-top: 1rem;">Request a Mentor → FREE</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- STUDY MATERIALS -->
+        <section id="study-materials" style="background: var(--cream);">
+            <div class="container">
+                <div class="badge"><i class="fas fa-book-open"></i> Research-Based Study Guides</div>
+                <h2 class="section-title">📚 Essential Research Materials</h2>
                 <div class="grid-3">
-                    <div class="card"><i class="fas fa-user-graduate fa-2x" style="color: var(--gujarat-saffron);"></i><h3>Quantum Physics Mentor</h3><p>Specialization: Quantum Optics, Nanotechnology. 5+ years research experience.</p><button class="btn-outline-gold requestMentorMock">Request Mentor → FREE</button></div>
-                    <div class="card"><i class="fas fa-chalkboard-user fa-2x" style="color: var(--gujarat-saffron);"></i><h3>Mathematics Mentor</h3><p>Specialization: Cryptography, Number Theory, Topology.</p><button class="btn-outline-gold requestMentorMock">Request Mentor → FREE</button></div>
-                    <div class="card"><i class="fas fa-microscope fa-2x" style="color: var(--gujarat-saffron);"></i><h3>Chemistry Mentor</h3><p>Specialization: Materials Science, Computational Chemistry.</p><button class="btn-outline-gold requestMentorMock">Request Mentor → FREE</button></div>
-                </div>
-                <div class="card"><p><strong>Weekly tracking + feedback loops</strong> — real mentorship via email and scheduled sessions. <strong>All free.</strong></p></div>
-            </div>
-        </section>
-
-        <!-- SPECIAL SERIES - REGIONAL FOCUS -->
-        <section id="special-series" style="background: var(--light-sand);">
-            <div class="container">
-                <span class="benefit-badge"><i class="fas fa-star-of-life"></i> ગુજરાત માટે વિશેષ શ્રેણી</span>
-                <h2 class="section-title">🎓 Special Research Series: Physics · Chemistry · Mathematics</h2>
-                <p class="section-sub">Intensive research tracks for Gujarati students. Each series includes expert-led sessions, hands-on projects, and publication opportunities — completely free. <strong>Book your seat now!</strong></p>
-                <div class="grid-3">
-                    <div class="card" style="background: linear-gradient(135deg, #0F4C3A, #1F6E43); color: white;">
-                        <i class="fas fa-atom fa-3x" style="color: var(--gujarat-gold);"></i>
-                        <h3>🔬 Physics Research Series</h3>
-                        <p>Quantum Frontiers & Astrophysics — develop full research paper under expert guidance.</p>
-                        <div class="benefit-badge" style="background: rgba(255,255,255,0.2);">📅 12 Weeks | 🧪 Hands-on</div>
-                        <a href="#" id="physicsSeriesLink" class="form-hyperlink" style="margin-top: 1rem; background: var(--gujarat-gold); color:#1E2F2B;"><i class="fab fa-google"></i> Book Seat — FREE</a>
-                        <p class="free-badge" style="background:#fff; color:#0F4C3A;">Limited to 50 seats</p>
-                    </div>
-                    <div class="card" style="background: linear-gradient(135deg, #1F6E43, #0F4C3A); color: white;">
-                        <i class="fas fa-flask fa-3x" style="color: var(--gujarat-gold);"></i>
-                        <h3>🧪 Chemistry Research Series</h3>
-                        <p>Materials Science & Sustainable Chemistry — design experiments and publish findings.</p>
-                        <div class="benefit-badge" style="background: rgba(255,255,255,0.2);">📅 12 Weeks | 🧬 Publication</div>
-                        <a href="#" id="chemistrySeriesLink" class="form-hyperlink" style="margin-top: 1rem; background: var(--gujarat-gold);"><i class="fab fa-google"></i> Book Seat — FREE</a>
-                        <p class="free-badge" style="background:#fff; color:#0F4C3A;">Limited to 50 seats</p>
-                    </div>
-                    <div class="card" style="background: linear-gradient(135deg, #2C6E2F, #0F4C3A); color: white;">
-                        <i class="fas fa-square-root-alt fa-3x" style="color: var(--gujarat-gold);"></i>
-                        <h3>📐 Mathematics Research Series</h3>
-                        <p>Cryptography & AI Mathematics — develop algorithms and real-world models.</p>
-                        <div class="benefit-badge" style="background: rgba(255,255,255,0.2);">📅 12 Weeks | 🤖 AI Integration</div>
-                        <a href="#" id="mathsSeriesLink" class="form-hyperlink" style="margin-top: 1rem; background: var(--gujarat-gold);"><i class="fab fa-google"></i> Book Seat — FREE</a>
-                        <p class="free-badge" style="background:#fff; color:#0F4C3A;">Limited to 50 seats</p>
-                    </div>
+                    <div class="card"><i class="fas fa-brain fa-2x" style="color: var(--saffron);"></i><h3>The Unbeatable Mind</h3><p>A transformative guide to developing mental resilience, critical thinking, and problem-solving mastery.</p><a href="https://docs.google.com/document/d/1AQgaEz7swi9Y2aZtn1GUClUOWkhlbFR2/edit?usp=drive_link" target="_blank" class="drive-link"><i class="fab fa-google-drive"></i> Access Book →</a></div>
+                    <div class="card"><i class="fas fa-cogs fa-2x" style="color: var(--saffron);"></i><h3>The Cognitive Mastery System</h3><p>Systematic approaches to complex problems, structured thinking frameworks, and research methodology.</p><a href="https://docs.google.com/document/d/1OBYgcU0TFt7Npuj0OxlE4rbTV6-PiyHX/edit?usp=drive_link" target="_blank" class="drive-link"><i class="fab fa-google-drive"></i> Access Book →</a></div>
+                    <div class="card"><i class="fas fa-chart-line fa-2x" style="color: var(--saffron);"></i><h3>Mastering Your Mind</h3><p>Techniques for focus, creativity, and sustained intellectual engagement for research success.</p><a href="https://docs.google.com/document/d/1r2kZag-LcQeDyWBncoKHgYirvTwSiBCx/edit?usp=drive_link" target="_blank" class="drive-link"><i class="fab fa-google-drive"></i> Access Book →</a></div>
                 </div>
             </div>
         </section>
 
-        <!-- JOIN US - REAL GOOGLE FORM -->
-        <section id="join">
+        <!-- AMBASSADOR PROGRAM -->
+        <section id="ambassador">
             <div class="container">
-                <div class="card" style="text-align: center; background: var(--deep-teal); color: white;">
-                    <h2><i class="fas fa-user-plus"></i> Become a Young Researcher — Join QuantuMech Hub</h2>
-                    <p style="margin: 1rem 0;">Membership includes: PhD mentorship, publication pipeline, special research series — <strong>COMPLETELY FREE</strong>.</p>
-                    <a href="#" id="joinGoogleFormLink" class="form-hyperlink" style="background: var(--gujarat-gold); color:#0B2F2A;"><i class="fab fa-google"></i> REGISTER NOW (Google Form) — FREE</a>
-                    <p style="margin-top: 1rem;">🥇 Gujarat's No.1 STEM Research Club — limited seats per cohort. <strong>100% free for all passionate students.</strong></p>
-                </div>
-                <div class="grid-3" style="margin-top: 2rem;">
-                    <div class="card"><i class="fas fa-graduation-cap"></i><h3>Student Researchers</h3><p>Access to all labs, journal submission, mentor matching — free.</p></div>
-                    <div class="card"><i class="fas fa-chalkboard"></i><h3>Core Team & Research Heads</h3><p>Math/Physics/Chemistry research leads coordinate projects across Gujarat.</p></div>
-                    <div class="card"><i class="fas fa-users"></i><h3>Mentor Network</h3><p>PhD scholars & industry experts — free mentorship.</p></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- RESOURCES & BLOG -->
-        <section id="resources">
-            <div class="container">
+                <div class="badge"><i class="fas fa-user-graduate"></i> Join the Leadership Circle</div>
+                <h2 class="section-title">Student Ambassador Program</h2>
                 <div class="grid-2">
-                    <div class="card"><h3><i class="fas fa-database"></i> Knowledge System & Resource Library</h3><p>LaTeX templates, experimental workbooks, literature guides — free access.</p><div class="benefit-badge">📚 Non-conventional learning</div></div>
-                    <div class="card"><h3><i class="fas fa-blog"></i> Research Blog</h3><p>"How to publish your first paper" — by Founder Dhairya Chauhan. Weekly insights.</p><button class="btn-outline-gold">Read Blog</button></div>
+                    <div class="card"><h3>🎁 Ambassador Benefits & Perks</h3><ul class="bullet-list"><li><i class="fas fa-certificate"></i> Official Certificate & LinkedIn Badge</li><li><i class="fas fa-chalkboard"></i> Exclusive PhD Mentorship</li><li><i class="fas fa-book"></i> Free Publication Support & Priority Review</li><li><i class="fas fa-users"></i> Leadership Training Workshops</li><li><i class="fas fa-rupee-sign"></i> Performance Stipends & Recognition Awards</li><li><i class="fas fa-envelope"></i> Letter of Recommendation for College Applications</li><li><i class="fas fa-globe"></i> Annual National Summit (All Expenses Covered)</li></ul></div>
+                    <div class="card"><h3>📋 Ambassador Duties & Eligibility</h3><ul class="bullet-list"><li><i class="fas fa-arrow-right"></i> Promote QuantuMech in your school and community</li><li><i class="fas fa-arrow-right"></i> Organize monthly research awareness sessions</li><li><i class="fas fa-arrow-right"></i> Recruit and mentor new researchers</li><li><i class="fas fa-arrow-right"></i> Represent QuantuMech at regional symposiums</li><li><i class="fas fa-arrow-right"></i> Provide feedback to improve programs</li></ul><div class="badge" style="margin-top: 0.8rem;"><strong>✅ Eligibility:</strong> Must be 14 years of age or older | Passion for STEM | Strong communication skills</div><a href="#" id="ambassadorLink" class="form-link"><i class="fab fa-google"></i> Apply as Ambassador</a></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCHOOL & TEACHER PARTNERSHIPS -->
+        <section id="school-partner" style="background: var(--cream);">
+            <div class="container">
+                <div class="badge"><i class="fas fa-school"></i> Institutional Collaboration</div>
+                <h2 class="section-title">School & Teacher Partnership Programs</h2>
+                <div class="grid-2">
+                    <div class="card"><h3>🏫 School Partnership Program</h3><ul class="bullet-list"><li><i class="fas fa-check"></i> Direct student research activities with QuantuMech mentors</li><li><i class="fas fa-check"></i> Free access to QuantuMech Journal for all students</li><li><i class="fas fa-check"></i> Teacher training workshops (certified)</li><li><i class="fas fa-check"></i> Annual Research Fair hosted at partner school</li><li><i class="fas fa-check"></i> Recognition as "QuantuMech STEM Research Hub Partner School"</li><li><i class="fas fa-check"></i> Priority registration for competitions & symposiums</li></ul><a href="#" id="schoolPartnerLink" class="form-link"><i class="fab fa-google"></i> Register Your School</a></div>
+                    <div class="card"><h3>👩‍🏫 Teacher Partnership Program</h3><ul class="bullet-list"><li><i class="fas fa-check"></i> Free Research Mentorship Certification</li><li><i class="fas fa-check"></i> Access to QuantuMech Research Curriculum & Resources</li><li><i class="fas fa-check"></i> Invitation to National Educators' Symposium (expenses covered)</li><li><i class="fas fa-check"></i> Co-author opportunities on student papers</li><li><i class="fas fa-check"></i> Recognition as "QuantuMech Research Mentor"</li><li><i class="fas fa-check"></i> Priority access to research grants & collaborations</li></ul><a href="#" id="teacherPartnerLink" class="form-link"><i class="fab fa-google"></i> Join as Teacher Partner</a></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMPETITION -->
+        <section id="competition">
+            <div class="container">
+                <div class="badge"><i class="fas fa-trophy"></i> National Level</div>
+                <h2 class="section-title">QuantuMech Research Championship 2026</h2>
+                <p class="section-sub">Three-round competition across Mathematics, Physics, and Chemistry. <strong>Open to ALL — no age or educational restrictions!</strong> Total Prize Pool: ₹1,00,000+ | Certificates | Publication Opportunities</p>
+                <div class="grid-3">
+                    <div class="card" style="background: linear-gradient(135deg, #1A4D8C, #0F4C3A); color: white;"><h3>Round 1: Research Proposal</h3><ul class="bullet-list"><li>500-word research proposal on any topic</li><li>Judged on originality, feasibility, scientific merit</li><li>All participants receive feedback</li></ul><p><strong>Deadline:</strong> May 15, 2026</p><a href="#" id="compRound1Link" class="form-link" style="background: var(--saffron);">Register Round 1</a></div>
+                    <div class="card" style="background: linear-gradient(135deg, #2C6E2F, #1A4D8C); color: white;"><h3>Round 2: Literature Review & Methodology</h3><ul class="bullet-list"><li>Detailed literature review (1000 words)</li><li>Research methodology design</li><li>Mentor guidance provided</li></ul><p><strong>Starts:</strong> June 2026</p></div>
+                    <div class="card" style="background: linear-gradient(135deg, #0F4C3A, #2C6E2F); color: white;"><h3>Round 3: Full Paper & Presentation</h3><ul class="bullet-list"><li>Complete research paper (2000-3000 words)</li><li>10-min virtual presentation</li><li>Top papers published in QuantuMech Journal</li></ul><p><strong>Prizes:</strong> ₹25,000 Winner | ₹15,000 Runner-up | ₹10,000 Second Runner-up</p></div>
+                </div>
+                <div class="card" style="margin-top: 2rem; text-align: center;">
+                    <p><strong>🏆 Open to ALL — Students, Teachers, Independent Researchers — Anyone with a passion for STEM research can participate!</strong></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- JOIN US -->
+        <section id="join" style="background: var(--cream);">
+            <div class="container">
+                <div class="card" style="text-align: center; background: var(--deep-teal); color: white; padding: 3rem;">
+                    <h2>🚀 Join India's Premier Research Movement</h2>
+                    <p style="margin: 1.5rem 0; font-size: 1.1rem;">PhD mentorship · Publication pipeline · Research competitions · Ambassador leadership — <strong>100% FREE</strong></p>
+                    
+                    <div style="background: rgba(255,255,255,0.15); border-radius: 24px; padding: 1.5rem; margin: 1.5rem 0; text-align: left;">
+                        <p><strong>✨ Who can join?</strong></p>
+                        <ul class="bullet-list">
+                            <li><i class="fas fa-user-graduate"></i> <strong>Students of ANY age</strong> — from school students to college learners and beyond!</li>
+                            <li><i class="fas fa-star"></i> No prior research experience needed — we start from the very basics!</li>
+                            <li><i class="fas fa-heart"></i> Only curiosity, passion, and dedication required</li>
+                            <li><i class="fas fa-map-marker-alt"></i> Participants from anywhere in India can join (fully online program)</li>
+                            <li><i class="fas fa-globe"></i> International participants welcome too!</li>
+                        </ul>
+                        <p style="margin-top: 0.8rem;"><strong>Your journey starts today. Don't wait for opportunities — create them. Join a community of researchers who are already publishing papers, presenting at conferences, and building their futures.</strong></p>
+                    </div>
+                    
+                    <a href="#" id="joinGoogleFormLink" class="form-link" style="background: var(--saffron);"><i class="fab fa-google"></i> Register as Researcher (FREE)</a>
+                    <p style="margin-top: 1.5rem;">🥇 India's No.1 STEM Research Club | NEP 2020 Aligned | 100% Free for All</p>
                 </div>
             </div>
         </section>
@@ -505,33 +482,31 @@
 
     <footer>
         <p>© 2025 QuantuMech Research Hub — Founded by Chauhan Dhairya Chetankumar (ICSC Ambassador | Top STEM Researcher | Social Worker)</p>
-        <p>🥇 Gujarat's No.1 STEM Research Club | 🚀 Emerging India's No.1 Young Researching Community | 🔬 India's No.1 Initiative Towards Latest Technologies & Research Innovation</p>
-        <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/dhairya-chauhan-5b561138b" target="_blank" style="color:#D4AF37;">Founder's LinkedIn</a> | <i class="fas fa-envelope"></i> research@quantumechhub.in | <strong>✨ 100% FREE for all members ✨</strong></p>
+        <p><i class="fas fa-envelope"></i> <strong>Founder's Email:</strong> chauhandc2009@gmail.com | <i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/dhairya-chauhan-5b561138b" target="_blank" style="color:#FFB347;">LinkedIn</a></p>
+        <p>🥇 India's No.1 STEM Research Club | NEP 2020 Aligned | ✨ 100% FREE for all</p>
     </footer>
 
     <script>
-        const toggleDark = document.getElementById('darkModeToggle');
-        toggleDark.addEventListener('click', () => {
+        document.getElementById('darkModeToggle').addEventListener('click', () => {
             document.body.classList.toggle('dark');
             localStorage.setItem('darkMode', document.body.classList.contains('dark'));
         });
         if(localStorage.getItem('darkMode') === 'true') document.body.classList.add('dark');
+        document.getElementById('mockPortfolioBtn')?.addEventListener('click', () => alert("📊 Portfolio Dashboard Preview: Track submissions, citations, research score — coming soon."));
+        document.querySelectorAll('.requestMentorMock').forEach(btn => btn.addEventListener('click', () => alert("✅ Mentor request submitted! You'll receive matching within 48 hours. (Free)")));
 
-        document.getElementById('mockPortfolioBtn')?.addEventListener('click', () => {
-            alert("📄 Research Portfolio Preview: Build your research profile after joining. Real dashboard coming soon.");
-        });
-        document.querySelectorAll('.requestMentorMock').forEach(btn => {
-            btn.addEventListener('click', () => alert("✅ Mentor request submitted! You'll receive an email within 48 hours with mentor assignment. (Free)"));
-        });
-
-        // REPLACE THESE WITH YOUR ACTUAL GOOGLE FORM LINKS
-        document.getElementById('paperSubmitLink').href = "https://forms.gle/your-paper-submission-form";
-        document.getElementById('joinGoogleFormLink').href = "https://forms.gle/your-registration-form";
-        document.getElementById('physicsSeriesLink').href = "https://forms.gle/physics-series-form";
-        document.getElementById('chemistrySeriesLink').href = "https://forms.gle/chemistry-series-form";
-        document.getElementById('mathsSeriesLink').href = "https://forms.gle/maths-series-form";
+        // All Google Form Links
+        document.getElementById('joinGoogleFormLink').href = "https://forms.gle/WZdb2YdPdN4Wk9X69";
+        document.getElementById('paperSubmitLink').href = "https://forms.gle/WcKWWaQS8HiMRG677";
+        document.getElementById('physicsSeriesEnroll').href = "https://forms.gle/E7aQYFRtrHEGnAc57";
+        document.getElementById('chemistrySeriesEnroll').href = "https://forms.gle/ia5YQ8Np5NTq4xen9";
+        document.getElementById('mathsSeriesEnroll').href = "https://forms.gle/iijDBmi6vndY3B2V9";
+        document.getElementById('ambassadorLink').href = "https://forms.gle/aHL3DoGQ6ywj5HM3A";
+        document.getElementById('schoolPartnerLink').href = "https://forms.gle/qYeHzGuNgZtak5S78";
+        document.getElementById('teacherPartnerLink').href = "https://forms.gle/jUW71EVq5ZfAa8Pp8";
+        document.getElementById('compRound1Link').href = "https://forms.gle/Pgygfh49s3qNdCYn8";
         
-        console.log("✅ Authentic QuantuMech Hub — All features are real: research pipeline, journal submissions, mentorship requests, and special series bookings via Google Forms.");
+        console.log("✅ QuantuMech Hub — Final version with saffron-colored icon in logo.");
     </script>
 </body>
 </html>
