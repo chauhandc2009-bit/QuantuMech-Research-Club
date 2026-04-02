@@ -3,622 +3,528 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>QuantuMech Research Hub | India's No.1 STEM Research Club</title>
+    <title>QuantuMech Research Hub | India's No.1 STEM Research Club | Innovation Guilds</title>
     <meta name="google-site-verification" content="vLNIg9jrUUiCwpbP0W5V0s9QFBNmc2nwD0SCexP6hOQ" />
     <meta name="description" content="India's premier STEM research ecosystem for young minds. Research pipeline, peer-reviewed journal, PhD mentorship, and NEP 2020 aligned programs. 100% free.">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
             font-family: 'Inter', sans-serif;
-            background: #FEF9F0;
-            color: #1A2F2A;
+            background: #0A0C10;
+            background-image: radial-gradient(circle at 15% 30%, rgba(0, 255, 255, 0.03) 0%, #0A0C10 90%);
+            color: #EFF2F5;
             scroll-behavior: smooth;
+            overflow-x: hidden;
+            transition: background 0.3s, color 0.2s;
         }
-        :root {
-            --saffron: #E67E22;
-            --green: #2C6E2F;
-            --deep-teal: #0F4C3A;
-            --cream: #FFF8F0;
-            --white: #FFFFFF;
-            --dark-text: #1E2F2B;
-            --gray-text: #5D6E68;
-            --border: #E8E0D5;
-            --shadow: 0 20px 35px -12px rgba(0,0,0,0.08);
-            --shadow-hover: 0 25px 40px -12px rgba(0,0,0,0.15);
+        
+        /* 3D Cursor Parallax Effect */
+        .parallax-item {
+            transition: transform 0.08s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            will-change: transform;
         }
-        body.dark {
-            --cream: #121C1A;
-            --white: #1E2F2A;
-            --dark-text: #EDF2F0;
-            --gray-text: #B9CDC4;
-            --border: #2E423C;
-            background: #0F1E1B;
+        
+        body.light {
+            background: #F5F7FC;
+            background-image: radial-gradient(circle at 15% 30%, rgba(0, 150, 200, 0.05) 0%, #F5F7FC 90%);
+            color: #111827;
         }
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
-        .navbar {
-            background: rgba(255,248,235,0.96);
-            backdrop-filter: blur(10px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 2px solid var(--saffron);
-            padding: 1rem 0;
-        }
-        body.dark .navbar { background: rgba(18,28,26,0.96); }
-        .nav-flex { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
-        .logo h1 {
-            font-size: 1.8rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--green), var(--saffron));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        .logo h1 i {
-            background: linear-gradient(135deg, var(--saffron), var(--saffron));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: var(--saffron);
-            margin-right: 5px;
-        }
-        .logo p { font-size: 0.7rem; font-weight: 700; color: var(--saffron); letter-spacing: 1px; }
-        .nav-links { display: flex; gap: 1.8rem; flex-wrap: wrap; }
-        .nav-links a { text-decoration: none; font-weight: 600; color: var(--dark-text); transition: 0.2s; }
-        .nav-links a:hover { color: var(--saffron); }
-        .theme-toggle { background: var(--border); border: none; border-radius: 40px; padding: 8px 14px; cursor: pointer; font-weight: 600; }
-        .btn-primary {
-            background: var(--green);
-            color: white;
-            padding: 14px 32px;
-            border-radius: 50px;
-            font-weight: 700;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.2s;
-            border: none;
-            cursor: pointer;
-        }
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--saffron);
-            color: var(--saffron);
-            padding: 12px 28px;
-            border-radius: 50px;
-            font-weight: 700;
-            text-decoration: none;
-            display: inline-block;
-            transition: 0.2s;
-        }
-        .btn-outline:hover { background: var(--saffron); color: white; }
-        section { padding: 6rem 0; border-bottom: 1px solid var(--border); }
-        .section-title {
-            font-size: 2.8rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            position: relative;
-            display: inline-block;
-        }
-        .section-title:after {
-            content: '';
-            position: absolute;
-            bottom: -12px;
-            left: 0;
-            width: 70px;
-            height: 3px;
-            background: var(--saffron);
-        }
-        .grid-2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 2.5rem; }
-        .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; }
-        @media (max-width: 1000px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
-        .card {
-            background: var(--white);
+        body.light .glass-panel { background: rgba(240, 245, 255, 0.85); border: 1px solid rgba(0, 150, 200, 0.3); }
+        body.light .card { background: rgba(245, 250, 255, 0.9); border: 1px solid rgba(0, 150, 200, 0.25); color: #111827; }
+        body.light .badge { background: rgba(0,150,200,0.15); color: #0A6B7C; }
+        body.light .section-title { background: linear-gradient(135deg, #0A6B7C, #0088AA); -webkit-background-clip: text; background-clip: text; }
+        body.light .btn-outline { border-color: #0088AA; color: #0088AA; }
+        body.light .constellation-nav { background: rgba(240,245,255,0.9); border-color: #00AAAA; }
+        body.light .node { background: rgba(0,150,200,0.1); color: #0A4C5C; border-color: #0A6B7C; }
+        body.light .terminal-ticker { background: #eef2ffcc; color: #006666; border-left-color: #00AAAA; }
+        body.light footer { background: #E5E9F0; border-top-color: #00AAAA66; color: #1F2A3A; }
+        
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #11151C; }
+        ::-webkit-scrollbar-thumb { background: #00FFFF; border-radius: 8px; }
+        
+        .glass-panel {
+            background: rgba(12, 20, 28, 0.65);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 255, 255, 0.2);
             border-radius: 32px;
-            padding: 2.2rem;
-            box-shadow: var(--shadow);
-            transition: 0.25s ease;
-            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 15px rgba(0,255,255,0.1);
         }
-        .card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+        
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
+        section { padding: 5rem 0; border-bottom: 1px solid rgba(0, 255, 255, 0.08); }
+        
+        #universeCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; pointer-events: none; }
+        
+        .constellation-nav {
+            position: fixed; bottom: 30px; right: 30px; z-index: 1000;
+            background: rgba(5, 10, 18, 0.85); backdrop-filter: blur(16px); border-radius: 40px;
+            padding: 16px 12px; border: 1px solid rgba(0,255,255,0.5); box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+        }
+        .nav-nodes { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+        .node {
+            background: rgba(0, 255, 255, 0.1); border-radius: 40px; padding: 6px 14px; font-size: 0.7rem;
+            font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: 'Space Mono', monospace;
+            border: 0.5px solid rgba(0,255,255,0.5); color: #CCF;
+        }
+        .node:hover { background: #00FFFF; color: #000; box-shadow: 0 0 12px cyan; transform: translateY(-2px); }
+        
+        .terminal-ticker {
+            position: fixed; bottom: 20px; left: 20px; background: #000000aa; backdrop-filter: blur(12px);
+            border-left: 4px solid #0ff; padding: 12px 24px; border-radius: 32px; font-family: 'Space Mono', monospace;
+            font-size: 0.8rem; z-index: 1000; color: #0f0; max-width: 400px; pointer-events: none;
+        }
+        
+        .btn-primary {
+            background: #00FFFF; color: #0A0C10; padding: 14px 32px; border-radius: 50px;
+            font-weight: 700; text-decoration: none; display: inline-block; transition: 0.2s;
+            box-shadow: 0 0 12px #00FFFF;
+        }
+        .btn-primary:hover { transform: scale(1.02); background: #00FFCC; box-shadow: 0 0 20px #00FFFF; }
+        .btn-outline {
+            background: transparent; border: 2px solid #00FFFF; color: #00FFFF; padding: 12px 28px;
+            border-radius: 50px; font-weight: 700; text-decoration: none; display: inline-block; transition: 0.2s;
+        }
+        .btn-outline:hover { background: #00FFFF; color: #000; box-shadow: 0 0 12px cyan; }
+        
+        .section-title {
+            font-size: 2.8rem; font-weight: 800; margin-bottom: 1.5rem; position: relative; display: inline-block;
+            background: linear-gradient(135deg, #FFFFFF, #00FFFF, #00FF88);
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+        }
+        .section-title:after { content: ''; position: absolute; bottom: -12px; left: 0; width: 70px; height: 3px; background: #00FFFF; }
+        
         .badge {
-            background: rgba(230,126,34,0.1);
-            color: var(--saffron);
-            border-radius: 40px;
-            padding: 6px 14px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            display: inline-block;
-            margin-bottom: 1rem;
+            background: rgba(0, 255, 255, 0.15); color: #00FFFF; border-radius: 40px; padding: 6px 14px;
+            font-size: 0.75rem; font-weight: 700; display: inline-block; margin-bottom: 1rem;
         }
-        .form-link {
-            background: var(--saffron);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 50px;
-            font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            margin-top: 1.2rem;
+        
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        @media (max-width: 1000px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } .constellation-nav { display: none; } .terminal-ticker { display: none; } .section-title { font-size: 2rem; } }
+        
+        .card {
+            background: rgba(15, 25, 35, 0.7); backdrop-filter: blur(8px); border-radius: 32px;
+            padding: 2rem; transition: 0.25s ease; border: 1px solid rgba(0, 255, 255, 0.2);
         }
-        .free-tag { background: #10b981; color: white; border-radius: 40px; padding: 4px 12px; font-size: 0.7rem; margin-left: 10px; }
-        .journal-entry { background: var(--cream); padding: 1rem; border-radius: 20px; margin-top: 1rem; }
-        .book-item { display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 0; border-bottom: 1px solid var(--border); flex-wrap: wrap; gap: 10px; }
-        .drive-link { color: var(--saffron); text-decoration: none; font-weight: 600; }
-        .pipeline-step { margin-bottom: 1.2rem; padding: 0.8rem; background: var(--cream); border-radius: 16px; }
-        .example-box { background: rgba(230,126,34,0.05); border-left: 4px solid var(--saffron); padding: 1rem; margin: 1rem 0; border-radius: 12px; }
+        .card:hover { transform: translateY(-6px); border-color: #00FFFF; box-shadow: 0 20px 35px -10px rgba(0,255,255,0.2); }
+        
         .bullet-list { list-style: none; margin-top: 1rem; }
         .bullet-list li { margin-bottom: 0.8rem; display: flex; align-items: flex-start; gap: 10px; }
-        .bullet-list li i { color: var(--saffron); margin-top: 3px; min-width: 20px; }
-        .simple-explanation-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 0.8rem; }
-        .simple-explanation-item strong { min-width: 100px; }
-        footer {
-            text-align: center;
-            padding: 2.5rem;
-            background: var(--deep-teal);
-            color: #FFE6C7;
-        }
-        .nep-highlight { background: linear-gradient(135deg, #1A4D8C, #0F4C3A); color: white; padding: 1.5rem; border-radius: 28px; margin: 2rem 0; }
-        .simple-explanation { background: var(--cream); padding: 1.2rem; border-radius: 20px; margin-top: 1rem; }
-        .olympiad-section {
-            background: var(--cream);
-            border-radius: 32px;
-            padding: 2rem;
-            margin-top: 1rem;
-        }
-        .olympiad-category {
-            margin-bottom: 2rem;
-        }
-        .olympiad-category h3 {
-            font-size: 1.8rem;
-            margin: 1.5rem 0 1rem 0;
-            color: var(--saffron);
-        }
-        .olympiad-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 1.5rem;
-            margin: 1.5rem 0;
-        }
-        .olympiad-card {
-            background: var(--white);
+        .bullet-list li i { color: #00FFFF; margin-top: 3px; }
+        
+        .info-block {
+            background: rgba(0, 255, 255, 0.05);
             border-radius: 24px;
-            padding: 1.5rem;
-            border-left: 5px solid var(--saffron);
-            box-shadow: var(--shadow);
-            transition: 0.2s;
+            padding: 1.2rem;
+            margin-top: 1.2rem;
+            border-left: 4px solid #00FFFF;
         }
-        .olympiad-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-hover);
+        .info-block h4 { margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px; }
+        .form-link {
+            background: #00FFFF; color: #000; padding: 12px 24px; border-radius: 50px;
+            font-weight: 700; display: inline-flex; align-items: center; gap: 10px; text-decoration: none; margin-top: 1.2rem;
         }
-        .olympiad-card h4 {
-            font-size: 1.3rem;
-            margin-bottom: 0.75rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--dark-text);
+        .free-tag { background: #10b981; color: white; border-radius: 40px; padding: 4px 12px; font-size: 0.7rem; margin-left: 10px; }
+        .drive-link { color: #00FFFF; text-decoration: none; font-weight: 600; }
+        
+        .founder-stats { display: flex; flex-wrap: wrap; gap: 1rem; margin: 1rem 0; }
+        .founder-stat-card { background: rgba(0,255,255,0.1); border-radius: 20px; padding: 0.8rem 1.2rem; text-align: center; }
+        .theme-toggle {
+            position: fixed; top: 20px; right: 20px; z-index: 1100;
+            background: rgba(0,255,255,0.2); backdrop-filter: blur(8px);
+            border: 1px solid #00FFFF; border-radius: 40px; padding: 8px 18px;
+            cursor: pointer; font-weight: 600; color: #00FFFF; font-family: monospace;
         }
-        .olympiad-card p {
-            color: var(--gray-text);
-            line-height: 1.5;
-            margin-bottom: 0.75rem;
-        }
-        .apply-link {
-            display: inline-block;
-            margin-top: 8px;
-            font-weight: 600;
-            color: var(--saffron);
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-        .apply-link:hover {
-            text-decoration: underline;
-        }
-        .founder-credentials {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin: 12px 0;
-        }
-        .founder-badge {
-            background: rgba(255,255,255,0.2);
-            padding: 6px 14px;
-            border-radius: 40px;
-            font-size: 0.85rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .update-box {
-            background: rgba(230,126,34,0.1);
-            border-left: 4px solid var(--saffron);
-            padding: 1rem;
-            border-radius: 12px;
-            margin-top: 1rem;
-        }
-        @media (max-width: 768px) { .nav-links { display: none; } .section-title { font-size: 2rem; } }
+        .olympiad-section { background: rgba(15, 25, 35, 0.5); border-radius: 32px; padding: 2rem; margin-top: 1rem; }
+        .olympiad-category { margin-bottom: 2rem; }
+        .olympiad-category h3 { font-size: 1.8rem; margin: 1.5rem 0 1rem 0; color: #00FFFF; }
+        .olympiad-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 1.5rem; margin: 1.5rem 0; }
+        .olympiad-card { background: rgba(15, 25, 35, 0.7); border-radius: 24px; padding: 1.5rem; border-left: 5px solid #00FFFF; transition: 0.2s; }
+        .olympiad-card:hover { transform: translateY(-4px); border-color: #0ff; }
+        .olympiad-card h4 { font-size: 1.3rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 10px; color: #EFF2F5; }
+        .olympiad-card p { color: #B0D4FF; line-height: 1.5; margin-bottom: 0.75rem; }
+        .apply-link { display: inline-block; margin-top: 8px; font-weight: 600; color: #00FFFF; text-decoration: none; font-size: 0.9rem; }
+        .apply-link:hover { text-decoration: underline; }
+        
+        .fade-up { opacity: 0; transform: translateY(35px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+        footer { text-align: center; padding: 2.5rem; background: #03060A; border-top: 1px solid #00FFFF33; color: #B0D4FF; }
+        
+        .pipeline-step { background: rgba(0,255,255,0.1); padding: 1rem; border-radius: 50px; text-align: center; margin: 1rem 0; font-weight: 600; }
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container nav-flex">
-            <div class="logo">
-                <h1><i class="fas fa-atom"></i> QuantuMech Research Hub</h1>
-                <p>India's No.1 STEM Research Club | NEP 2020 Aligned</p>
+
+<canvas id="universeCanvas"></canvas>
+<div class="theme-toggle" id="themeToggleBtn">🌓 Light/Dark Mode</div>
+
+<div class="constellation-nav">
+    <div class="nav-nodes">
+        <div class="node" data-target="home">Home</div><div class="node" data-target="founder">Founder</div>
+        <div class="node" data-target="about">About</div><div class="node" data-target="domains">Domains</div>
+        <div class="node" data-target="pipeline">Pipeline</div><div class="node" data-target="journal">Journal</div>
+        <div class="node" data-target="mentorship">Mentorship</div><div class="node" data-target="study-materials">Books</div>
+        <div class="node" data-target="olympiads">Olympiads</div><div class="node" data-target="ambassador">Ambassador</div>
+        <div class="node" data-target="school-partner">Partners</div><div class="node" data-target="competition">Comp</div>
+        <div class="node" data-target="challenges">Innovation</div><div class="node" data-target="join">Join</div>
+    </div>
+</div>
+
+<div class="terminal-ticker"><span id="tickerLine">> Initializing QuantuMech Research Engine...</span></div>
+
+<!-- MAIN CONTENT with parallax items -->
+<div id="mainContent">
+    <!-- HOME SECTION -->
+    <section id="home" style="min-height: 100vh; display: flex; align-items: center;">
+        <div class="container">
+            <div class="grid-2">
+                <div class="parallax-item" data-parallax-strength="8">
+                    <div class="badge"><i class="fas fa-chart-line"></i> India's No.1 Initiative for Research Innovation</div>
+                    <h1 class="section-title">Where Young Minds Become <span style="color: #00FFFF;">Global Researchers</span></h1>
+                    <p style="font-size: 1.2rem; margin: 1.5rem 0; line-height: 1.6;">QuantuMech is a complete research ecosystem where curious students become published researchers through structured mentorship, peer-reviewed journals, and real-world research pipelines. <strong>100% free, forever.</strong></p>
+                    <div class="info-block"><h4><i class="fas fa-star-of-life"></i> Why Participate?</h4><p>Break free from rote learning. Gain global recognition, college admission edge, and real problem-solving skills.</p><h4><i class="fas fa-hand-point-right"></i> How to Participate?</h4><p>Click "Start Your Research Journey" → Fill Google Form → Get matched with a mentor → Begin your first paper.</p></div>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
+                        <a href="#join" class="btn-primary"><i class="fas fa-rocket"></i> Start Your Research Journey <span class="free-tag">FREE</span></a>
+                        <a href="#journal" class="btn-outline"><i class="fas fa-file-alt"></i> Submit Your Paper</a>
+                    </div>
+                </div>
+                <div class="card parallax-item" data-parallax-strength="5"><i class="fas fa-chalkboard-user fa-2x" style="color: #00FFFF;"></i><h3>🇮🇳 Transforming Indian Education</h3><ul class="bullet-list"><li><i class="fas fa-check-circle"></i> 100% Focused on Conceptual Depth. </li><li><i class="fas fa-check-circle"></i>Cross-disciplinary synthesis of Physics, Math, and Computer Science.</li><li><i class="fas fa-check-circle"></i> Completely free — no hidden costs</li></ul><p><strong>✨ Open to ALL ages — no prior experience needed!</strong></p></div>
             </div>
-            <div class="nav-links">
-                <a href="#home">Home</a><a href="#founder">Founder</a><a href="#about">About</a><a href="#domains">Domains</a>
-                <a href="#pipeline">Pipeline</a><a href="#journal">Journal</a><a href="#mentorship">Mentorship</a>
-                <a href="#study-materials">Study Materials</a><a href="#olympiads">Olympiads</a><a href="#ambassador">Ambassador</a>
-                <a href="#school-partner">Partners</a><a href="#competition">Competition</a><a href="#join">Join</a>
-            </div>
-            <button class="theme-toggle" id="darkModeToggle"><i class="fas fa-moon"></i> Dark/Light</button>
         </div>
-    </nav>
+    </section>
 
-    <main>
-        <!-- HOME SECTION -->
-        <section id="home" style="background: linear-gradient(135deg, var(--cream) 0%, white 100%);">
-            <div class="container">
-                <div class="grid-2">
+    <!-- FOUNDER SECTION -->
+    <section id="founder">
+        <div class="container">
+            <div class="card parallax-item" data-parallax-strength="6" style="background: linear-gradient(125deg, #0F4C3A, #0A2F2A); padding: 2.5rem;">
+                <div style="display: flex; flex-wrap: wrap; gap: 2rem; align-items: center;">
+                    <div><i class="fas fa-user-graduate fa-5x" style="color: #0ff;"></i></div>
                     <div>
-                        <div class="badge"><i class="fas fa-chart-line"></i> India's No.1 Initiative for Research Innovation</div>
-                        <h1 class="section-title">Where Young Minds Become <span style="color: var(--saffron);">Global Researchers</span></h1>
-                        <p style="font-size: 1.2rem; margin: 1.5rem 0; line-height: 1.6;">QuantuMech is a complete research ecosystem where curious students become published researchers through structured mentorship, peer-reviewed journals, and real-world research pipelines. Founded by Chauhan Dhairya Chetankumar, we are on a mission to democratize world-class STEM research for every Indian student. <strong>100% free, forever.</strong></p>
-                        
-                        <div class="simple-explanation">
-                            <p><strong>📖 What does this mean? (Simple Explanation for Beginners)</strong></p>
-                            <div class="simple-explanation-item">
-                                <strong>🔍 Research</strong>
-                                <span>= Solving real-world problems using science and curiosity</span>
-                            </div>
-                            <div class="simple-explanation-item">
-                                <strong>📄 Paper</strong>
-                                <span>= Writing your discovery like scientists do, so others can learn from you</span>
-                            </div>
-                            <div class="simple-explanation-item">
-                                <strong>🎓 Mentorship</strong>
-                                <span>= Guidance from experts who help you at every step (like super-teachers)</span>
-                            </div>
-                            <div class="simple-explanation-item">
-                                <strong>🌍 Publication</strong>
-                                <span>= Sharing your work globally so the world knows your contribution</span>
-                            </div>
+                        <h2 style="font-size: 2.5rem;">Chauhan Dhairya Chetankumar</h2>
+                        <div class="founder-stats">
+                            <div class="founder-stat-card"><i class="fas fa-trophy"></i> IIT RESCON Top 50</div>
+                            <div class="founder-stat-card"><i class="fas fa-building"></i> Member - AICTSD</div>
+                            <div class="founder-stat-card"><i class="fas fa-chalkboard"></i> Public Speaker (15+ events)</div>
                         </div>
-                        
-                        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
-                            <a href="#join" class="btn-primary"><i class="fas fa-rocket"></i> Start Your Research Journey <span class="free-tag">FREE</span></a>
-                            <a href="#journal" class="btn-outline"><i class="fas fa-file-alt"></i> Submit Your Paper</a>
+                        <p><strong>📊 QS World Ranking:</strong> IIT Bombay (IITB) #129 | Founder's Email: chauhandc2009@gmail.com | <a href="https://www.linkedin.com/in/dhairya-chauhan-5b561138b" target="_blank" style="color:#0ff;"><i class="fab fa-linkedin"></i> LinkedIn</a></p>
+                        <div class="glass-panel" style="padding: 1.2rem; margin: 1.5rem 0;">
+                            <h3><i class="fas fa-brain"></i> Global Recognition</h3>
+                            <p>"Dhairya identified India's critical research gap and built a complete ecosystem: publication pipelines, PhD mentorship networks, NEP-aligned curriculum serving hundreds nationwide. Selected among Top 50 innovators at IIT RESCON, International Computer Science Competition Ambassador, and member of All India Council for Technical Skill Development."</p>
                         </div>
-                        <div class="nep-highlight" style="margin-top: 2rem;">
-                            <i class="fas fa-graduation-cap fa-2x"></i>
-                            <h3 style="margin-top: 0.5rem;">Specially Aligned with National Education Policy (NEP) 2020</h3>
-                            <p>QuantuMech implements NEP's vision of multidisciplinary education, research integration, and holistic development. We are building the research-ready generation that India needs for its Viksit Bharat 2047 vision.</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <i class="fas fa-chalkboard-user fa-2x" style="color: var(--saffron);"></i>
-                        <h3>🇮🇳 Transforming Indian Education</h3>
-                        <p>India's exam-focused system leaves brilliant minds without research exposure. QuantuMech bridges this gap by providing a complete pathway from curiosity to publication. Our students don't just memorize facts — they create new knowledge that contributes to the world.</p>
-                        <ul class="bullet-list">
-                            <li><i class="fas fa-check-circle" style="color:var(--green);"></i> Real research mentorship from PhD scholars</li>
-                            <li><i class="fas fa-check-circle" style="color:var(--green);"></i> Publication pipeline to peer-reviewed journals</li>
-                            <li><i class="fas fa-check-circle" style="color:var(--green);"></i> Global collaboration opportunities</li>
-                        </ul>
-                        <p style="margin-top: 1rem;"><strong>Our Promise:</strong> Every student who joins will complete at least one full research paper within their first year. We don't just teach — we create researchers.</p>
-                        <p style="margin-top: 1rem;"><strong>✨ Who can join?</strong></p>
-                        <ul class="bullet-list">
-                            <li><i class="fas fa-user-graduate"></i> Students of ANY age — from school students to college learners and beyond!</li>
-                            <li><i class="fas fa-star"></i> No prior research experience needed — we start from the very basics!</li>
-                            <li><i class="fas fa-heart"></i> Only curiosity, passion, and dedication required</li>
-                            <li><i class="fas fa-map-marker-alt"></i> Students from anywhere in India can join (fully online program)</li>
-                        </ul>
+                        <p><strong>Vision:</strong> Transform India into a global research powerhouse by empowering young minds with mentorship, resources, and publication pathways — regardless of economic background.</p>
+                        <p><strong>Mission:</strong> Make QuantuMech India's #1 student research platform, 100% free, producing high-impact papers and nurturing next-gen scientists.</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- FOUNDER SECTION - UPDATED with full credentials -->
-        <section id="founder" style="background: var(--cream);">
-            <div class="container">
-                <div class="card" style="background: linear-gradient(125deg, #0F4C3A, #2C6E2F); color: white; padding: 2.5rem;">
-                    <div style="display: flex; flex-wrap: wrap; gap: 2rem; align-items: center;">
-                        <div><i class="fas fa-user-graduate fa-5x"></i></div>
-                        <div>
-                            <h2 style="font-size: 2.5rem;">Chauhan Dhairya Chetankumar</h2>
-                            <div class="founder-credentials">
-                                <span class="founder-badge"><i class="fas fa-globe"></i> International Computer Science Competition Ambassador</span>
-                                <span class="founder-badge"><i class="fas fa-building"></i> Member of All India Council for Technical Skill Development</span>
-                                <span class="founder-badge"><i class="fas fa-trophy"></i> Selected at IIT RESCON - Top 50</span>
-                            </div>
-                            <p style="margin-top: 0.5rem;"><strong>📊 QS World Ranking:</strong> IIT Bombay (IITB) is ranked <strong>#129</strong> in QS World University Rankings.</p>
-                            <a href="https://www.linkedin.com/in/dhairya-chauhan-5b561138b" target="_blank" style="color: #FFB347;"><i class="fab fa-linkedin"></i> Connect on LinkedIn</a>
-                            <p style="margin-top: 0.5rem;"><i class="fas fa-envelope"></i> <strong>Email:</strong> chauhandc2009@gmail.com</p>
-                            <div style="background: rgba(255,255,255,0.15); padding: 1.2rem; border-radius: 24px; margin: 1.5rem 0;">
-                                <h3><i class="fas fa-brain"></i> What Global Research Institutions See</h3>
-                                <p>"A young visionary who didn't wait for opportunity — he built it. At an age when most focus on examinations, Dhairya identified India's critical research gap and constructed a complete ecosystem: publication pipelines, PhD mentorship networks, and NEP-aligned curriculum serving hundreds nationwide. His selection at IIT RESCON among Top 50 innovators, his role as International Computer Science Competition Ambassador, and his membership at All India Council for Technical Skill Development reflect his exceptional leadership. This is the kind of initiative, systems thinking, and leadership that defines future global changemakers."</p>
-                            </div>
-                            <p><strong>Vision:</strong> Transform India into a global research powerhouse by empowering young minds with mentorship, resources, and publication pathways — regardless of economic background.</p>
-                            <p style="margin-top: 0.5rem;"><strong>Mission:</strong> Make QuantuMech India's #1 student research platform, 100% free, producing high-impact papers and nurturing the next generation of scientists.</p>
-                        </div>
+    <!-- ABOUT SECTION -->
+    <section id="about">
+        <div class="container">
+            <div class="badge"><i class="fas fa-crown"></i> India's Emerging No.1 Young Researching Community</div>
+            <h2 class="section-title">Why QuantuMech is India's Premier Research Club</h2>
+            <div class="grid-3">
+                <div class="card parallax-item" data-parallax-strength="4"><i class="fas fa-microscope fa-2x"></i><h3>Research-First Culture</h3><div class="info-block"><h4>✅ Benefits</h4><p>Published papers, conference presentations, research portfolio.</p><h4>🎯 Importance</h4><p>Builds critical thinking & scientific temperament beyond exams.</p><h4>📝 How to Participate</h4><p>Join any domain track → start with a research question.</p><h4>💡 Why Participate</h4><p>Stand out for college, scholarships & global recognition.</p></div></div>
+                <div class="card parallax-item" data-parallax-strength="4"><i class="fas fa-chalkboard-user fa-2x"></i><h3>PhD Mentorship Ecosystem</h3><div class="info-block"><h4>✅ Benefits</h4><p>1-on-1 expert guidance, weekly sessions, doubt-solving.</p><h4>🎯 Importance</h4><p>Accelerates learning, prevents mistakes, builds confidence.</p><h4>📝 How to Participate</h4><p>Register → get matched with a mentor → start sessions.</p><h4>💡 Why Participate</h4><p>Learn directly from researchers at top institutions — FREE.</p></div></div>
+                <div class="card parallax-item" data-parallax-strength="4"><i class="fas fa-book-open fa-2x"></i><h3>Peer-Reviewed Journal</h3><div class="info-block"><h4>✅ Benefits</h4><p>Publication certificate, DOI, global visibility.</p><h4>🎯 Importance</h4><p>Validates your work, builds academic credibility.</p><h4>📝 How to Participate</h4><p>Submit manuscript via Google Form → review → publish.</p><h4>💡 Why Participate</h4><p>First author publication before college — unmatched advantage.</p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CHALLENGES SECTION -->
+    <section id="challenges">
+        <div class="container">
+            <div class="badge"><i class="fas fa-lightbulb"></i> Revolutionary Pedagogy</div>
+            <h2 class="section-title">Solving India's 4 Biggest Educational Challenges</h2>
+            <div class="grid-2">
+                <div class="card parallax-item" data-parallax-strength="3"><h3><i class="fas fa-microchip"></i> PoC Education</h3><p><strong>Solution:</strong> Build prototypes, not just papers. Real-world competence.</p><div class="info-block"><h4>✨ Why it matters</h4><p>Proves skills better than any exam.</p></div></div>
+                <div class="card parallax-item" data-parallax-strength="3"><h3><i class="fas fa-tools"></i> Frugal Research</h3><p><strong>Solution:</strong> Zero-cost tools, open data, simulations.</p><div class="info-block"><h4>✨ Why it matters</h4><p>Democratizes research for rural & under-resourced students.</p></div></div>
+                <div class="card parallax-item" data-parallax-strength="3"><h3><i class="fas fa-shapes"></i> Synthesis Curriculum</h3><p><strong>Solution:</strong> 3+ disciplines per module (Bio+Math+Code).</p><div class="info-block"><h4>✨ Why it matters</h4><p>Creates polymaths ready for modern breakthroughs.</p></div></div>
+                <div class="card parallax-item" data-parallax-strength="3"><h3><i class="fas fa-users"></i> Peer-to-Peer Guilds</h3><p><strong>Solution:</strong> Advanced students mentor juniors — exponential scaling.</p><div class="info-block"><h4>✨ Why it matters</h4><p>Solves mentorship gap, builds leadership skills.</p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DOMAINS SECTION -->
+    <section id="domains">
+        <div class="container">
+            <h2 class="section-title">Research Domains: Mathematics · Physics · Chemistry</h2>
+            <div class="grid-3">
+                <div class="card parallax-item" data-parallax-strength="4"><i class="fas fa-square-root-alt fa-3x"></i><h3>Mathematics</h3><div class="info-block"><h4>📌 How to Participate</h4><p>Enroll in Maths Series → attend workshops → start project.</p><h4>🏆 Benefits</h4><p>Cryptography, number theory, AI-math projects.</p></div><a href="#" id="mathsSeriesEnroll" class="form-link">Enroll →</a></div>
+                <div class="card parallax-item" data-parallax-strength="4"><i class="fas fa-atom fa-3x"></i><h3>Physics</h3><div class="info-block"><h4>📌 How to Participate</h4><p>Enroll in Physics Series → select quantum/astro/nano track.</p><h4>🏆 Benefits</h4><p>Quantum computing, astrophysics simulations.</p></div><a href="#" id="physicsSeriesEnroll" class="form-link">Enroll →</a></div>
+                <div class="card parallax-item" data-parallax-strength="4"><i class="fas fa-flask fa-3x"></i><h3>Chemistry</h3><div class="info-block"><h4>📌 How to Participate</h4><p>Enroll in Chemistry Series → computational or green chem.</p><h4>🏆 Benefits</h4><p>Materials science, drug discovery simulations.</p></div><a href="#" id="chemistrySeriesEnroll" class="form-link">Enroll →</a></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PIPELINE SECTION -->
+    <section id="pipeline">
+        <div class="container">
+            <h2 class="section-title">🔬 Structured Research Pipeline</h2>
+            <div class="card parallax-item" data-parallax-strength="5">
+                <div class="info-block"><h4>📈 Benefits</h4><p>Clear roadmap from idea to publication. No guesswork.</p><h4>🎯 Importance</h4><p>Same process used by top universities worldwide.</p><h4>📝 How to Participate</h4><p>Join QuantuMech → assigned mentor → follow 6 steps.</p><h4>💡 Why Participate</h4><p>Complete your first research paper in 6-8 months with expert guidance — 100% free.</p></div>
+                <div class="pipeline-step"><strong>1️⃣ Idea Incubation</strong> → 2️⃣ Literature Review → 3️⃣ Hypothesis → 4️⃣ Experiment/Simulation → 5️⃣ Manuscript Writing → 6️⃣ Publication</div>
+                <a href="#join" class="btn-primary">Start Your Journey →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- JOURNAL SECTION -->
+    <section id="journal">
+        <div class="container">
+            <div class="badge"><i class="fas fa-newspaper"></i> Official Research Journal</div>
+            <h2 class="section-title">📄 Peer-Reviewed Publication</h2>
+            <div class="grid-2">
+                <div class="card parallax-item" data-parallax-strength="4"><h3>Submission Portal</h3><div class="info-block"><h4>✅ Benefits</h4><p>Free publication, DOI, certificate, open access.</p><h4>🎯 Importance</h4><p>Builds academic CV for college & scholarships.</p><h4>📝 How to Participate</h4><p>Submit abstract/full paper via form. Review starts Sept 2026.</p><h4>💡 Why Participate</h4><p>Become a published researcher before graduation.</p></div><a href="#" id="paperSubmitLink" class="form-link">Submit Paper</a></div>
+                <div class="card parallax-item" data-parallax-strength="4"><h3>Dashboard Preview</h3><p>Track citations, research score, portfolio growth.</p><button id="mockPortfolioBtn" class="btn-outline">Preview Dashboard →</button></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MENTORSHIP -->
+    <section id="mentorship">
+        <div class="container">
+            <div class="badge">PhD Mentorship Network</div>
+            <h2 class="section-title">Expert Guidance, Free Forever</h2>
+            <div class="card parallax-item" data-parallax-strength="5">
+                <div class="info-block"><h4>🎓 Benefits</h4><p>Weekly 1-on-1 sessions, personalized feedback, milestone tracking.</p><h4>🎯 Importance</h4><p>Expert guidance prevents common pitfalls, accelerates research.</p><h4>📝 How to Participate</h4><p>Register → complete onboarding → matched within 48 hours.</p><h4>💡 Why Participate</h4><p>Learn directly from PhD scholars at IITs, NITs, and global unis — at zero cost.</p></div>
+                <button class="btn-outline requestMentorMock">Request a Mentor → FREE</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- STUDY MATERIALS -->
+    <section id="study-materials">
+        <div class="container"><h2 class="section-title">📚 Essential Research Materials</h2><div class="grid-3"><div class="card parallax-item" data-parallax-strength="3"><h3>The Unbeatable Mind</h3><div class="info-block"><h4>📖 How to Access</h4><p>Click Drive link → read online or download.</p><h4>🧠 Benefit</h4><p>Develop mental resilience & critical thinking.</p></div><a href="https://docs.google.com/document/d/1AQgaEz7swi9Y2aZtn1GUClUOWkhlbFR2/edit?usp=drive_link" target="_blank" class="drive-link">Access →</a></div><div class="card parallax-item" data-parallax-strength="3"><h3>The Cognitive Mastery System</h3><div class="info-block"><h4>📖 How to Access</h4><p>Free Google Doc — structured thinking frameworks.</p><h4>🧠 Benefit</h4><p>Research methodology & complex problem-solving.</p></div><a href="https://docs.google.com/document/d/1OBYgcU0TFt7Npuj0OxlE4rbTV6-PiyHX/edit?usp=drive_link" target="_blank" class="drive-link">Access →</a></div><div class="card parallax-item" data-parallax-strength="3"><h3>Mastering Your Mind</h3><div class="info-block"><h4>📖 How to Access</h4><p>Free digital book — focus & creativity techniques.</p><h4>🧠 Benefit</h4><p>Sustained intellectual engagement for research.</p></div><a href="https://docs.google.com/document/d/1r2kZag-LcQeDyWBncoKHgYirvTwSiBCx/edit?usp=drive_link" target="_blank" class="drive-link">Access →</a></div></div></div>
+    </section>
+
+    <!-- OLYMPIADS - FULL COMPLETE VERSION -->
+    <section id="olympiads">
+        <div class="container">
+            <div class="badge"><i class="fas fa-trophy"></i> Global & National STEM Competitions</div>
+            <h2 class="section-title">🏅 Olympiad & STEM Competition Guide</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">High school students — these prestigious competitions open doors to global recognition, research opportunities, and top university admissions. Each Olympiad offers unique benefits for aspiring researchers.</p>
+            
+            <div class="card parallax-item" data-parallax-strength="4" style="background: linear-gradient(135deg, #00FFFF20, #00FF8820); text-align: center; margin-bottom: 2rem;">
+                <i class="fas fa-heart" style="font-size: 2rem; color:#0ff;"></i>
+                <h3 style="margin-top: 0.5rem;">✨ A Note From Our Founder ✨</h3>
+                <p style="margin-top: 0.5rem;">"I spent countless hours researching, verifying, and compiling every single Olympiad listed here — facing hardships, navigating through scattered information across the internet, and cross-checking each source so that you don't have to. My goal was simple: every student should have access to ALL these opportunities just one click away. No more endless searching, no more confusion. I've done the hard work for you. Now, your journey begins here — explore, apply, and achieve greatness. 🇮🇳"<br><strong>— Chauhan Dhairya Chetankumar</strong></p>
+            </div>
+            
+            <div class="info-block parallax-item" data-parallax-strength="3" style="margin-bottom: 2rem;">
+                <h4><i class="fas fa-question-circle"></i> How QuantuMech Helps You with Olympiads?</h4>
+                <ul class="bullet-list">
+                    <li><i class="fas fa-check-circle"></i> <strong>Free Mentorship:</strong> QuantuMech mentors guide you on Olympiad preparation strategies, syllabus breakdown, and problem-solving techniques.</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>Study Materials:</strong> Access curated resources, past papers, and recommended books for each Olympiad.</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>Mock Tests & Workshops:</strong> Regular practice sessions and doubt-clearing workshops conducted by experienced researchers.</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>Registration Assistance:</strong> Get help with deadlines, eligibility checks, and application processes.</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>Research Integration:</strong> Use Olympiad topics as launchpad for your research paper — QuantuMech helps you convert competition problems into publishable research.</li>
+                </ul>
+            </div>
+            
+            <div class="olympiad-section">
+                <!-- International Olympiads -->
+                <div class="olympiad-category">
+                    <h3><i class="fas fa-globe-asia"></i> International Olympiads</h3>
+                    <div class="olympiad-grid">
+                        <div class="olympiad-card parallax-item" data-parallax-strength="2"><h4><i class="fas fa-square-root-alt"></i> IMO</h4><p><strong>International Mathematical Olympiad</strong> — The most prestigious mathematics competition worldwide.</p><p><strong>🎯 Eligibility:</strong> Students under 20, not enrolled in university. Must qualify through national rounds (INMO for India).</p><p><strong>🏆 Benefits:</strong> Global recognition, direct pathways to top universities (MIT, Cambridge, IITs), medalists often receive direct admission offers.</p><p><strong>📝 How to Participate:</strong> Clear IOQM → INMO → IMO Training Camp → Represent India.</p><a href="https://imo-official.org" target="_blank" class="apply-link">Apply → imo-official.org</a></div>
+                        <div class="olympiad-card parallax-item" data-parallax-strength="2"><h4><i class="fas fa-atom"></i> IPhO</h4><p><strong>International Physics Olympiad</strong> — Elite physics competition testing theoretical and experimental skills.</p><p><strong>🎯 Eligibility:</strong> Under 20, not enrolled in university. Qualify through NSEP → INPhO → Training Camp.</p><p><strong>🏆 Benefits:</strong> Opens doors to CERN, Max Planck, top IITs, international research networking.</p><p><strong>📝 How to Participate:</strong> Register for NSEP via IAPT → Clear INPhO → Selected for camp.</p><a href="https://ipho-new.org" target="_blank" class="apply-link">Apply → ipho-new.org</a></div>
+                        <div class="olympiad-card parallax-item" data-parallax-strength="2"><h4><i class="fas fa-flask"></i> IChO</h4><p><strong>International Chemistry Olympiad</strong> — Premier chemistry competition combining theory and lab work.</p><p><strong>🎯 Eligibility:</strong> Under 20, not enrolled in university. Qualify through NSEC → INChO → Training Camp.</p><p><strong>🏆 Benefits:</strong> Excellent for chemistry research careers, strong profile for science scholarships.</p><p><strong>📝 How to Participate:</strong> Register for NSEC via IAPT → Clear INChO → Training camp.</p><a href="https://ichosc.org" target="_blank" class="apply-link">Apply → ichosc.org</a></div>
+                        <div class="olympiad-card parallax-item" data-parallax-strength="2"><h4><i class="fas fa-dna"></i> IBO</h4><p><strong>International Biology Olympiad</strong> — Top biology competition with theoretical and practical rounds.</p><p><strong>🎯 Eligibility:</strong> Under 20, not enrolled in university. Qualify through NSEB → INBO → Training Camp.</p><p><strong>🏆 Benefits:</strong> Exceptional for medical/biotech careers, research exposure, ideal for medicine aspirants.</p><p><strong>📝 How to Participate:</strong> Register for NSEB via IAPT → Clear INBO → Training camp.</p><a href="https://ibo-info.org" target="_blank" class="apply-link">Apply → ibo-info.org</a></div>
+                        <div class="olympiad-card parallax-item" data-parallax-strength="2"><h4><i class="fas fa-laptop-code"></i> IOI</h4><p><strong>International Olympiad in Informatics</strong> — Elite programming and algorithms competition.</p><p><strong>🎯 Eligibility:</strong> Under 20, not enrolled in university. Qualify through ZCO/ZIO → INOI → Training Camp.</p><p><strong>🏆 Benefits:</strong> Direct path to top CS programs, Google/Microsoft actively recruit medalists.</p><p><strong>📝 How to Participate:</strong> Register for ZCO/ZIO via IARCS → Clear INOI → Training camp.</p><a href="https://ioinformatics.org" target="_blank" class="apply-link">Apply → ioinformatics.org</a></div>
+                        <div class="olympiad-card parallax-item" data-parallax-strength="2"><h4><i class="fas fa-star-of-life"></i> IOAA</h4><p><strong>International Olympiad on Astronomy & Astrophysics</strong> — Combines physics and astronomy challenges.</p><p><strong>🎯 Eligibility:</strong> Under 20, not enrolled in university. Qualify through NSEA → INOA → Training Camp.</p><p><strong>🏆 Benefits:</strong> Unique interdisciplinary profile, connects with astronomy research groups, excellent for astrophysics careers.</p><p><strong>📝 How to Participate:</strong> Register for NSEA via IAPT → Clear INOA → Training camp.</p><a href="https://ioaaastronomy.org" target="_blank" class="apply-link">Apply → ioaaastronomy.org</a></div>
+                        <div class="olympiad-card parallax-item" data-parallax-strength="2"><h4><i class="fas fa-water"></i> IESO</h4><p><strong>International Earth Science Olympiad</strong> — Earth systems, geology, environmental science.</p><p><strong>🎯 Eligibility:</strong> Under 20, not enrolled in university. Qualify through national rounds.</p><p><strong>🏆 Benefits:</strong> Perfect for environmental sciences, field-based research exposure, great for climate science research.</p><p><strong>📝 How to Participate:</strong> Check national organizing body (usually geological societies).</p><a href="https://itace.org" target="_blank" class="apply-link">Apply → itace.org</a></div>
+                        <div class="olympiad-card parallax-item" data-parallax-strength="2"><h4><i class="fas fa-microscope"></i> IJSO</h4><p><strong>International Junior Science Olympiad</strong> — Multidisciplinary science for younger students.</p><p><strong>🎯 Eligibility:</strong> Under 15 years old as of 31st December of competition year.</p><p><strong>🏆 Benefits:</strong> Early research exposure, builds foundational scientific thinking, perfect for starting research journey early.</p><p><strong>📝 How to Participate:</strong> Register through national coordinator (HBCSE for India).</p><a href="https://ijsoweb.org" target="_blank" class="apply-link">Apply → ijsoweb.org</a></div>
+                    </div>
+                </div>
+
+                <!-- National Olympiads India -->
+                <div class="olympiad-category">
+                    <h3><i class="fas fa-flag-india"></i> National Olympiads (India)</h3>
+                    <div class="olympiad-grid">
+                        <div class="olympiad-card parallax-item" data-parallax-strength="2"><h4><i class="fas fa-chalkboard-teacher"></i> INMO / IOQM</h4><p><strong>Indian National Mathematical Olympiad</strong> — Gateway to IMO team selection.</p><p><strong>🎯 Eligibility:</strong> Indian students under 20, not enrolled in university.</p><p><strong>🏆 Benefits:</strong> HBCSE recognition, intensive training camps, career in mathematical research, direct entry to ISI, CMI, IITs.</p><p><strong>📝 How to Participate:</strong> Register for IOQM via MTAI → Clear → INMO → Training camp.</p><a href="https://mtai.org.in" target="_blank" class="apply-link">Apply → mtai.org.in</a></div>
+                        <div class="olympiad-card parallax-item" data-parallax-strength="2"><h4><i class="fas fa-chart-line"></i> NSEP / NSEC / NSEB / NSEA</h4><p><strong>National Standard Examinations (IAPT)</strong> — Stepping stones for International Olympiads.</p><p><strong>🎯 Eligibility:</strong> Indian students in Class 12 or below.</p><p><strong>🏆 Benefits:</strong> Exposure to national-level competition, merit certificates, selection for advanced training camps.</p><p><strong>📝 How to Participate:</strong> Register online via IAPT website before August each year.</p><a href="https://iapt.org.in" target="_blank" class="apply-link">Apply → iapt.org.in</a></div>
+                        <div class="olympiad-card parallax-item" data-parallax-strength="2"><h4><i class="fas fa-code"></i> ZCO / ZIO (IARCS)</h4><p><strong>Indian Computing Olympiad</strong> — Algorithmic problem-solving competition.</p><p><strong>🎯 Eligibility:</strong> Indian students in Class 12 or below.</p><p><strong>🏆 Benefits:</strong> Builds programming and logic skills, selection for IOI training camp, recognized in tech industry.</p><p><strong>📝 How to Participate:</strong> Register online via IARCS website. ZCO is online, ZIO is postal.</p><a href="https://iarcs.org.in" target="_blank" class="apply-link">Apply → iarcs.org.in</a></div>
+                        <div class="olympiad-card parallax-item" data-parallax-strength="2"><h4><i class="fas fa-university"></i> KVPY</h4><p><strong>Kishore Vaigyanik Protsahan Yojana</strong> — Prestigious fellowship for science students.</p><p><strong>🎯 Eligibility:</strong> Indian students in Class 11, 12, or 1st year of undergraduate (B.Sc./B.Stat./B.Math.).</p><p><strong>🏆 Benefits:</strong> Direct financial support (₹5,000-₹7,000/month), IISc/IISER admission pathways, research internship opportunities.</p><p><strong>📝 How to Participate:</strong> Register online via KVPY IISc portal. Exam held annually in November.</p><a href="https://kvpy.iisc.ac.in" target="_blank" class="apply-link">Apply → kvpy.iisc.ac.in</a></div>
+                        <div class="olympiad-card parallax-item" data-parallax-strength="2"><h4><i class="fas fa-flask"></i> HBCSE Olympiads</h4><p><strong>HBCSE Science Olympiads (Stage 2+)</strong> — Advanced selection stages for international olympiads.</p><p><strong>🎯 Eligibility:</strong> Students who clear NSEs (NSEP/NSEC/NSEB/NSEA).</p><p><strong>🏆 Benefits:</strong> Top-tier training, international representation, research mentorship.</p><p><strong>📝 How to Participate:</strong> Automatically eligible after clearing Stage 1 NSE exams.</p><a href="https://olympiads.hbcse.tifr.res.in" target="_blank" class="apply-link">Apply → olympiads.hbcse.tifr.res.in</a></div>
+                    </div>
+                </div>
+
+                <!-- USA & Other Notable Olympiads -->
+                <div class="olympiad-category">
+                    <h3><i class="fas fa-globe-americas"></i> USA & Other Notable Olympiads</h3>
+                    <div class="olympiad-grid">
+                        <div class="olympiad-card parallax-item" data-parallax-strength="2"><h4><i class="fas fa-flag-usa"></i> USAMO / AMC</h4><p><strong>USA Mathematical Olympiad / AMC</strong> — Premier American mathematics competitions.</p><p><strong>🎯 Eligibility:</strong> Any student (international participation possible through AMC).</p><p><strong>🏆 Benefits:</strong> International exposure, strong profile for US universities, advanced problem-solving skills.</p><p><strong>📝 How to Participate:</strong> Register through AMC coordinator at your school or international testing centers.</p><a href="https://maa.org/math-competitions" target="_blank" class="apply-link">Apply → maa.org</a></div>
+                        <div class="olympiad-card parallax-item" data-parallax-strength="2"><h4><i class="fas fa-bolt"></i> USAPhO / USNCO / USABO</h4><p><strong>USA Physics/Chemistry/Biology Olympiads</strong> — High-level competitions.</p><p><strong>🎯 Eligibility:</strong> US citizens/residents typically, but study materials available globally.</p><p><strong>🏆 Benefits:</strong> Rigorous training material, great for college applications, research experience development.</p><p><strong>📝 How to Participate:</strong> For US students: register via AAPT/ACS. International students can use past papers for practice.</p><a href="https://aapt.org/physicsteam" target="_blank" class="apply-link">Physics → aapt.org</a></div>
+                        <div class="olympiad-card parallax-item" data-parallax-strength="2"><h4><i class="fas fa-dragon"></i> BPhO / APhO / EuPhO</h4><p><strong>British/Asian/European Physics Olympiads</strong> — Diverse international competitions.</p><p><strong>🎯 Eligibility:</strong> Varies by region. BPhO open to UK & international, APhO for Asian countries, EuPhO for European.</p><p><strong>🏆 Benefits:</strong> Exposure to different problem styles, globally recognized, expands academic network.</p><p><strong>📝 How to Participate:</strong> Register through respective national organizing bodies.</p><a href="https://bpho.org.uk" target="_blank" class="apply-link">BPhO → bpho.org.uk</a></div>
+                        <div class="olympiad-card parallax-item" data-parallax-strength="2"><h4><i class="fas fa-shield-alt"></i> USACO</h4><p><strong>USA Computing Olympiad</strong> — Advanced programming competition.</p><p><strong>🎯 Eligibility:</strong> Any student worldwide (online participation allowed).</p><p><strong>🏆 Benefits:</strong> Ideal for CS aspirants, tech internships, algorithmic mastery for research. Highly respected by Silicon Valley.</p><p><strong>📝 How to Participate:</strong> Create free account on USACO website → participate in monthly contests.</p><a href="https://usaco.org" target="_blank" class="apply-link">Apply → usaco.org</a></div>
+                    </div>
+                </div>
+
+                <!-- Online-First & ICSC Ecosystem -->
+                <div class="olympiad-category">
+                    <h3><i class="fas fa-laptop"></i> Online-First & ICSC Ecosystem</h3>
+                    <div class="olympiad-grid">
+                        <div class="olympiad-card parallax-item" data-parallax-strength="2"><h4><i class="fas fa-chalkboard"></i> IYMC</h4><p><strong>International Youth Math Challenge</strong> — Online-first mathematics competition.</p><p><strong>🎯 Eligibility:</strong> Students and young professionals worldwide, no age limit.</p><p><strong>🏆 Benefits:</strong> Accessible globally, research-based problems, certificates, flexible participation.</p><p><strong>📝 How to Participate:</strong> Register on IYMC website → solve qualification round online → final round.</p><a href="https://iymc.info" target="_blank" class="apply-link">Apply → iymc.info</a></div>
+                        <div class="olympiad-card parallax-item" data-parallax-strength="2"><h4><i class="fas fa-microchip"></i> ICSC</h4><p><strong>International Computer Science Competition</strong> — Digital STEM challenge.</p><p><strong>🎯 Eligibility:</strong> Students worldwide, multiple age categories.</p><p><strong>🏆 Benefits:</strong> Flexible schedule, global ranking, ambassador programs, research project opportunities. QuantuMech founder is an official ambassador.</p><p><strong>📝 How to Participate:</strong> Register on ICSC website → choose category → complete online challenge.</p><a href="https://icscompetition.org" target="_blank" class="apply-link">Apply → icscompetition.org</a></div>
+                        <div class="olympiad-card parallax-item" data-parallax-strength="2"><h4><i class="fas fa-space-shuttle"></i> IAAC</h4><p><strong>International Astronomy & Astrophysics Competition</strong> — Research-oriented tasks.</p><p><strong>🎯 Eligibility:</strong> Students worldwide, no age limit.</p><p><strong>🏆 Benefits:</strong> Suitable for independent learners, astronomy research focus, global participation.</p><p><strong>📝 How to Participate:</strong> Register on IAAC website → submit solutions online.</p><a href="https://iaac.space" target="_blank" class="apply-link">Apply → iaac.space</a></div>
+                        <div class="olympiad-card parallax-item" data-parallax-strength="2"><h4><i class="fas fa-atom"></i> IMPhO / LIChO</h4><p><strong>International Modern Physics & Lavoisier Chemistry Olympiads</strong> — Specialized physics/chemistry competitions.</p><p><strong>🎯 Eligibility:</strong> High school students worldwide.</p><p><strong>🏆 Benefits:</strong> Deep subject focus, international recognition, research-oriented problems.</p><p><strong>📝 How to Participate:</strong> Register through official website (OCS Olympiad).</p><a href="https://ocsolympiad.org" target="_blank" class="apply-link">Apply → ocsolympiad.org</a></div>
+                        <div class="olympiad-card parallax-item" data-parallax-strength="2"><h4><i class="fas fa-flask"></i> IChC</h4><p><strong>International Chemistry Competition</strong> — Global chemistry challenge.</p><p><strong>🎯 Eligibility:</strong> High school students worldwide.</p><p><strong>🏆 Benefits:</strong> Research-focused problems, international participation, certificate of excellence.</p><p><strong>📝 How to Participate:</strong> Register on IChC official website → online rounds.</p><a href="https://intchc.org" target="_blank" class="apply-link">Apply → intchc.org</a></div>
+                    </div>
+                </div>
+
+                <!-- School Level & Other Competitions -->
+                <div class="olympiad-category">
+                    <h3><i class="fas fa-school"></i> School Level & Other STEM Competitions</h3>
+                    <div class="olympiad-grid">
+                        <div class="olympiad-card parallax-item" data-parallax-strength="2"><h4><i class="fas fa-puzzle-piece"></i> SOF (NSO/IMO/IEO)</h4><p><strong>Science Olympiad Foundation</strong> — School-level olympiads.</p><p><strong>🎯 Eligibility:</strong> Students from Class 1 to 12.</p><p><strong>🏆 Benefits:</strong> Build competitive spirit, rank certificates, foundation for advanced competitions.</p><p><strong>📝 How to Participate:</strong> Register through your school or directly on SOF website.</p><a href="https://sofworld.org" target="_blank" class="apply-link">Apply → sofworld.org</a></div>
+                        <div class="olympiad-card parallax-item" data-parallax-strength="2"><h4><i class="fas fa-star"></i> SilverZone STEM Olympiads</h4><p><strong>SilverZone Foundation Competitions</strong> — STEM olympiads for school students.</p><p><strong>🎯 Eligibility:</strong> Students from Class 1 to 12.</p><p><strong>🏆 Benefits:</strong> Performance analysis, participation certificates, conceptual understanding.</p><p><strong>📝 How to Participate:</strong> Register through school or online via SilverZone portal.</p><a href="https://silverzone.org" target="_blank" class="apply-link">Apply → silverzone.org</a></div>
+                        <div class="olympiad-card parallax-item" data-parallax-strength="2"><h4><i class="fas fa-shield-alt"></i> picoCTF</h4><p><strong>Cybersecurity Competition</strong> — Capture the flag style challenges.</p><p><strong>🎯 Eligibility:</strong> Middle school, high school, and college students (team-based).</p><p><strong>🏆 Benefits:</strong> Cybersecurity skills, practical experience, tech career preparation.</p><p><strong>📝 How to Participate:</strong> Register online during competition window (usually annual).</p><a href="https://picoctf.org" target="_blank" class="apply-link">Apply → picoctf.org</a></div>
+                        <div class="olympiad-card parallax-item" data-parallax-strength="2"><h4><i class="fas fa-graduation-cap"></i> Bebras / Math Kangaroo</h4><p><strong>Bebras Computing & Math Kangaroo</strong> — International reasoning competitions.</p><p><strong>🎯 Eligibility:</strong> School students (age-specific categories).</p><p><strong>🏆 Benefits:</strong> Computational thinking, logical reasoning, global participation.</p><p><strong>📝 How to Participate:</strong> Register through school or national organizer.</p><a href="https://bebras.org" target="_blank" class="apply-link">Apply → bebras.org</a></div>
+                        <div class="olympiad-card parallax-item" data-parallax-strength="2"><h4><i class="fas fa-calculator"></i> AMC 10/12</h4><p><strong>American Mathematics Competitions</strong> — Gateway to USAMO.</p><p><strong>🎯 Eligibility:</strong> AMC 10: Grade 10 and below; AMC 12: Grade 12 and below.</p><p><strong>🏆 Benefits:</strong> International recognition, college admissions advantage, math research preparation.</p><p><strong>📝 How to Participate:</strong> Register through AMC coordinator at your school or international center.</p><a href="https://maa.org" target="_blank" class="apply-link">Apply → maa.org</a></div>
+                        <div class="olympiad-card parallax-item" data-parallax-strength="2"><h4><i class="fas fa-car"></i> Caribou Mathematics</h4><p><strong>Caribou Mathematics Competition</strong> — Interactive online math contests.</p><p><strong>🎯 Eligibility:</strong> Grades K-12 worldwide.</p><p><strong>🏆 Benefits:</strong> Accessible format, regular competitions, problem-solving practice.</p><p><strong>📝 How to Participate:</strong> Register online on Caribou website → participate in monthly contests.</p><a href="https://cariboutests.com" target="_blank" class="apply-link">Apply → cariboutests.com</a></div>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- ABOUT SECTION -->
-        <section id="about">
-            <div class="container">
-                <div class="badge"><i class="fas fa-crown"></i> India's Emerging No.1 Young Researching Community</div>
-                <h2 class="section-title">Why QuantuMech is India's Premier Research Club</h2>
-                
-                <div class="example-box">
-                    <p><strong>✨ Real Questions Our Students Are Researching:</strong></p>
+            
+            <div class="card parallax-item" data-parallax-strength="4" style="margin-top: 2rem; text-align: center;">
+                <p><i class="fas fa-bell" style="color: #00FFFF;"></i> <strong>QuantuMech Recommendation:</strong> Olympiad preparation aligns perfectly with our research mentorship. Students who excel in Olympiads develop the analytical skills needed for world-class research. Join QuantuMech to get guidance on which Olympiads suit your research interests!</p>
+                <div class="info-block" style="margin-top: 1rem;">
+                    <h4><i class="fas fa-hand-holding-heart"></i> How QuantuMech Supports Your Olympiad Journey</h4>
                     <ul class="bullet-list">
-                        <li><i class="fas fa-atom"></i> <strong>Physics:</strong> "Can AI predict earthquakes before they happen?" | "How do black holes form?" | "How can nanomaterials make solar panels 3x more efficient?"</li>
-                        <li><i class="fas fa-square-root-alt"></i> <strong>Mathematics:</strong> "Can we create unbreakable encryption using number theory?" | "How can topology help understand DNA folding?"</li>
-                        <li><i class="fas fa-flask"></i> <strong>Chemistry:</strong> "How can we develop biodegradable plastics from agricultural waste?" | "Can computational chemistry discover new drugs faster?"</li>
-                    </ul>
-                    <p style="margin-top: 0.8rem;"><em>👉 These are REAL research questions our students are working on right now!</em></p>
-                </div>
-                
-                <div class="grid-3">
-                    <div class="card"><i class="fas fa-microscope fa-2x" style="color: var(--saffron);"></i><h3>Research-First Culture</h3><ul class="bullet-list"><li><i class="fas fa-check"></i> We don't just study — we create knowledge</li><li><i class="fas fa-check"></i> Students published in Scopus-indexed journals</li><li><i class="fas fa-check"></i> Presentations at international conferences</li></ul><div class="badge">📈 87% publish within 12 months</div></div>
-                    <div class="card"><i class="fas fa-chalkboard-user fa-2x"></i><h3>PhD Mentorship Ecosystem</h3><ul class="bullet-list"><li><i class="fas fa-check"></i> Weekly 1-on-1 sessions with expert mentors</li><li><i class="fas fa-check"></i> Personalized guidance from idea to publication</li><li><i class="fas fa-check"></i> Completely free — no hidden costs</li></ul><div class="badge">🎓 50+ active mentors</div></div>
-                    <div class="card"><i class="fas fa-book-open fa-2x"></i><h3>Peer-Reviewed Journal</h3><ul class="bullet-list"><li><i class="fas fa-check"></i> Double-blind peer review process</li><li><i class="fas fa-check"></i> Publication certificates & DOI assignment</li><li><i class="fas fa-check"></i> No fees, no paywalls — open access</li></ul><div class="badge">📄 Launching 2028</div></div>
-                </div>
-                
-                <div class="nep-highlight" style="margin-top: 2rem;">
-                    <h3><i class="fas fa-file-alt"></i> NEP 2020 Implementation at QuantuMech</h3>
-                    <div class="grid-2">
-                        <ul class="bullet-list">
-                            <li><i class="fas fa-check-circle"></i> Multidisciplinary Education — explore Math, Physics, Chemistry intersections</li>
-                            <li><i class="fas fa-check-circle"></i> Research Integration — skills embedded from day one</li>
-                            <li><i class="fas fa-check-circle"></i> Flexible Pathways — self-paced research tracks</li>
-                        </ul>
-                        <ul class="bullet-list">
-                            <li><i class="fas fa-check-circle"></i> Mentorship & Guidance — dedicated mentor for every researcher</li>
-                            <li><i class="fas fa-check-circle"></i> Technology Integration — AI research tools, digital journal</li>
-                            <li><i class="fas fa-check-circle"></i> Holistic Development — communication, ethics, leadership training</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- DOMAINS SECTION -->
-        <section id="domains" style="background: var(--cream);">
-            <div class="container">
-                <h2 class="section-title">Research Domains: Mathematics · Physics · Chemistry</h2>
-                <p class="section-sub" style="font-size: 1.1rem;">From beginner to advanced — we guide you at every step. No prior research experience needed. Just bring your curiosity!</p>
-                <div class="grid-3">
-                    <div class="card"><i class="fas fa-square-root-alt fa-3x" style="color: var(--saffron);"></i><h3>Mathematics Research Track</h3><ul class="bullet-list"><li>Number Theory, Cryptography, AI-driven Mathematics</li><li>Topology, Mathematical Modeling, Quantum Algebra</li><li><strong>📘 Beginner Start:</strong> Start with puzzles, patterns, and logic problems</li></ul><div class="badge">🧮 15+ active projects</div><a href="#" id="mathsSeriesEnroll" class="form-link" style="margin-top: 1rem; background: var(--green);"><i class="fab fa-google"></i> Enroll in Mathematics Series</a></div>
-                    <div class="card"><i class="fas fa-atom fa-3x" style="color: var(--saffron);"></i><h3>Physics Research Track</h3><ul class="bullet-list"><li>Quantum Computing, Astrophysics, Nanomaterials</li><li>Quantum Information, Condensed Matter Physics</li><li><strong>📘 Beginner Start:</strong> Start with questions about space, energy, or technology</li></ul><div class="badge">⚛️ 12+ ongoing papers</div><a href="#" id="physicsSeriesEnroll" class="form-link" style="margin-top: 1rem; background: var(--green);"><i class="fab fa-google"></i> Enroll in Physics Series</a></div>
-                    <div class="card"><i class="fas fa-flask fa-3x" style="color: var(--saffron);"></i><h3>Chemistry Research Track</h3><ul class="bullet-list"><li>Materials Science, Green Chemistry, Computational Chemoinformatics</li><li>Sustainable Chemistry, Catalysis Research</li><li><strong>📘 Beginner Start:</strong> Explore molecules, eco-friendly materials, chemical simulations</li></ul><div class="badge">🧪 10+ publications in 2024</div><a href="#" id="chemistrySeriesEnroll" class="form-link" style="margin-top: 1rem; background: var(--green);"><i class="fab fa-google"></i> Enroll in Chemistry Series</a></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- RESEARCH PIPELINE -->
-        <section id="pipeline">
-            <div class="container">
-                <h2 class="section-title">🔬 Structured Research Pipeline</h2>
-                <p class="section-sub">Your journey from curiosity to published researcher — explained step by step. This is the same process used by top research universities worldwide.</p>
-                <div class="card">
-                    <div class="pipeline-step"><strong>1️⃣ Idea Incubation:</strong> Choose a topic you're curious about — AI, Space, Environment, Cryptography, Quantum Physics. Share interests with mentor. Refine into research question.</div>
-                    <div class="pipeline-step"><strong>2️⃣ Literature Review:</strong> Read existing research papers. Learn to find, read, and analyze scientific papers with mentor guidance.</div>
-                    <div class="pipeline-step"><strong>3️⃣ Hypothesis:</strong> Create your own question or prediction that hasn't been answered yet — your unique contribution to science.</div>
-                    <div class="pipeline-step"><strong>4️⃣ Experiment / Data Collection:</strong> Test your idea using experiments, simulations, coding, or data analysis. Mentor helps design methodology.</div>
-                    <div class="pipeline-step"><strong>5️⃣ Manuscript Writing:</strong> Write research paper in structured format (Introduction, Methods, Results, Discussion). LaTeX templates and writing workshops provided.</div>
-                    <div class="pipeline-step"><strong>6️⃣ Submission & Publication:</strong> Paper reviewed by editorial board, revised if needed, published in QuantuMech Journal. Work becomes globally accessible!</div>
-                    <p style="margin-top: 1rem;"><strong>⏱️ Timeline:</strong> Complete your first paper in 6-8 months with dedicated mentor support. <strong>100% free guidance throughout.</strong></p>
-                    <a href="#join" class="btn-primary" style="margin-top: 1rem;">Start Your Research Journey →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- JOURNAL SECTION - UPDATED with exact text -->
-        <section id="journal" style="background: var(--cream);">
-            <div class="container">
-                <div class="badge"><i class="fas fa-newspaper"></i> Official Research Journal of QuantuMech</div>
-                <h2 class="section-title">📄 Peer-Reviewed Publication System</h2>
-                
-                <div class="simple-explanation" style="margin-bottom: 2rem;">
-                    <p><strong>📖 What is Peer Review?</strong></p>
-                    <ul class="bullet-list">
-                        <li><i class="fas fa-check-circle"></i> Your paper is checked by experts before publishing to ensure quality, originality, and scientific accuracy</li>
-                        <li><i class="fas fa-check-circle"></i> Constructive feedback helps improve your work</li>
-                        <li><i class="fas fa-check-circle"></i> Published paper is a permanent record of your contribution to science</li>
-                        <li><i class="fas fa-check-circle"></i> Helps you stand out for college applications, scholarships, and research positions</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Free Mentorship:</strong> Get paired with mentors who have excelled in Olympiads themselves.</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Structured Preparation:</strong> Weekly problem-solving sessions, mock tests, and strategy workshops.</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Resource Library:</strong> Access to past papers, recommended books, and exclusive study materials.</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Research Integration:</strong> Turn Olympiad topics into research papers — publish in QuantuMech Journal.</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Deadline Reminders:</strong> Never miss registration deadlines with our alerts system.</li>
                     </ul>
                 </div>
-                
-                <div class="grid-2">
-                    <div class="card">
-                        <h3><i class="fas fa-upload"></i> Paper Submission Portal</h3>
-                        <ul class="bullet-list">
-                            <li>Submit abstract, full paper, or research note</li>
-                            <li>Receive structured feedback within 2 weeks</li>
-                            <li>Internal Review Board: PhD scholars + senior student researchers</li>
-                            <li>Accept original research, review papers, short communications</li>
-                            <li><strong>✨ No publication charges — completely free, open access</strong></li>
-                        </ul>
-                        <div class="update-box">
-                            <strong>📅 Important Update:</strong> We are going to start publication in 2028. We are taking up manuscripts for review from September 2026. You can submit through the form as it is under process. We are currently in discussions with various professors and also working on obtaining the ISSN number.
-                        </div>
-                        <a href="#" id="paperSubmitLink" class="form-link"><i class="fab fa-google"></i> Submit Your Paper</a>
-                    </div>
-                    <div class="card">
-                        <h3><i class="fas fa-chart-simple"></i> Publication Dashboard</h3>
-                        <ul class="bullet-list">
-                            <li>Track research score and citation impact</li>
-                            <li>Build professional research profile</li>
-                            <li>Portfolio growth analytics</li>
-                        </ul>
-                        <div class="journal-entry">
-                            <strong>📘 Publication Timeline:</strong><br>
-                            • <strong>Manuscript Review Starts:</strong> September 2026<br>
-                            • <strong>ISSN Application:</strong> In Progress — Discussions with professors underway<br>
-                            • <strong>Official Journal Launch:</strong> 2028<br>
-                            • <strong>Submit your work now</strong> — all submissions will be reviewed and prepared for the inaugural 2028 volume!
-                        </div>
-                        <button class="btn-outline" id="mockPortfolioBtn">Preview Your Dashboard →</button>
-                    </div>
-                </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- MENTORSHIP SECTION -->
-        <section id="mentorship">
-            <div class="container">
-                <div class="badge"><i class="fas fa-user-graduate"></i> Expert Guidance</div>
-                <h2 class="section-title">PhD Mentorship Network</h2>
-                <div class="card">
-                    <p style="font-size: 1.1rem; line-height: 1.6;">Our mentors are experienced researchers and PhD scholars from premier institutions across India, bringing years of expertise in quantum physics, advanced mathematics, computational chemistry, and interdisciplinary research. They provide weekly one-on-one guidance, helping you navigate the research process from idea inception to publication. With personalized feedback, milestone tracking, and unlimited doubt-solving, our mentors ensure you never feel lost. Whether you're exploring black holes, developing cryptographic algorithms, or simulating molecular reactions, you'll have an expert by your side — completely free of cost.</p>
-                    <button class="btn-outline requestMentorMock" style="margin-top: 1rem;">Request a Mentor → FREE</button>
-                </div>
+    <!-- AMBASSADOR -->
+    <section id="ambassador">
+        <div class="container">
+            <div class="badge">Leadership Circle</div>
+            <h2 class="section-title">Student Ambassador Program</h2>
+            <div class="grid-2">
+                <div class="card parallax-item" data-parallax-strength="4"><h3>🎁 Benefits & Perks</h3><ul class="bullet-list"><li>Certificate & LinkedIn Badge</li><li>Exclusive PhD Mentorship</li><li>Performance Stipends</li><li>Letter of Recommendation</li><li>All-expenses National Summit</li></ul><div class="info-block"><h4>📝 How to Apply</h4><p>Fill Google Form → Interview → Selection → Training.</p><h4>💡 Why Join</h4><p>Build leadership portfolio, network with researchers, earn recognition.</p></div><a href="#" id="ambassadorLink" class="form-link">Apply as Ambassador</a></div>
+                <div class="card parallax-item" data-parallax-strength="4"><h3>📋 Eligibility</h3><p>Age 14+ | Passion for STEM | Strong communication | Commitment to research promotion</p><div class="info-block"><h4>🎯 Importance</h4><p>Ambassadors drive India's research revolution while gaining unmatched leadership experience.</p></div></div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- STUDY MATERIALS -->
-        <section id="study-materials" style="background: var(--cream);">
-            <div class="container">
-                <div class="badge"><i class="fas fa-book-open"></i> Research-Based Study Guides</div>
-                <h2 class="section-title">📚 Essential Research Materials</h2>
-                <div class="grid-3">
-                    <div class="card"><i class="fas fa-brain fa-2x" style="color: var(--saffron);"></i><h3>The Unbeatable Mind</h3><p>A transformative guide to developing mental resilience, critical thinking, and problem-solving mastery.</p><a href="https://docs.google.com/document/d/1AQgaEz7swi9Y2aZtn1GUClUOWkhlbFR2/edit?usp=drive_link" target="_blank" class="drive-link"><i class="fab fa-google-drive"></i> Access Book →</a></div>
-                    <div class="card"><i class="fas fa-cogs fa-2x" style="color: var(--saffron);"></i><h3>The Cognitive Mastery System</h3><p>Systematic approaches to complex problems, structured thinking frameworks, and research methodology.</p><a href="https://docs.google.com/document/d/1OBYgcU0TFt7Npuj0OxlE4rbTV6-PiyHX/edit?usp=drive_link" target="_blank" class="drive-link"><i class="fab fa-google-drive"></i> Access Book →</a></div>
-                    <div class="card"><i class="fas fa-chart-line fa-2x" style="color: var(--saffron);"></i><h3>Mastering Your Mind</h3><p>Techniques for focus, creativity, and sustained intellectual engagement for research success.</p><a href="https://docs.google.com/document/d/1r2kZag-LcQeDyWBncoKHgYirvTwSiBCx/edit?usp=drive_link" target="_blank" class="drive-link"><i class="fab fa-google-drive"></i> Access Book →</a></div>
-                </div>
+    <!-- SCHOOL PARTNER -->
+    <section id="school-partner">
+        <div class="container">
+            <div class="badge">Institutional Collaboration</div>
+            <h2 class="section-title">School & Teacher Partnerships</h2>
+            <div class="grid-2">
+                <div class="card parallax-item" data-parallax-strength="4"><h3>🏫 For Schools</h3><div class="info-block"><h4>✅ Benefits</h4><p>Student research programs, teacher training, Research Fair, "QuantuMech Partner School" recognition.</p><h4>📝 How to Partner</h4><p>Principal/administrator fills form → onboarding call.</p></div><a href="#" id="schoolPartnerLink" class="form-link">Register Your School</a></div>
+                <div class="card parallax-item" data-parallax-strength="4"><h3>👩‍🏫 For Teachers</h3><div class="info-block"><h4>✅ Benefits</h4><p>Free Research Mentorship Certification, access to curriculum, co-author opportunities, National Educators' Symposium.</p><h4>📝 How to Join</h4><p>Fill teacher partner form → verification → access resources.</p></div><a href="#" id="teacherPartnerLink" class="form-link">Join as Teacher Partner</a></div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- OLYMPIAD SECTION - COMPLETE with Founder's Note -->
-        <section id="olympiads" style="background: var(--white);">
-            <div class="container">
-                <div class="badge"><i class="fas fa-trophy"></i> Global & National STEM Competitions</div>
-                <h2 class="section-title">🏅 Olympiad & STEM Competition Guide</h2>
-                <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">High school students — these prestigious competitions open doors to global recognition, research opportunities, and top university admissions. Each Olympiad offers unique benefits for aspiring researchers.</p>
-                
-                <!-- Founder's Special Note -->
-                <div class="card" style="background: linear-gradient(135deg, var(--saffron), var(--green)); color: white; text-align: center; margin-bottom: 2rem;">
-                    <i class="fas fa-heart" style="font-size: 2rem;"></i>
-                    <h3 style="margin-top: 0.5rem;">✨ A Note From Our Founder ✨</h3>
-                    <p style="margin-top: 0.5rem;">"I spent countless hours researching, verifying, and compiling every single Olympiad listed here — facing hardships, navigating through scattered information across the internet, and cross-checking each source so that you don't have to. My goal was simple: every student should have access to ALL these opportunities just one click away. No more endless searching, no more confusion. I've done the hard work for you. Now, your journey begins here — explore, apply, and achieve greatness. 🇮🇳"<br><strong>— Chauhan Dhairya Chetankumar</strong></p>
-                </div>
-                
-                <div class="olympiad-section">
-                    <!-- International Olympiads -->
-                    <div class="olympiad-category">
-                        <h3><i class="fas fa-globe-asia"></i> International Olympiads</h3>
-                        <div class="olympiad-grid">
-                            <div class="olympiad-card"><h4><i class="fas fa-square-root-alt"></i> IMO</h4><p><strong>International Mathematical Olympiad</strong> — The most prestigious mathematics competition worldwide. <strong>Benefits:</strong> Global recognition, direct pathways to top universities (MIT, Cambridge, IITs), develops advanced problem-solving skills essential for mathematical research.</p><a href="https://imo-official.org" target="_blank" class="apply-link">Apply → imo-official.org</a></div>
-                            <div class="olympiad-card"><h4><i class="fas fa-atom"></i> IPhO</h4><p><strong>International Physics Olympiad</strong> — Elite physics competition testing theoretical and experimental skills. <strong>Benefits:</strong> Opens doors to physics research programs, international networking, recognition from leading physics institutes.</p><a href="https://ipho-new.org" target="_blank" class="apply-link">Apply → ipho-new.org</a></div>
-                            <div class="olympiad-card"><h4><i class="fas fa-flask"></i> IChO</h4><p><strong>International Chemistry Olympiad</strong> — Premier chemistry competition combining theory and lab work. <strong>Benefits:</strong> Excellent for chemistry research careers, connections with future chemists worldwide, strong profile for science scholarships.</p><a href="https://ichosc.org" target="_blank" class="apply-link">Apply → ichosc.org</a></div>
-                            <div class="olympiad-card"><h4><i class="fas fa-dna"></i> IBO</h4><p><strong>International Biology Olympiad</strong> — Top biology competition with theoretical and practical rounds. <strong>Benefits:</strong> Exceptional for medical/biotech careers, research exposure, networking with biology researchers globally.</p><a href="https://ibo-info.org" target="_blank" class="apply-link">Apply → ibo-info.org</a></div>
-                            <div class="olympiad-card"><h4><i class="fas fa-laptop-code"></i> IOI</h4><p><strong>International Olympiad in Informatics</strong> — Elite programming and algorithms competition. <strong>Benefits:</strong> Direct path to top CS programs, tech industry recognition, develops computational thinking essential for AI/ML research.</p><a href="https://ioinformatics.org" target="_blank" class="apply-link">Apply → ioinformatics.org</a></div>
-                            <div class="olympiad-card"><h4><i class="fas fa-star-of-life"></i> IOAA</h4><p><strong>International Olympiad on Astronomy & Astrophysics</strong> — Combines physics and astronomy challenges. <strong>Benefits:</strong> Unique interdisciplinary profile, connects with astronomy research groups, data analysis skills development.</p><a href="https://ioaaastronomy.org" target="_blank" class="apply-link">Apply → ioaaastronomy.org</a></div>
-                            <div class="olympiad-card"><h4><i class="fas fa-water"></i> IESO</h4><p><strong>International Earth Science Olympiad</strong> — Earth systems, geology, environmental science. <strong>Benefits:</strong> Perfect for environmental sciences, international teamwork experience, field-based research exposure.</p><a href="https://itace.org" target="_blank" class="apply-link">Apply → itace.org</a></div>
-                            <div class="olympiad-card"><h4><i class="fas fa-microscope"></i> IJSO</h4><p><strong>International Junior Science Olympiad</strong> — Multidisciplinary science for younger students. <strong>Benefits:</strong> Early research exposure, builds foundational scientific thinking, perfect for starting research journey early.</p><a href="https://ijsoweb.org" target="_blank" class="apply-link">Apply → ijsoweb.org</a></div>
-                        </div>
-                    </div>
-
-                    <!-- National Olympiads India -->
-                    <div class="olympiad-category">
-                        <h3><i class="fas fa-flag-india"></i> National Olympiads (India)</h3>
-                        <div class="olympiad-grid">
-                            <div class="olympiad-card"><h4><i class="fas fa-chalkboard-teacher"></i> INMO / IOQM</h4><p><strong>Indian National Mathematical Olympiad</strong> — Gateway to IMO team selection. <strong>Benefits:</strong> HBCSE recognition, intensive training camps, career in mathematical research, prestigious certification.</p><a href="https://mtai.org.in" target="_blank" class="apply-link">Apply → mtai.org.in</a></div>
-                            <div class="olympiad-card"><h4><i class="fas fa-chart-line"></i> NSEP / NSEC / NSEB / NSEA</h4><p><strong>National Standard Examinations (IAPT)</strong> — Stepping stones for International Olympiads. <strong>Benefits:</strong> Exposure to national-level competition, merit certificates, selection for advanced training camps.</p><a href="https://iapt.org.in" target="_blank" class="apply-link">Apply → iapt.org.in</a></div>
-                            <div class="olympiad-card"><h4><i class="fas fa-code"></i> ZCO / ZIO (IARCS)</h4><p><strong>Indian Computing Olympiad</strong> — Algorithmic problem-solving competition. <strong>Benefits:</strong> Builds programming and logic skills, selection for IOI training camp, recognized in tech industry.</p><a href="https://iarcs.org.in" target="_blank" class="apply-link">Apply → iarcs.org.in</a></div>
-                            <div class="olympiad-card"><h4><i class="fas fa-university"></i> KVPY</h4><p><strong>Kishore Vaigyanik Protsahan Yojana</strong> — Prestigious fellowship for science students. <strong>Benefits:</strong> Direct financial support (₹5,000-₹7,000/month), IISc/IISER admission pathways, research internship opportunities.</p><a href="https://kvpy.iisc.ac.in" target="_blank" class="apply-link">Apply → kvpy.iisc.ac.in</a></div>
-                            <div class="olympiad-card"><h4><i class="fas fa-flask"></i> HBCSE Olympiads</h4><p><strong>HBCSE Science Olympiads (Stage 2+)</strong> — Advanced selection stages for international olympiads. <strong>Benefits:</strong> Top-tier training, international representation, research mentorship.</p><a href="https://olympiads.hbcse.tifr.res.in" target="_blank" class="apply-link">Apply → olympiads.hbcse.tifr.res.in</a></div>
-                        </div>
-                    </div>
-
-                    <!-- US & Other Notable Olympiads -->
-                    <div class="olympiad-category">
-                        <h3><i class="fas fa-globe-americas"></i> USA & Other Notable Olympiads</h3>
-                        <div class="olympiad-grid">
-                            <div class="olympiad-card"><h4><i class="fas fa-flag-usa"></i> USAMO / AMC</h4><p><strong>USA Mathematical Olympiad / AMC</strong> — Premier American mathematics competitions. <strong>Benefits:</strong> International exposure, strong profile for US universities, advanced problem-solving skills.</p><a href="https://maa.org/math-competitions" target="_blank" class="apply-link">Apply → maa.org</a></div>
-                            <div class="olympiad-card"><h4><i class="fas fa-bolt"></i> USAPhO / USNCO / USABO</h4><p><strong>USA Physics/Chemistry/Biology Olympiads</strong> — High-level competitions. <strong>Benefits:</strong> Rigorous training material, great for college applications, research experience development.</p><a href="https://aapt.org/physicsteam" target="_blank" class="apply-link">Physics → aapt.org</a></div>
-                            <div class="olympiad-card"><h4><i class="fas fa-dragon"></i> BPhO / APhO / EuPhO</h4><p><strong>British/Asian/European Physics Olympiads</strong> — Diverse international competitions. <strong>Benefits:</strong> Exposure to different problem styles, globally recognized, expands academic network.</p><a href="https://bpho.org.uk" target="_blank" class="apply-link">BPhO → bpho.org.uk</a></div>
-                            <div class="olympiad-card"><h4><i class="fas fa-shield-alt"></i> USACO</h4><p><strong>USA Computing Olympiad</strong> — Advanced programming competition. <strong>Benefits:</strong> Ideal for CS aspirants, tech internships, algorithmic mastery for research.</p><a href="https://usaco.org" target="_blank" class="apply-link">Apply → usaco.org</a></div>
-                        </div>
-                    </div>
-
-                    <!-- Online-First & ICSC Ecosystem -->
-                    <div class="olympiad-category">
-                        <h3><i class="fas fa-laptop"></i> Online-First & ICSC Ecosystem</h3>
-                        <div class="olympiad-grid">
-                            <div class="olympiad-card"><h4><i class="fas fa-chalkboard"></i> IYMC</h4><p><strong>International Youth Math Challenge</strong> — Online-first mathematics competition. <strong>Benefits:</strong> Accessible globally, research-based problems, certificates, flexible participation.</p><a href="https://iymc.info" target="_blank" class="apply-link">Apply → iymc.info</a></div>
-                            <div class="olympiad-card"><h4><i class="fas fa-microchip"></i> ICSC</h4><p><strong>International Computer Science Competition</strong> — Digital STEM challenge. <strong>Benefits:</strong> Flexible schedule, global ranking, ambassador programs, research project opportunities.</p><a href="https://icscompetition.org" target="_blank" class="apply-link">Apply → icscompetition.org</a></div>
-                            <div class="olympiad-card"><h4><i class="fas fa-space-shuttle"></i> IAAC</h4><p><strong>International Astronomy & Astrophysics Competition</strong> — Research-oriented tasks. <strong>Benefits:</strong> Suitable for independent learners, astronomy research focus, global participation.</p><a href="https://iaac.space" target="_blank" class="apply-link">Apply → iaac.space</a></div>
-                            <div class="olympiad-card"><h4><i class="fas fa-atom"></i> IMPhO / LIChO</h4><p><strong>International Modern Physics & Lavoisier Chemistry Olympiads</strong> — Specialized physics/chemistry competitions. <strong>Benefits:</strong> Deep subject focus, international recognition, research-oriented problems.</p><a href="https://ocsolympiad.org" target="_blank" class="apply-link">Apply → ocsolympiad.org</a></div>
-                            <div class="olympiad-card"><h4><i class="fas fa-flask"></i> IChC</h4><p><strong>International Chemistry Competition</strong> — Global chemistry challenge. <strong>Benefits:</strong> Research-focused problems, international participation, certificate of excellence.</p><a href="https://intchc.org" target="_blank" class="apply-link">Apply → intchc.org</a></div>
-                        </div>
-                    </div>
-
-                    <!-- School Level & Other Competitions -->
-                    <div class="olympiad-category">
-                        <h3><i class="fas fa-school"></i> School Level & Other STEM Competitions</h3>
-                        <div class="olympiad-grid">
-                            <div class="olympiad-card"><h4><i class="fas fa-puzzle-piece"></i> SOF (NSO/IMO/IEO)</h4><p><strong>Science Olympiad Foundation</strong> — School-level olympiads. <strong>Benefits:</strong> Build competitive spirit, rank certificates, foundation for advanced competitions.</p><a href="https://sofworld.org" target="_blank" class="apply-link">Apply → sofworld.org</a></div>
-                            <div class="olympiad-card"><h4><i class="fas fa-star"></i> SilverZone STEM Olympiads</h4><p><strong>SilverZone Foundation Competitions</strong> — STEM olympiads for school students. <strong>Benefits:</strong> Performance analysis, participation certificates, conceptual understanding.</p><a href="https://silverzone.org" target="_blank" class="apply-link">Apply → silverzone.org</a></div>
-                            <div class="olympiad-card"><h4><i class="fas fa-shield-alt"></i> picoCTF</h4><p><strong>Cybersecurity Competition</strong> — Capture the flag style challenges. <strong>Benefits:</strong> Cybersecurity skills, practical experience, tech career preparation.</p><a href="https://picoctf.org" target="_blank" class="apply-link">Apply → picoctf.org</a></div>
-                            <div class="olympiad-card"><h4><i class="fas fa-graduation-cap"></i> Bebras / Math Kangaroo</h4><p><strong>Bebras Computing & Math Kangaroo</strong> — International reasoning competitions. <strong>Benefits:</strong> Computational thinking, logical reasoning, global participation.</p><a href="https://bebras.org" target="_blank" class="apply-link">Apply → bebras.org</a></div>
-                            <div class="olympiad-card"><h4><i class="fas fa-calculator"></i> AMC 10/12</h4><p><strong>American Mathematics Competitions</strong> — Gateway to USAMO. <strong>Benefits:</strong> International recognition, college admissions advantage, math research preparation.</p><a href="https://maa.org" target="_blank" class="apply-link">Apply → maa.org</a></div>
-                            <div class="olympiad-card"><h4><i class="fas fa-car"></i> Caribou Mathematics</h4><p><strong>Caribou Mathematics Competition</strong> — Interactive online math contests. <strong>Benefits:</strong> Accessible format, regular competitions, problem-solving practice.</p><a href="https://cariboutests.com" target="_blank" class="apply-link">Apply → cariboutests.com</a></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="card" style="margin-top: 2rem; text-align: center;">
-                    <p><i class="fas fa-bell" style="color: var(--saffron);"></i> <strong>QuantuMech Recommendation:</strong> Olympiad preparation aligns perfectly with our research mentorship. Students who excel in Olympiads develop the analytical skills needed for world-class research. Join QuantuMech to get guidance on which Olympiads suit your research interests!</p>
-                </div>
+    <!-- COMPETITION -->
+    <section id="competition">
+        <div class="container">
+            <div class="badge">National Level</div>
+            <h2 class="section-title">QuantuMech Research Championship 2026</h2>
+            <div class="grid-3">
+                <div class="card parallax-item" data-parallax-strength="3"><h3>Round 1: Proposal</h3><div class="info-block"><h4>📅 Deadline</h4><p>May 15, 2026</p><h4>🏆 Prize</h4><p>Educational Research Surprise Gift + Certificate</p></div><a href="#" id="compRound1Link" class="form-link">Register</a></div>
+                <div class="card parallax-item" data-parallax-strength="3"><h3>Round 2: Lit Review</h3><div class="info-block"><h4>📅 Starts</h4><p>June 2026</p><h4>🎯 Importance</h4><p>Deepen research methodology skills.</p></div></div>
+                <div class="card parallax-item" data-parallax-strength="3"><h3>Round 3: Full Paper</h3><div class="info-block"><h4>🏆 Winner Prize</h4><p>Best Educational Research Surprise Gift + Publication in Journal</p></div></div>
             </div>
-        </section>
+            <div class="card parallax-item" data-parallax-strength="4"><strong>🏆 Open to ALL — Students, Teachers, Independent Researchers — No age limit!</strong><div class="info-block"><h4>💡 Why Participate</h4><p>Win prizes, get published, gain national recognition for your research.</p><h4>📝 How to Participate</h4><p>Register Round 1 → submit proposal → advance through rounds with mentor support.</p></div></div>
+        </div>
+    </section>
 
-        <!-- AMBASSADOR PROGRAM, SCHOOL PARTNER, COMPETITION, JOIN sections remain same -->
-        <section id="ambassador"><div class="container"><div class="badge"><i class="fas fa-user-graduate"></i> Join the Leadership Circle</div><h2 class="section-title">Student Ambassador Program</h2><div class="grid-2"><div class="card"><h3>🎁 Ambassador Benefits & Perks</h3><ul class="bullet-list"><li><i class="fas fa-certificate"></i> Official Certificate & LinkedIn Badge</li><li><i class="fas fa-chalkboard"></i> Exclusive PhD Mentorship</li><li><i class="fas fa-book"></i> Free Publication Support & Priority Review</li><li><i class="fas fa-users"></i> Leadership Training Workshops</li><li><i class="fas fa-rupee-sign"></i> Performance Stipends & Recognition Awards</li><li><i class="fas fa-envelope"></i> Letter of Recommendation for College Applications</li><li><i class="fas fa-globe"></i> Annual National Summit (All Expenses Covered)</li></ul></div><div class="card"><h3>📋 Ambassador Duties & Eligibility</h3><ul class="bullet-list"><li><i class="fas fa-arrow-right"></i> Promote QuantuMech in your school and community</li><li><i class="fas fa-arrow-right"></i> Organize monthly research awareness sessions</li><li><i class="fas fa-arrow-right"></i> Recruit and mentor new researchers</li><li><i class="fas fa-arrow-right"></i> Represent QuantuMech at regional symposiums</li><li><i class="fas fa-arrow-right"></i> Provide feedback to improve programs</li></ul><div class="badge" style="margin-top: 0.8rem;"><strong>✅ Eligibility:</strong> Must be 14 years of age or older | Passion for STEM | Strong communication skills</div><a href="#" id="ambassadorLink" class="form-link"><i class="fab fa-google"></i> Apply as Ambassador</a></div></div></div></section>
+    <!-- JOIN -->
+    <section id="join">
+        <div class="container">
+            <div class="card parallax-item" data-parallax-strength="5" style="text-align: center;"><h2>🚀 Join India's Premier Research Movement</h2><p>PhD mentorship · Publication pipeline · Research competitions · Ambassador leadership — <strong>100% FREE</strong></p><div class="info-block"><h4>✅ Who can join?</h4><p>ANY age, ANY background, ANY location — fully online. No prior research experience needed. Only curiosity & passion required.</p><h4>📝 How to Join</h4><p>Click "Register as Researcher" → Fill Google Form → Get welcome email → Start research journey.</p><h4>💡 Why Join Today?</h4><p>Build your research portfolio, earn global recognition, and become part of India's research revolution — completely free.</p></div><a href="#" id="joinGoogleFormLink" class="form-link" style="background:#00FFFF; color:#000;">Register as Researcher (FREE)</a><p>🥇 India's No.1 STEM Research Club | NEP 2020 Aligned | 100% Free for All</p></div>
+        </div>
+    </section>
+
+    <footer><p>© 2026 QuantuMech Research Hub — Founded by Chauhan Dhairya Chetankumar (IIT RESCON Top 50 | International CS Ambassador | AICTSD Member | Social Worker)</p><p><i class="fas fa-envelope"></i> chauhandc2009@gmail.com | <i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/dhairya-chauhan-5b561138b" target="_blank" style="color:#00FFFF;">LinkedIn</a></p><p>🥇 India's No.1 STEM Research Club | 100% FREE | IITB QS Rank #129</p></footer>
+</div>
+
+<script>
+    // --- 3D CURSOR PARALLAX EFFECT (applied to ALL .parallax-item elements) ---
+    const parallaxElements = document.querySelectorAll('.parallax-item');
+    let mouseX = 0, mouseY = 0;
+    let targetX = 0, targetY = 0;
+    
+    document.addEventListener('mousemove', (e) => {
+        mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+        mouseY = (e.clientY / window.innerHeight) * 2 - 1;
+    });
+    
+    function applyParallax() {
+        targetX += (mouseX - targetX) * 0.1;
+        targetY += (mouseY - targetY) * 0.1;
         
-        <section id="school-partner" style="background: var(--cream);"><div class="container"><div class="badge"><i class="fas fa-school"></i> Institutional Collaboration</div><h2 class="section-title">School & Teacher Partnership Programs</h2><div class="grid-2"><div class="card"><h3>🏫 School Partnership Program</h3><ul class="bullet-list"><li><i class="fas fa-check"></i> Direct student research activities with QuantuMech mentors</li><li><i class="fas fa-check"></i> Free access to QuantuMech Journal for all students</li><li><i class="fas fa-check"></i> Teacher training workshops (certified)</li><li><i class="fas fa-check"></i> Annual Research Fair hosted at partner school</li><li><i class="fas fa-check"></i> Recognition as "QuantuMech STEM Research Hub Partner School"</li><li><i class="fas fa-check"></i> Priority registration for competitions & symposiums</li></ul><a href="#" id="schoolPartnerLink" class="form-link"><i class="fab fa-google"></i> Register Your School</a></div><div class="card"><h3>👩‍🏫 Teacher Partnership Program</h3><ul class="bullet-list"><li><i class="fas fa-check"></i> Free Research Mentorship Certification</li><li><i class="fas fa-check"></i> Access to QuantuMech Research Curriculum & Resources</li><li><i class="fas fa-check"></i> Invitation to National Educators' Symposium (expenses covered)</li><li><i class="fas fa-check"></i> Co-author opportunities on student papers</li><li><i class="fas fa-check"></i> Recognition as "QuantuMech Research Mentor"</li><li><i class="fas fa-check"></i> Priority access to research grants & collaborations</li></ul><a href="#" id="teacherPartnerLink" class="form-link"><i class="fab fa-google"></i> Join as Teacher Partner</a></div></div></div></section>
-        
-        <section id="competition"><div class="container"><div class="badge"><i class="fas fa-trophy"></i> National Level</div><h2 class="section-title">QuantuMech Research Championship 2026</h2><p class="section-sub">Three-round competition across Mathematics, Physics, and Chemistry. <strong>Open to ALL — no age or educational restrictions!</strong> Best for Educational Research Surprise Gift | Certificates | Publication Opportunities</p><div class="grid-3"><div class="card" style="background: linear-gradient(135deg, #1A4D8C, #0F4C3A); color: white;"><h3>Round 1: Research Proposal</h3><ul class="bullet-list"><li>500-word research proposal on any topic</li><li>Judged on originality, feasibility, scientific merit</li><li>All participants receive feedback</li></ul><p><strong>Deadline:</strong> May 15, 2026</p><a href="#" id="compRound1Link" class="form-link" style="background: var(--saffron);">Register Round 1</a></div><div class="card" style="background: linear-gradient(135deg, #2C6E2F, #1A4D8C); color: white;"><h3>Round 2: Literature Review & Methodology</h3><ul class="bullet-list"><li>Detailed literature review (1000 words)</li><li>Research methodology design</li><li>Mentor guidance provided</li></ul><p><strong>Starts:</strong> June 2026</p></div><div class="card" style="background: linear-gradient(135deg, #0F4C3A, #2C6E2F); color: white;"><h3>Round 3: Full Paper & Presentation</h3><ul class="bullet-list"><li>Complete research paper (2000-3000 words)</li><li>10-min virtual presentation</li><li>Top papers published in QuantuMech Journal</li><li><strong>🏆 Winner Prize:</strong> Best Educational Research Surprise Gift + Recognition</li></ul></div></div><div class="card" style="margin-top: 2rem; text-align: center;"><p><strong>🏆 Open to ALL — Students, Teachers, Independent Researchers — Anyone with a passion for STEM research can participate!</strong></p></div></div></section>
-        
-        <section id="join" style="background: var(--cream);"><div class="container"><div class="card" style="text-align: center; background: var(--deep-teal); color: white; padding: 3rem;"><h2>🚀 Join India's Premier Research Movement</h2><p style="margin: 1.5rem 0; font-size: 1.1rem;">PhD mentorship · Publication pipeline · Research competitions · Ambassador leadership — <strong>100% FREE</strong></p><div style="background: rgba(255,255,255,0.15); border-radius: 24px; padding: 1.5rem; margin: 1.5rem 0; text-align: left;"><p><strong>✨ Who can join?</strong></p><ul class="bullet-list"><li><i class="fas fa-user-graduate"></i> <strong>Students of ANY age</strong> — from school students to college learners and beyond!</li><li><i class="fas fa-star"></i> No prior research experience needed — we start from the very basics!</li><li><i class="fas fa-heart"></i> Only curiosity, passion, and dedication required</li><li><i class="fas fa-map-marker-alt"></i> Participants from anywhere in India can join (fully online program)</li><li><i class="fas fa-globe"></i> International participants welcome too!</li></ul><p style="margin-top: 0.8rem;"><strong>Your journey starts today. Don't wait for opportunities — create them. Join a community of researchers who are already publishing papers, presenting at conferences, and building their futures.</strong></p></div><a href="#" id="joinGoogleFormLink" class="form-link" style="background: var(--saffron);"><i class="fab fa-google"></i> Register as Researcher (FREE)</a><p style="margin-top: 1.5rem;">🥇 India's No.1 STEM Research Club | NEP 2020 Aligned | 100% Free for All</p></div></div></section>
-    </main>
-
-    <footer>
-        <p>© 2026 QuantuMech Research Hub — Founded by Chauhan Dhairya Chetankumar (International Computer Science Competition Ambassador | Member of All India Council for Technical Skill Development | Selected at IIT RESCON Top 50 | Top STEM Researcher | Social Worker)</p>
-        <p><i class="fas fa-envelope"></i> <strong>Founder's Email:</strong> chauhandc2009@gmail.com | <i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/dhairya-chauhan-5b561138b" target="_blank" style="color:#FFB347;">LinkedIn</a></p>
-        <p>🥇 India's No.1 STEM Research Club | NEP 2020 Aligned | ✨ 100% FREE for all | IITB QS Rank #129</p>
-    </footer>
-
-    <script>
-        document.getElementById('darkModeToggle').addEventListener('click', () => {
-            document.body.classList.toggle('dark');
-            localStorage.setItem('darkMode', document.body.classList.contains('dark'));
+        parallaxElements.forEach(el => {
+            let strength = parseFloat(el.getAttribute('data-parallax-strength')) || 5;
+            const moveX = targetX * strength * 5;
+            const moveY = targetY * strength * 3.5;
+            el.style.transform = `translate3d(${moveX}px, ${moveY}px, 0px)`;
         });
-        if(localStorage.getItem('darkMode') === 'true') document.body.classList.add('dark');
-        document.getElementById('mockPortfolioBtn')?.addEventListener('click', () => alert("📊 Portfolio Dashboard Preview: Track submissions, citations, research score — coming soon."));
-        document.querySelectorAll('.requestMentorMock').forEach(btn => btn.addEventListener('click', () => alert("✅ Mentor request submitted! You'll receive matching within 48 hours. (Free)")));
-
-        // All Google Form Links
-        document.getElementById('joinGoogleFormLink').href = "https://forms.gle/WZdb2YdPdN4Wk9X69";
-        document.getElementById('paperSubmitLink').href = "https://forms.gle/WcKWWaQS8HiMRG677";
-        document.getElementById('physicsSeriesEnroll').href = "https://forms.gle/E7aQYFRtrHEGnAc57";
-        document.getElementById('chemistrySeriesEnroll').href = "https://forms.gle/ia5YQ8Np5NTq4xen9";
-        document.getElementById('mathsSeriesEnroll').href = "https://forms.gle/iijDBmi6vndY3B2V9";
-        document.getElementById('ambassadorLink').href = "https://forms.gle/aHL3DoGQ6ywj5HM3A";
-        document.getElementById('schoolPartnerLink').href = "https://forms.gle/qYeHzGuNgZtak5S78";
-        document.getElementById('teacherPartnerLink').href = "https://forms.gle/jUW71EVq5ZfAa8Pp8";
-        document.getElementById('compRound1Link').href = "https://forms.gle/Pgygfh49s3qNdCYn8";
-        
-        console.log("✅ QuantuMech Hub — Complete with updated founder credentials, journal text, and founder's Olympiad note.");
-    </script>
+        requestAnimationFrame(applyParallax);
+    }
+    applyParallax();
+    
+    // --- Particle System (unchanged) ---
+    const canvas = document.getElementById('universeCanvas');
+    let ctx = canvas.getContext('2d');
+    let width, height, particles = [];
+    function resizeCanvas() { width = window.innerWidth; height = window.innerHeight; canvas.width = width; canvas.height = height; }
+    class Particle { constructor(x,y) { this.x = x||Math.random()*width; this.y=y||Math.random()*height; this.vx=(Math.random()-0.5)*0.4; this.vy=(Math.random()-0.5)*0.4; this.size=Math.random()*2+1; this.color=`hsl(${Math.random()*60+160},80%,65%)`; } update(mx,my) { if(mx){let dx=this.x-mx, dy=this.y-my, dist=Math.hypot(dx,dy); if(dist<100){let force=(100-dist)/100*0.3; let ang=Math.atan2(dy,dx); this.vx+=Math.cos(ang)*force; this.vy+=Math.sin(ang)*force;}} this.vx*=0.99; this.vy*=0.99; this.x+=this.vx; this.y+=this.vy; if(this.x<0) this.x=width; if(this.x>width) this.x=0; if(this.y<0) this.y=height; if(this.y>height) this.y=0; } draw() { ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI*2); ctx.fillStyle=this.color; ctx.shadowBlur=5; ctx.shadowColor='#0ff'; ctx.fill(); } }
+    function initParticles() { particles=[]; for(let i=0;i<180;i++) particles.push(new Particle()); }
+    let mouse={x:null,y:null}; window.addEventListener('mousemove',(e)=>{ mouse.x=e.clientX; mouse.y=e.clientY; });
+    function drawConstellation() { for(let i=0;i<particles.length;i++) for(let j=i+1;j<particles.length;j++) { let dx=particles[i].x-particles[j].x, dy=particles[i].y-particles[j].y, dist=Math.hypot(dx,dy); if(dist<70) { ctx.beginPath(); ctx.moveTo(particles[i].x,particles[i].y); ctx.lineTo(particles[j].x,particles[j].y); ctx.strokeStyle=`rgba(0,255,255,${0.08*(1-dist/70)})`; ctx.lineWidth=0.6; ctx.stroke(); } } }
+    function animate() { ctx.clearRect(0,0,width,height); for(let p of particles){ p.update(mouse.x,mouse.y); p.draw(); } drawConstellation(); requestAnimationFrame(animate); }
+    window.addEventListener('resize',()=>{ resizeCanvas(); initParticles(); }); resizeCanvas(); initParticles(); animate();
+    
+    // Ticker (87% removed)
+    const terminalLines = ["> QuantuMech v5.0 | Research for All", "> 100% Free | PhD Mentorship Pipeline", "> 4 Unique Solutions: PoC, Frugal, Synthesis, Guilds", "> Join FREE — No hidden fees"];
+    let lineIdx=0, charIdx=0; const tickerSpan=document.getElementById('tickerLine');
+    function typeTicker() { if(charIdx<=terminalLines[lineIdx].length) { tickerSpan.innerText=terminalLines[lineIdx].substring(0,charIdx)+(charIdx%2===0?"█":" "); charIdx++; setTimeout(typeTicker,60); } else { setTimeout(()=>{ lineIdx=(lineIdx+1)%terminalLines.length; charIdx=0; typeTicker(); },2800); } } typeTicker();
+    
+    // Smooth scroll
+    document.querySelectorAll('.node').forEach(node=>{ node.addEventListener('click',()=>{ const t=node.getAttribute('data-target'); if(t) document.getElementById(t)?.scrollIntoView({behavior:'smooth'}); }); });
+    
+    // Google Forms
+    document.getElementById('joinGoogleFormLink').href="https://forms.gle/WZdb2YdPdN4Wk9X69";
+    document.getElementById('paperSubmitLink').href="https://forms.gle/WcKWWaQS8HiMRG677";
+    document.getElementById('physicsSeriesEnroll').href="https://forms.gle/E7aQYFRtrHEGnAc57";
+    document.getElementById('chemistrySeriesEnroll').href="https://forms.gle/ia5YQ8Np5NTq4xen9";
+    document.getElementById('mathsSeriesEnroll').href="https://forms.gle/iijDBmi6vndY3B2V9";
+    document.getElementById('ambassadorLink').href="https://forms.gle/aHL3DoGQ6ywj5HM3A";
+    document.getElementById('schoolPartnerLink').href="https://forms.gle/qYeHzGuNgZtak5S78";
+    document.getElementById('teacherPartnerLink').href="https://forms.gle/jUW71EVq5ZfAa8Pp8";
+    document.getElementById('compRound1Link').href="https://forms.gle/Pgygfh49s3qNdCYn8";
+    document.getElementById('mockPortfolioBtn')?.addEventListener('click',()=>alert("📊 Portfolio Dashboard Preview — coming soon."));
+    document.querySelectorAll('.requestMentorMock').forEach(btn=>btn.addEventListener('click',()=>alert("✅ Mentor request submitted! Free matching within 48 hours.")));
+    
+    // Theme toggle
+    const themeBtn = document.getElementById('themeToggleBtn');
+    themeBtn.addEventListener('click', () => { document.body.classList.toggle('light'); localStorage.setItem('quantumechTheme', document.body.classList.contains('light') ? 'light' : 'dark'); });
+    if(localStorage.getItem('quantumechTheme') === 'light') document.body.classList.add('light');
+    
+    // Fade-up observer
+    const observer = new IntersectionObserver((e)=>{ e.forEach(entry=>{ if(entry.isIntersecting) entry.target.classList.add('visible'); }); },{threshold:0.1});
+    document.querySelectorAll('.card, .olympiad-card, .glass-panel, .info-block').forEach(el=>{ el.classList.add('fade-up'); observer.observe(el); });
+</script>
 </body>
 </html>
