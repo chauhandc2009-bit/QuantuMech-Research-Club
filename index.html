@@ -569,33 +569,18 @@ window.addEventListener('touchstart', (e) => {
     // Google Forms
   document.addEventListener('DOMContentLoaded', function() {
     // Google Forms Links
-    const joinLink = document.getElementById('joinGoogleFormLink');
-    if (joinLink) joinLink.href = "https://forms.gle/WZdb2YdPdN4Wk9X69";
-    
-    const paperLink = document.getElementById('paperSubmitLink');
-    if (paperLink) paperLink.href = "https://forms.gle/WcKWWaQS8HiMRG677";
-    
-    const physicsLink = document.getElementById('physicsSeriesEnroll');
-    if (physicsLink) physicsLink.href = "https://forms.gle/E7aQYFRtrHEGnAc57";
-    
-    const chemistryLink = document.getElementById('chemistrySeriesEnroll');
-    if (chemistryLink) chemistryLink.href = "https://forms.gle/ia5YQ8Np5NTq4xen9";
-    
-    const mathsLink = document.getElementById('mathsSeriesEnroll');
-    if (mathsLink) mathsLink.href = "https://forms.gle/iijDBmi6vndY3B2V9";
-    
-    const ambassadorLink = document.getElementById('ambassadorLink');
-    if (ambassadorLink) ambassadorLink.href = "https://forms.gle/aHL3DoGQ6ywj5HM3A";
-    
-    const schoolLink = document.getElementById('schoolPartnerLink');
-    if (schoolLink) schoolLink.href = "https://forms.gle/qYeHzGuNgZtak5S78";
-    
-    const teacherLink = document.getElementById('teacherPartnerLink');
-    if (teacherLink) teacherLink.href = "https://forms.gle/jUW71EVq5ZfAa8Pp8";
-    
-    const compLink = document.getElementById('compRound1Link');
-    if (compLink) compLink.href = "https://forms.gle/Pgygfh49s3qNdCYn8";
-    
+document.getElementById('joinGoogleFormLink').href="https://forms.gle/WZdb2YdPdN4Wk9X69";
+    document.getElementById('paperSubmitLink').href="https://forms.gle/WcKWWaQS8HiMRG677";
+    document.getElementById('physicsSeriesEnroll').href="https://forms.gle/E7aQYFRtrHEGnAc57";
+    document.getElementById('chemistrySeriesEnroll').href="https://forms.gle/ia5YQ8Np5NTq4xen9";
+    document.getElementById('mathsSeriesEnroll').href="https://forms.gle/iijDBmi6vndY3B2V9";
+    document.getElementById('ambassadorLink').href="https://forms.gle/aHL3DoGQ6ywj5HM3A";
+    document.getElementById('schoolPartnerLink').href="https://forms.gle/qYeHzGuNgZtak5S78";
+    document.getElementById('teacherPartnerLink').href="https://forms.gle/jUW71EVq5ZfAa8Pp8";
+    document.getElementById('compRound1Link').href="https://forms.gle/Pgygfh49s3qNdCYn8";
+    document.getElementById('mockPortfolioBtn')?.addEventListener('click',()=>alert("📊 Portfolio Dashboard Preview — coming soon."));
+    document.querySelectorAll('.requestMentorMock').forEach(btn=>btn.addEventListener('click',()=>alert("✅ Mentor request submitted! Free matching within 48 hours.")));
+
     // Mock buttons
     const mockBtn = document.getElementById('mockPortfolioBtn');
     if (mockBtn) {
