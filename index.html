@@ -499,7 +499,136 @@
 </div>
 
 <script>
-    // --- 3D CURSOR PARALLAX EFFECT (applied to ALL .parallax-item elements) ---
+<script>
+(function() {
+    'use strict';
+    
+    // ===== WAIT FOR DOM TO BE FULLY LOADED =====
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        // ==========================================
+        // 1. FIX THEME TOGGLE BUTTON
+        // ==========================================
+        const themeBtn = document.getElementById('themeToggleBtn');
+        if (themeBtn) {
+            themeBtn.addEventListener('click', function() {
+                document.body.classList.toggle('light');
+                localStorage.setItem('quantumechTheme', 
+                    document.body.classList.contains('light') ? 'light' : 'dark');
+            });
+        }
+        
+        // Apply saved theme
+        if (localStorage.getItem('quantumechTheme') === 'light') {
+            document.body.classList.add('light');
+        }
+        
+        // ==========================================
+        // 2. FIX ALL GOOGLE FORM LINKS
+        // ==========================================
+        const formLinks = {
+            'joinGoogleFormLink': 'https://forms.gle/WZdb2YdPdN4Wk9X69',
+            'paperSubmitLink': 'https://forms.gle/WcKWWaQS8HiMRG677',
+            'physicsSeriesEnroll': 'https://forms.gle/E7aQYFRtrHEGnAc57',
+            'chemistrySeriesEnroll': 'https://forms.gle/ia5YQ8Np5NTq4xen9',
+            'mathsSeriesEnroll': 'https://forms.gle/iijDBmi6vndY3B2V9',
+            'ambassadorLink': 'https://forms.gle/aHL3DoGQ6ywj5HM3A',
+            'schoolPartnerLink': 'https://forms.gle/qYeHzGuNgZtak5S78',
+            'teacherPartnerLink': 'https://forms.gle/jUW71EVq5ZfAa8Pp8',
+            'compRound1Link': 'https://forms.gle/Pgygfh49s3qNdCYn8'
+        };
+        
+        for (let id in formLinks) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.href = formLinks[id];
+                element.target = '_blank'; // Open in new tab
+                element.rel = 'noopener noreferrer';
+                console.log('✅ Link set:', id);
+            } else {
+                console.warn('❌ Element not found:', id);
+            }
+        }
+        
+        // ==========================================
+        // 3. FIX MOCK BUTTONS
+        // ==========================================
+        const mockPortfolioBtn = document.getElementById('mockPortfolioBtn');
+        if (mockPortfolioBtn) {
+            mockPortfolioBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert("📊 Portfolio Dashboard Preview — coming soon!");
+            });
+        }
+        
+        const requestMentorBtns = document.querySelectorAll('.requestMentorMock');
+        requestMentorBtns.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert("✅ Mentor request submitted! Free matching within 48 hours.");
+            });
+        });
+        
+        // ==========================================
+        // 4. FIX NOTIFY BOOK BUTTON
+        // ==========================================
+        const notifyBookBtn = document.getElementById('notifyBookLaunch');
+        if (notifyBookBtn) {
+            notifyBookBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('✅ You will be notified when the book launches! Thank you.');
+            });
+        }
+        
+        // ==========================================
+        // 5. FIX CONSTELLATION NAVIGATION
+        // ==========================================
+        document.querySelectorAll('.node').forEach(node => {
+            node.addEventListener('click', function() {
+                const targetId = this.getAttribute('data-target');
+                if (targetId) {
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+        
+        // ==========================================
+        // 6. SCROLL TO TOP BUTTON
+        // ==========================================
+        let scrollBtn = document.getElementById('scrollTopBtn');
+        if (!scrollBtn) {
+            // Create it if it doesn't exist
+            scrollBtn = document.createElement('button');
+            scrollBtn.id = 'scrollTopBtn';
+            scrollBtn.innerHTML = '↑';
+            scrollBtn.style.cssText = `
+                position: fixed; bottom: 30px; left: 30px; z-index: 1000;
+                background: rgba(0,255,255,0.15); backdrop-filter: blur(8px);
+                border: 1px solid #0ff; color: #0ff; width: 50px; height: 50px;
+                border-radius: 50%; font-size: 1.5rem; cursor: pointer; opacity: 0;
+                transition: opacity 0.3s; display: flex; align-items: center;
+                justify-content: center; box-shadow: 0 0 15px rgba(0,255,255,0.2);
+            `;
+            document.body.appendChild(scrollBtn);
+        }
+        
+        scrollBtn.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        window.addEventListener('scroll', function() {
+            scrollBtn.style.opacity = window.scrollY > 400 ? '1' : '0';
+        });
+        
+        console.log('✅ All buttons initialized successfully!');
+    });
+    
+    // ==========================================
+    // 7. PARALLAX EFFECT (runs immediately)
+    // ==========================================
     const parallaxElements = document.querySelectorAll('.parallax-item');
     let mouseX = 0, mouseY = 0;
     let targetX = 0, targetY = 0;
@@ -523,85 +652,150 @@
     }
     applyParallax();
     
-    // --- Particle System (unchanged) ---
+    // ==========================================
+    // 8. PARTICLE CANVAS
+    // ==========================================
     const canvas = document.getElementById('universeCanvas');
-    let ctx = canvas.getContext('2d');
-    let width, height, particles = [];
-    function resizeCanvas() { 
-    width = window.innerWidth; 
-    height = window.innerHeight; 
-    canvas.width = width; 
-    canvas.height = height;
-    // Reinitialize particles to fit new dimensions smoothly
-    initParticles();
-}
-    class Particle { constructor(x,y) { this.x = x||Math.random()*width; this.y=y||Math.random()*height; this.vx=(Math.random()-0.5)*0.4; this.vy=(Math.random()-0.5)*0.4; this.size=Math.random()*2+1; this.color=`hsl(${Math.random()*60+160},80%,65%)`; } update(mx,my) { if(mx){let dx=this.x-mx, dy=this.y-my, dist=Math.hypot(dx,dy); if(dist<100){let force=(100-dist)/100*0.3; let ang=Math.atan2(dy,dx); this.vx+=Math.cos(ang)*force; this.vy+=Math.sin(ang)*force;}} this.vx*=0.99; this.vy*=0.99; this.x+=this.vx; this.y+=this.vy; if(this.x<0) this.x=width; if(this.x>width) this.x=0; if(this.y<0) this.y=height; if(this.y>height) this.y=0; } draw() { ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI*2); ctx.fillStyle=this.color; ctx.shadowBlur=5; ctx.shadowColor='#0ff'; ctx.fill(); } }
-    function initParticles() { particles=[]; for(let i=0;i<180;i++) particles.push(new Particle()); }
-let mouse={x:null,y:null}; 
-function updateMousePosition(clientX, clientY) {
-    mouse.x = clientX;
-    mouse.y = clientY;
-}
-window.addEventListener('mousemove', (e) => updateMousePosition(e.clientX, e.clientY));
-window.addEventListener('touchmove', (e) => {
-    if (e.touches.length > 0) {
-        e.preventDefault(); // optional, prevents scrolling while interacting
-        updateMousePosition(e.touches[0].clientX, e.touches[0].clientY);
+    if (canvas) {
+        let ctx = canvas.getContext('2d');
+        let width, height, particles = [];
+        
+        function resizeCanvas() { 
+            width = window.innerWidth; 
+            height = window.innerHeight; 
+            canvas.width = width; 
+            canvas.height = height;
+            initParticles();
+        }
+        
+        class Particle { 
+            constructor(x,y) { 
+                this.x = x || Math.random() * width; 
+                this.y = y || Math.random() * height; 
+                this.vx = (Math.random() - 0.5) * 0.4; 
+                this.vy = (Math.random() - 0.5) * 0.4; 
+                this.size = Math.random() * 2 + 1; 
+                this.color = `hsl(${Math.random() * 60 + 160}, 80%, 65%)`; 
+            } 
+            update(mx, my) { 
+                if (mx) {
+                    let dx = this.x - mx, dy = this.y - my, dist = Math.hypot(dx, dy); 
+                    if (dist < 100) {
+                        let force = (100 - dist) / 100 * 0.3; 
+                        let ang = Math.atan2(dy, dx); 
+                        this.vx += Math.cos(ang) * force; 
+                        this.vy += Math.sin(ang) * force;
+                    }
+                }
+                this.vx *= 0.99; 
+                this.vy *= 0.99; 
+                this.x += this.vx; 
+                this.y += this.vy; 
+                if (this.x < 0) this.x = width; 
+                if (this.x > width) this.x = 0; 
+                if (this.y < 0) this.y = height; 
+                if (this.y > height) this.y = 0; 
+            } 
+            draw() { 
+                ctx.beginPath(); 
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); 
+                ctx.fillStyle = this.color; 
+                ctx.shadowBlur = 5; 
+                ctx.shadowColor = '#0ff'; 
+                ctx.fill(); 
+            } 
+        }
+        
+        function initParticles() { 
+            particles = []; 
+            for (let i = 0; i < 180; i++) particles.push(new Particle()); 
+        }
+        
+        let mouse = { x: null, y: null }; 
+        
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+        
+        function drawConstellation() { 
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) { 
+                    let dx = particles[i].x - particles[j].x, 
+                        dy = particles[i].y - particles[j].y, 
+                        dist = Math.hypot(dx, dy); 
+                    if (dist < 70) { 
+                        ctx.beginPath(); 
+                        ctx.moveTo(particles[i].x, particles[i].y); 
+                        ctx.lineTo(particles[j].x, particles[j].y); 
+                        ctx.strokeStyle = `rgba(0, 255, 255, ${0.08 * (1 - dist / 70)})`; 
+                        ctx.lineWidth = 0.6; 
+                        ctx.stroke(); 
+                    } 
+                } 
+            } 
+        }
+        
+        function animate() { 
+            ctx.clearRect(0, 0, width, height); 
+            for (let p of particles) { 
+                p.update(mouse.x, mouse.y); 
+                p.draw(); 
+            } 
+            drawConstellation(); 
+            requestAnimationFrame(animate); 
+        }
+        
+        window.addEventListener('resize', resizeCanvas); 
+        resizeCanvas(); 
+        initParticles(); 
+        animate();
     }
-}, { passive: false });
-window.addEventListener('touchstart', (e) => {
-    if (e.touches.length > 0) {
-        updateMousePosition(e.touches[0].clientX, e.touches[0].clientY);
-    }
-});
-    function drawConstellation() { for(let i=0;i<particles.length;i++) for(let j=i+1;j<particles.length;j++) { let dx=particles[i].x-particles[j].x, dy=particles[i].y-particles[j].y, dist=Math.hypot(dx,dy); if(dist<70) { ctx.beginPath(); ctx.moveTo(particles[i].x,particles[i].y); ctx.lineTo(particles[j].x,particles[j].y); ctx.strokeStyle=`rgba(0,255,255,${0.08*(1-dist/70)})`; ctx.lineWidth=0.6; ctx.stroke(); } } }
-    function animate() { ctx.clearRect(0,0,width,height); for(let p of particles){ p.update(mouse.x,mouse.y); p.draw(); } drawConstellation(); requestAnimationFrame(animate); }
-    window.addEventListener('resize',()=>{ resizeCanvas(); initParticles(); }); resizeCanvas(); initParticles(); animate();
     
-    // Ticker (87% removed)
-    const terminalLines = ["> QuantuMech v5.0 | Research for All", "> 100% Free | PhD Mentorship Pipeline", "> 4 Unique Solutions: PoC, Frugal, Synthesis, Guilds", "> Join FREE — No hidden fees"];
-    let lineIdx=0, charIdx=0; const tickerSpan=document.getElementById('tickerLine');
-    function typeTicker() { if(charIdx<=terminalLines[lineIdx].length) { tickerSpan.innerText=terminalLines[lineIdx].substring(0,charIdx)+(charIdx%2===0?"█":" "); charIdx++; setTimeout(typeTicker,60); } else { setTimeout(()=>{ lineIdx=(lineIdx+1)%terminalLines.length; charIdx=0; typeTicker(); },2800); } } typeTicker();
+    // ==========================================
+    // 9. TERMINAL TICKER
+    // ==========================================
+    const terminalLines = [
+        "> QuantuMech v5.0 | Research for All", 
+        "> 100% Free | PhD Mentorship Pipeline", 
+        "> 4 Unique Solutions: PoC, Frugal, Synthesis, Guilds", 
+        "> Join FREE — No hidden fees"
+    ];
+    let lineIdx = 0, charIdx = 0; 
+    const tickerSpan = document.getElementById('tickerLine');
     
-    // Smooth scroll
-    document.querySelectorAll('.node').forEach(node=>{ node.addEventListener('click',()=>{ const t=node.getAttribute('data-target'); if(t) document.getElementById(t)?.scrollIntoView({behavior:'smooth'}); }); });
-    
-    // Google Forms
-  document.addEventListener('DOMContentLoaded', function() {
-    // Google Forms Links
-document.getElementById('joinGoogleFormLink').href="https://forms.gle/WZdb2YdPdN4Wk9X69";
-    document.getElementById('paperSubmitLink').href="https://forms.gle/WcKWWaQS8HiMRG677";
-    document.getElementById('physicsSeriesEnroll').href="https://forms.gle/E7aQYFRtrHEGnAc57";
-    document.getElementById('chemistrySeriesEnroll').href="https://forms.gle/ia5YQ8Np5NTq4xen9";
-    document.getElementById('mathsSeriesEnroll').href="https://forms.gle/iijDBmi6vndY3B2V9";
-    document.getElementById('ambassadorLink').href="https://forms.gle/aHL3DoGQ6ywj5HM3A";
-    document.getElementById('schoolPartnerLink').href="https://forms.gle/qYeHzGuNgZtak5S78";
-    document.getElementById('teacherPartnerLink').href="https://forms.gle/jUW71EVq5ZfAa8Pp8";
-    document.getElementById('compRound1Link').href="https://forms.gle/Pgygfh49s3qNdCYn8";
-    document.getElementById('mockPortfolioBtn')?.addEventListener('click',()=>alert("📊 Portfolio Dashboard Preview — coming soon."));
-    document.querySelectorAll('.requestMentorMock').forEach(btn=>btn.addEventListener('click',()=>alert("✅ Mentor request submitted! Free matching within 48 hours.")));
-
-    // Mock buttons
-    const mockBtn = document.getElementById('mockPortfolioBtn');
-    if (mockBtn) {
-        mockBtn.addEventListener('click', () => alert("📊 Portfolio Dashboard Preview — coming soon."));
+    if (tickerSpan) {
+        function typeTicker() { 
+            if (charIdx <= terminalLines[lineIdx].length) { 
+                tickerSpan.innerText = terminalLines[lineIdx].substring(0, charIdx) + (charIdx % 2 === 0 ? "█" : " "); 
+                charIdx++; 
+                setTimeout(typeTicker, 60); 
+            } else { 
+                setTimeout(() => { 
+                    lineIdx = (lineIdx + 1) % terminalLines.length; 
+                    charIdx = 0; 
+                    typeTicker(); 
+                }, 2800); 
+            } 
+        } 
+        typeTicker();
     }
     
-    document.querySelectorAll('.requestMentorMock').forEach(btn => {
-        btn.addEventListener('click', () => alert("✅ Mentor request submitted! Free matching within 48 hours."));
+    // ==========================================
+    // 10. FADE-UP OBSERVER
+    // ==========================================
+    const observer = new IntersectionObserver((entries) => { 
+        entries.forEach(entry => { 
+            if (entry.isIntersecting) entry.target.classList.add('visible'); 
+        }); 
+    }, { threshold: 0.1 });
+    
+    document.querySelectorAll('.card, .olympiad-card, .glass-panel, .info-block').forEach(el => { 
+        el.classList.add('fade-up'); 
+        observer.observe(el); 
     });
-});
-    // Theme toggle
-    const themeBtn = document.getElementById('themeToggleBtn');
-    themeBtn.addEventListener('click', () => { document.body.classList.toggle('light'); localStorage.setItem('quantumechTheme', document.body.classList.contains('light') ? 'light' : 'dark'); });
-    if(localStorage.getItem('quantumechTheme') === 'light') document.body.classList.add('light');
-    const scrollBtn = document.getElementById('scrollTopBtn');
-window.addEventListener('scroll', () => {
-    scrollBtn.style.opacity = window.scrollY > 400 ? '1' : '0';
-});
-    // Fade-up observer
-    const observer = new IntersectionObserver((e)=>{ e.forEach(entry=>{ if(entry.isIntersecting) entry.target.classList.add('visible'); }); },{threshold:0.1});
-    document.querySelectorAll('.card, .olympiad-card, .glass-panel, .info-block').forEach(el=>{ el.classList.add('fade-up'); observer.observe(el); });
+    
+})();
 </script>
 </body>
 </html>
