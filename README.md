@@ -27,9 +27,4 @@ QuantuMech Research Hub is an open-access STEM initiative designed to bridge the
  Graphics & Visualizations: HTML5 Canvas API, CSS 3D Transforms, FontAwesome Icons
  Logic & Scripting: Vanilla JavaScript (ES6+, DOM Manipulation, Event Listeners, Dynamic UI Rendering1
 
- 🚀 Usage & Deployment
-
-To run locally:
-1. Clone the repository:
-   ```bash
-   git clone [https://github.com/chauhandc2009-bit/QuantuMech-Research-Club.git](https://github.com/chauhandc2009-bit/QuantuMech-Research-Club.git)
+ 
