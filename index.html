@@ -1,3 +1,225 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Visual Learning Lab – 10 Interactive Demos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background: #0a0f2e;
+            min-height: 100vh;
+            padding: 30px 20px;
+        }
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #00f2fe, #4facfe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .header p {
+            color: #88ccff;
+            font-size: 1.1rem;
+            margin-top: 8px;
+        }
+        .lab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 24px;
+        }
+        .lab-item {
+            background: #1a1f4e;
+            border-radius: 24px;
+            padding: 18px 14px;
+            border: 2px solid rgba(0, 242, 254, 0.2);
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            transition: 0.3s ease;
+            display: block;
+        }
+        .lab-item:hover {
+            transform: translateY(-8px);
+            border-color: #00f2fe;
+            box-shadow: 0 0 40px rgba(0, 242, 254, 0.2);
+            background: #0a0f2e;
+        }
+        .lab-item .icon-wrap {
+            width: 100%;
+            height: 140px;
+            border-radius: 16px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            background: #0a0f2e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(0, 242, 254, 0.1);
+            transition: 0.3s;
+        }
+        .lab-item:hover .icon-wrap {
+            border-color: #00f2fe;
+        }
+        .lab-item .icon-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .lab-item h4 {
+            font-size: 1.1rem;
+            color: #00f2fe;
+            margin-bottom: 4px;
+        }
+        .lab-item p {
+            font-size: 0.85rem;
+            color: #88ccff;
+        }
+        .lab-item .url {
+            font-size: 0.6rem;
+            color: #4facfe;
+            opacity: 0.5;
+            margin-top: 4px;
+            word-break: break-all;
+            font-family: monospace;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            .lab-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 14px;
+            }
+            .lab-item {
+                padding: 12px 10px;
+            }
+            .lab-item .icon-wrap {
+                height: 100px;
+            }
+            .lab-item h4 {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧪 Visual Learning Lab</h1>
+            <p>10 Interactive Demos — Click any card to launch</p>
+        </div>
+
+        <div class="lab-grid" id="labGrid"></div>
+    </div>
+
+    <script>
+        const labGrid = document.getElementById('labGrid');
+
+        // Base URL for all concept files
+        const BASE_URL = 'https://achievergrouptution.github.io/ACHIEVERS-GROUP-TUTIONS/concepts/';
+
+        const concepts = [
+            {
+                name: 'Fractions Visualizer',
+                file: 'fractions.html',
+                img: 'https://images.unsplash.com/photo-1509228627152-72ae9ae6848d?w=400&h=300&fit=crop',
+                desc: 'See fractions come alive'
+            },
+            {
+                name: 'Pythagoras Theorem',
+                file: 'pythagoras.html',
+                img: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&h=300&fit=crop',
+                desc: 'Interactive proof'
+            },
+            {
+                name: 'Solar System 3D',
+                file: 'solar-system.html',
+                img: 'https://images.unsplash.com/photo-1614732414444-096e5f1122d5?w=400&h=300&fit=crop',
+                desc: 'Orbit and gravity'
+            },
+            {
+                name: 'States of Matter',
+                file: 'states-of-matter.html',
+                img: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=400&h=300&fit=crop',
+                desc: 'Solid, liquid, gas'
+            },
+            {
+                name: 'Electricity Flow',
+                file: 'electricity.html',
+                img: 'https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=400&h=300&fit=crop',
+                desc: 'Circuits & current'
+            },
+            {
+                name: 'Geometry Builder',
+                file: 'geometry.html',
+                img: 'https://images.unsplash.com/photo-1635107510862-53886e926b74?w=400&h=300&fit=crop',
+                desc: 'Construct 2D/3D'
+            },
+            {
+                name: 'Trigonometry Unit Circle',
+                file: 'trigonometry.html',
+                img: 'https://images.unsplash.com/photo-1587145820266-a5951ee6f620?w=400&h=300&fit=crop',
+                desc: 'Sin, cos, tan'
+            },
+            {
+                name: 'Force & Motion Lab',
+                file: 'force-motion.html',
+                img: 'https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400&h=300&fit=crop',
+                desc: "Newton's laws"
+            },
+            {
+                name: 'Human Heart Animation',
+                file: 'heart.html',
+                img: 'https://images.unsplash.com/photo-1579154336196-0d9a9e3a78f3?w=400&h=300&fit=crop',
+                desc: '3D beating heart'
+            },
+            {
+                name: 'Algebra Graph Explorer',
+                file: 'algebra.html',
+                img: 'https://images.unsplash.com/photo-1549421263-606ec3c5acb2?w=400&h=300&fit=crop',
+                desc: 'Plot equations'
+            }
+        ];
+
+        concepts.forEach(c => {
+            const a = document.createElement('a');
+            a.className = 'lab-item';
+            a.href = BASE_URL + c.file;
+            a.target = '_blank';
+            a.innerHTML = `
+                <div class="icon-wrap">
+                    <img src="${c.img}" alt="${c.name}" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\\'fa-solid fa-cube\\' style=\\'font-size:3rem;color:#00f2fe;\\'></i>';" />
+                </div>
+                <h4>${c.name}</h4>
+                <p>${c.desc}</p>
+                <div class="url">${BASE_URL}${c.file}</div>
+            `;
+            labGrid.appendChild(a);
+        });
+
+
+    </script>
+</body>
+</html>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
