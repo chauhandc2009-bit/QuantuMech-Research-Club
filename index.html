@@ -217,7 +217,663 @@
 
 
     </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuantuMech · Red-Teaming AI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            background: #0b0d15;
+            color: #d0d6e0;
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            padding: 2rem 1.5rem;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* header */
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #2a2f3f;
+            padding-bottom: 1.2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo h1 {
+            font-weight: 600;
+            font-size: 1.8rem;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #b7b9ff, #7aa9ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo span {
+            font-weight: 300;
+            font-size: 0.9rem;
+            background: #1e2332;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            color: #a0b3e6;
+            margin-left: 0.5rem;
+            -webkit-text-fill-color: #a0b3e6;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 0.25rem;
+            background: #161b26;
+            padding: 0.3rem;
+            border-radius: 40px;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: #8d97b0;
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: 0.2s;
+            letter-spacing: 0.3px;
+        }
+
+        .tab-btn.active {
+            background: #2f3a57;
+            color: #f0f4ff;
+            box-shadow: 0 0 12px rgba(70, 130, 255, 0.2);
+        }
+
+        .tab-btn:hover {
+            color: #eef3ff;
+        }
+
+        /* panels */
+        .panel {
+            display: none;
+            margin-top: 2.5rem;
+            animation: fadeUp 0.4s ease;
+        }
+
+        .panel.active {
+            display: block;
+        }
+
+        @keyframes fadeUp {
+            0% { opacity: 0.4; transform: translateY(8px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* cards */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: #131a26;
+            border: 1px solid #26303f;
+            border-radius: 24px;
+            padding: 1.5rem 1.8rem;
+            transition: 0.2s;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .card:hover {
+            border-color: #3f4d6b;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #d9e2ff;
+            margin-bottom: 0.3rem;
+        }
+
+        .card .badge {
+            background: #1f2b3f;
+            padding: 0.2rem 0.9rem;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #8da2d9;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .fallacy-box {
+            background: #0f151f;
+            padding: 1rem;
+            border-radius: 16px;
+            border-left: 4px solid #ff7a7a;
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+            color: #bfc9e0;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .btn {
+            background: #2d3b57;
+            border: none;
+            color: white;
+            padding: 0.5rem 1.4rem;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.15s;
+            border: 1px solid #41506e;
+        }
+
+        .btn-primary {
+            background: #4b6bff;
+            border-color: #6a85ff;
+        }
+
+        .btn-primary:hover {
+            background: #3b5be6;
+            box-shadow: 0 0 16px #3b5be680;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #3d4b66;
+        }
+
+        .btn-outline:hover {
+            background: #1f293f;
+        }
+
+        .fix-area {
+            margin-top: 1rem;
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .fix-area input {
+            flex: 2;
+            min-width: 180px;
+            background: #0b111c;
+            border: 1px solid #2a364d;
+            padding: 0.6rem 1rem;
+            border-radius: 40px;
+            color: #d6def0;
+            font-size: 0.9rem;
+        }
+
+        .fix-area input::placeholder {
+            color: #55617a;
+        }
+
+        .feedback {
+            margin-top: 0.8rem;
+            font-size: 0.9rem;
+            color: #a6c1ff;
+        }
+
+        /* disclosure form */
+        .form-group {
+            margin-bottom: 1.4rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+            color: #b8c7f0;
+        }
+
+        .form-group textarea,
+        .form-group input {
+            width: 100%;
+            background: #0e1420;
+            border: 1px solid #29344b;
+            border-radius: 16px;
+            padding: 0.8rem 1.2rem;
+            color: #dce3f5;
+            font-size: 0.95rem;
+            resize: vertical;
+        }
+
+        .form-group textarea {
+            min-height: 80px;
+        }
+
+        .disclosure-preview {
+            background: #0c121e;
+            border: 1px solid #2a3853;
+            border-radius: 20px;
+            padding: 1.8rem;
+            margin-top: 1.8rem;
+            border-left: 6px solid #4b6bff;
+        }
+
+        /* whiteboard */
+        .whiteboard {
+            background: #0a101b;
+            border: 2px solid #2a3853;
+            border-radius: 24px;
+            padding: 2rem 2rem 1.5rem;
+            min-height: 200px;
+            background-image: radial-gradient(circle at 20% 30%, #1a2335 1px, transparent 1px);
+            background-size: 30px 30px;
+            position: relative;
+        }
+
+        .whiteboard p {
+            font-size: 1.1rem;
+        }
+
+        .edge-case {
+            background: #151f30;
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border: 1px dashed #5f7bc0;
+        }
+
+        /* editorial */
+        .editorial {
+            background: linear-gradient(145deg, #101826, #0b111d);
+            border: 1px solid #33415e;
+            border-radius: 28px;
+            padding: 2.5rem;
+        }
+
+        .editorial h2 {
+            font-size: 2rem;
+            font-weight: 500;
+            color: #d4e2ff;
+        }
+
+        .editorial .highlight {
+            color: #9bbaff;
+            font-weight: 400;
+        }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(to right, #2f3d5c, transparent);
+            margin: 1.8rem 0;
+        }
+
+        .tag {
+            background: #1d2a41;
+            border-radius: 40px;
+            padding: 0.2rem 1rem;
+            font-size: 0.7rem;
+            letter-spacing: 0.5px;
+            color: #a4bdf7;
+        }
+
+        @media (max-width: 700px) {
+            .topbar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .tabs {
+                overflow-x: auto;
+                border-radius: 20px;
+            }
+            .tab-btn {
+                padding: 0.4rem 0.9rem;
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="topbar">
+        <div class="logo">
+            <h1>⚛️ QuantuMech <span>Red-Teaming AI</span></h1>
+        </div>
+        <div class="tabs" id="tabContainer">
+            <button class="tab-btn active" data-panel="workshops">🧪 Workshops</button>
+            <button class="tab-btn" data-panel="submissions">📄 Disclosures</button>
+            <button class="tab-btn" data-panel="defense">🎓 Whiteboard & Viva</button>
+            <button class="tab-btn" data-panel="editorial">📰 Editorial</button>
+        </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- PANEL 1: WORKSHOPS & CHALLENGES           -->
+    <!-- ========================================= -->
+    <div id="workshops" class="panel active">
+        <div style="display:flex; justify-content:space-between; flex-wrap:wrap; margin-bottom:1.8rem;">
+            <h2 style="font-weight:400;">🔍 Bug‑Hunt · AI Hallucinations</h2>
+            <span class="tag">Peer session · first principles</span>
+        </div>
+        <div class="grid-2" id="challengeContainer">
+            <!-- cards injected by JS -->
+        </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- PANEL 2: COGNITIVE DISCLOSURES            -->
+    <!-- ========================================= -->
+    <div id="submissions" class="panel">
+        <h2 style="font-weight:400; margin-bottom:0.5rem;">📋 Mandatory AI & Process Disclosure</h2>
+        <p style="color:#8899bb; margin-bottom:2rem;">Standardized section for QuantuMech journal submissions.</p>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+            <div>
+                <div class="form-group">
+                    <label>📌 Where was AI used?</label>
+                    <input id="aiUsed" value="Code debugging, grammar & style refinement" placeholder="e.g. code debugging, literature mapping...">
+                </div>
+                <div class="form-group">
+                    <label>🧠 Initial mistakes made by the model</label>
+                    <textarea id="aiMistakes" rows="2">Misinterpreted boundary conditions; introduced a relativistic speed violation in the particle flux.</textarea>
+                </div>
+                <div class="form-group">
+                    <label>✅ How did you verify the physics / math?</label>
+                    <textarea id="verification" rows="2">Re-derived the Lorentz transformation step-by-step and checked against experimental limits.</textarea>
+                </div>
+                <button class="btn btn-primary" id="generateDisclosureBtn">⟳ Generate Disclosure Statement</button>
+            </div>
+            <div>
+                <div class="disclosure-preview" id="disclosurePreview">
+                    <p style="color:#a5bbf0; font-weight:500; margin-bottom:0.5rem;">📄 AI & Process Disclosure</p>
+                    <div id="disclosureText" style="font-size:0.95rem; line-height:1.6;">
+                        <em>AI was used for code debugging and grammar checks. The model initially introduced a broken boundary condition and a relativistic speed violation. The author independently verified the physical math by re-deriving the Lorentz transformation and validating against experimental constraints.</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- PANEL 3: WHITEBOARD & VIVA DEFENSE       -->
+    <!-- ========================================= -->
+    <div id="defense" class="panel">
+        <div style="display:flex; justify-content:space-between; flex-wrap:wrap; margin-bottom:1.5rem;">
+            <h2 style="font-weight:400;">🎙️ Whiteboard & Viva Defense</h2>
+            <span class="tag">no slides · no code‑assist</span>
+        </div>
+
+        <div class="whiteboard">
+            <p style="font-family:'JetBrains Mono', monospace; color:#b0c7ff;">📐 Student's core derivation</p>
+            <div style="background:#0e1625; padding:1.2rem; border-radius:20px; margin:1rem 0; font-family:monospace; font-size:1rem;">
+                <span style="color:#9bbaff;">∂<sub>μ</sub> F<sup>μν</sup> = μ₀ J<sup>ν</sup></span> &nbsp;→ &nbsp;
+                <span style="color:#b5d0ff;">∇·E = ρ/ε₀</span> &nbsp;→ &nbsp;
+                <span style="color:#8bb0ff;">∇×B = μ₀J + μ₀ε₀ ∂E/∂t</span>
+            </div>
+            <p style="color:#a0b7e6; font-size:0.95rem;">"Now walk us through the physical intuition behind the displacement current term."</p>
+
+            <div class="edge-case">
+                <span style="color:#f0b87b;">⚡ Edge‑case question (generated):</span>
+                <div id="edgeCaseDisplay" style="margin-top:0.5rem; font-size:1.05rem;">
+                    "What happens to the Poynting vector in the near‑field zone of a magnetic dipole?"
+                </div>
+                <button class="btn btn-outline" id="newEdgeCaseBtn" style="margin-top:0.8rem;">⟳ Generate new edge case</button>
+            </div>
+
+            <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+                <button class="btn btn-primary" id="startDefenseBtn">🎤 Start Viva session (simulated)</button>
+                <span id="defenseStatus" style="align-self:center; color:#78b0ff; font-size:0.9rem;">⏳ ready</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- PANEL 4: EDITORIAL / SPECIAL FEATURE      -->
+    <!-- ========================================= -->
+    <div id="editorial" class="panel">
+        <div class="editorial">
+            <div style="display:flex; gap:0.8rem; align-items:center; flex-wrap:wrap;">
+                <span class="tag" style="background:#334b77;">📌 special feature</span>
+                <span class="tag">Vol. 2 · 2026</span>
+            </div>
+            <h2 style="margin-top:1.2rem;">Preserving <span class="highlight">Cognitive Friction</span> in High‑School Research</h2>
+            <p style="color:#b0c4ec; font-size:1.05rem; margin:1rem 0 0.5rem;">
+                In an era of automated derivation and instant code synthesis, the <strong>MIT Media Lab</strong> findings remind us that 
+                <span style="color:#d3e0ff;">deep mental synthesis</span> is not a bottleneck — it's the engine of breakthrough physics.
+            </p>
+            <div class="divider"></div>
+            <p style="color:#bcccf0;">
+                QuantuMech stands for <strong>cognitive friction</strong>: the deliberate, uncomfortable process of 
+                wrestling with edge cases, failed integrals, and broken boundary conditions. We celebrate the 
+                <span style="color:#b5cdff;">messy whiteboard</span> — where real understanding crystallises.
+            </p>
+            <p style="margin-top:1.2rem; color:#99b3e6;">
+                “Our tools must be <em>scalpels</em>, not crutches. We use AI to accelerate, but we never outsource 
+                the final physical insight.” — <strong>QuantuMech Editorial Board</strong>
+            </p>
+            <div style="margin-top:2rem; background:#111c2e; border-radius:20px; padding:1.5rem; border:1px solid #2f4060;">
+                <span style="color:#bfd2ff;">📖 <strong>Key takeaway:</strong></span> 
+                <span style="color:#b0c4f0;">Balance computational leverage with first‑principles verification. 
+                Every AI‑generated proof must be stress‑tested with a <em>Whiteboard Defense</em>.</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    (function() {
+        // ============================================================
+        // 1. WORKSHOP DATA — AI generated flawed content
+        // ============================================================
+        const challenges = [{
+            id: 0,
+            title: 'Relativistic particle flux',
+            fallacy: 'Lorentz violation',
+            snippet: `def flux(gamma, v, n):
+    return gamma * n * v   # forgot the 1/c^2 term in high-v limit`,
+            flawDesc: 'Speed violation: for v → c, flux diverges unphysically; missing relativistic correction.',
+            fixHint: 'include the correct Lorentz invariant phase-space factor.'
+        }, {
+            id: 1,
+            title: 'Quantum harmonic oscillator proof',
+            fallacy: 'Broken boundary conditions',
+            snippet: `ψ(x) = A * exp(-mωx²/2ħ)   # even parity, but forgot the Hermite polynomial for n>0`,
+            flawDesc: 'The proof assumes ground state for all n; misses quantization and nodal structure.',
+            fixHint: 'apply the full recurrence relation for Hermite polynomials.'
+        }, {
+            id: 2,
+            title: 'Simulation: PDE solver (heat eq)',
+            fallacy: 'Unstable discretization',
+            snippet: `u_new[i] = u[i] + dt * (u[i+1] - 2*u[i] + u[i-1])/dx²   # explicit Euler with large dt`,
+            flawDesc: 'Violates CFL stability; leads to numerical divergence for typical parameters.',
+            fixHint: 'use implicit Crank-Nicolson or reduce dt/dx².'
+        }];
+
+        const container = document.getElementById('challengeContainer');
+
+        function renderChallenges() {
+            container.innerHTML = '';
+            challenges.forEach((ch, idx) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <h3>${ch.title}</h3>
+                    <div class="badge">🔴 hidden fallacy: ${ch.fallacy}</div>
+                    <div class="fallacy-box">${ch.snippet}</div>
+                    <div id="flawDesc_${idx}" style="background:#172132; padding:0.6rem 1rem; border-radius:14px; margin:0.6rem 0; font-size:0.9rem; border-left:3px solid #ff7a7a; display:none;">
+                        <strong>⚡ Flaw:</strong> ${ch.flawDesc}
+                    </div>
+                    <div id="fixArea_${idx}" style="display:none;" class="fix-area">
+                        <input type="text" id="fixInput_${idx}" placeholder="Write your fix using first principles...">
+                        <button class="btn btn-primary" data-fixidx="${idx}">Submit fix</button>
+                    </div>
+                    <div style="display:flex; gap:0.6rem; flex-wrap:wrap; margin-top:0.8rem;">
+                        <button class="btn btn-outline reveal-btn" data-idx="${idx}">🔎 Reveal fallacy</button>
+                        <button class="btn btn-outline fix-btn" data-idx="${idx}">✏️ Propose fix</button>
+                    </div>
+                    <div id="feedback_${idx}" class="feedback"></div>
+                `;
+                container.appendChild(card);
+            });
+
+            // Attach event listeners
+            document.querySelectorAll('.reveal-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    const idx = this.dataset.idx;
+                    const desc = document.getElementById(`flawDesc_${idx}`);
+                    if (desc) {
+                        desc.style.display = desc.style.display === 'none' ? 'block' : 'none';
+                    }
+                });
+            });
+
+            document.querySelectorAll('.fix-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    const idx = this.dataset.idx;
+                    const area = document.getElementById(`fixArea_${idx}`);
+                    if (area) {
+                        area.style.display = area.style.display === 'none' ? 'flex' : 'none';
+                    }
+                });
+            });
+
+            document.querySelectorAll('[data-fixidx]').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    const idx = this.dataset.fixidx;
+                    const input = document.getElementById(`fixInput_${idx}`);
+                    const feedback = document.getElementById(`feedback_${idx}`);
+                    if (input && feedback) {
+                        const val = input.value.trim();
+                        if (val.length > 5) {
+                            feedback.innerHTML = `✅ Peer review accepted: "${val}" — first‑principles fix verified.`;
+                            feedback.style.color = '#8bcb8b';
+                        } else {
+                            feedback.innerHTML = '⚠️ Please provide a more detailed physical justification.';
+                            feedback.style.color = '#f5b87b';
+                        }
+                    }
+                });
+            });
+        }
+        renderChallenges();
+
+        // ============================================================
+        // 2. DISCLOSURE GENERATOR
+        // ============================================================
+        const genBtn = document.getElementById('generateDisclosureBtn');
+        const disclosureText = document.getElementById('disclosureText');
+
+        function updateDisclosure() {
+            const used = document.getElementById('aiUsed').value || 'code debugging, grammar checks';
+            const mistakes = document.getElementById('aiMistakes').value || 'initial boundary condition error';
+            const verify = document.getElementById('verification').value || 're-derived from first principles';
+            disclosureText.innerHTML = `
+                <strong>AI usage:</strong> ${used}.<br>
+                <strong>Model mistakes:</strong> ${mistakes}.<br>
+                <strong>Verification:</strong> ${verify}.
+            `;
+        }
+
+        genBtn.addEventListener('click', updateDisclosure);
+        // initial preview
+        updateDisclosure();
+
+        // ============================================================
+        // 3. WHITEBOARD & VIVA
+        // ============================================================
+        const edgeCases = [
+            'What happens to the Poynting vector in the near‑field zone of a magnetic dipole?',
+            'Derive the group velocity expression for a wave packet in a dispersive medium. Where does the approximation break?',
+            'Explain the physical origin of the Aharonov‑Bohm effect without using gauge invariance.',
+            'How would you measure the spin of a neutron interferometrically? What are the edge‑case errors?',
+            'Discuss the limitations of the Born approximation in scattering theory.'
+        ];
+
+        const edgeDisplay = document.getElementById('edgeCaseDisplay');
+        const newEdgeBtn = document.getElementById('newEdgeCaseBtn');
+        let currentEdgeIdx = 0;
+
+        function setRandomEdge() {
+            let newIdx;
+            do {
+                newIdx = Math.floor(Math.random() * edgeCases.length);
+            } while (edgeCases.length > 1 && newIdx === currentEdgeIdx);
+            currentEdgeIdx = newIdx;
+            edgeDisplay.textContent = `"${edgeCases[currentEdgeIdx]}"`;
+        }
+
+        newEdgeBtn.addEventListener('click', setRandomEdge);
+        setRandomEdge(); // initial
+
+        const defenseStatus = document.getElementById('defenseStatus');
+        document.getElementById('startDefenseBtn').addEventListener('click', function() {
+            defenseStatus.innerHTML = '🎙️ Viva in progress … student is explaining derivation without slides.';
+            defenseStatus.style.color = '#b5d0ff';
+            setTimeout(() => {
+                defenseStatus.innerHTML = '✅ Defense passed. Student handled all edge‑case queries.';
+                defenseStatus.style.color = '#8bcb8b';
+            }, 2500);
+        });
+
+        // ============================================================
+        // 4. TABS
+        // ============================================================
+        const tabs = document.querySelectorAll('.tab-btn');
+        const panels = {
+            workshops: document.getElementById('workshops'),
+            submissions: document.getElementById('submissions'),
+            defense: document.getElementById('defense'),
+            editorial: document.getElementById('editorial')
+        };
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const target = this.dataset.panel;
+                // update active tab
+                tabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                // update panels
+                Object.keys(panels).forEach(key => {
+                    panels[key].classList.remove('active');
+                });
+                if (panels[target]) panels[target].classList.add('active');
+            });
+        });
+
+        // ============================================================
+        // (optional) re-trigger disclosure on input change
+        // ============================================================
+        document.querySelectorAll('#submissions input, #submissions textarea').forEach(el => {
+            el.addEventListener('input', updateDisclosure);
+        });
+
+    })();
+</script>
+
+<!-- simple note: no external dependencies -->
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
